@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">GetDisciplined</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
+    <string name="slogan">The only app you need to help you stay focused!</string>
+    <string name="swipestart">Swipe now and get to work -> </string>
+    <string name="title_activity_setup">SetupActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_simple">title_activity_simple</string>
+
+    <string-array name="items">
+        <item>Simple Holo theme</item>
+        <item>Custom style</item>
+    </string-array>
+
+
+</resources>
