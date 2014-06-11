@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 public class SetupActivity extends Activity {
 
-    //textviews
+
     TextView MainT, sloganT, swipeT;
 
     @Override
