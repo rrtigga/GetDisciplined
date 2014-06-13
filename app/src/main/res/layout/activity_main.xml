@@ -27,8 +27,8 @@
             seekarc:startAngle="30"
             seekarc:sweepAngle="300"
             seekarc:touchInside="true"
-            seekarc:arcColor="#ff2ca3cc"
-            seekarc:progressColor="#ffcc2d2a"/>
+            seekarc:arcColor="#ff5ac3ff"
+            seekarc:progressColor="#ffff3a35"/>
 
         <TextView
             android:id="@+id/seekArcProgress"
