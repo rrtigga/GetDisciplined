@@ -1,17 +1,17 @@
-package Spicycurryman.getdisciplined10.app;
+package com.spicycurryman.getdisciplined10.app;
 
-import android.app.ListActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
-import android.widget.TextView;
 import android.widget.SeekBar.OnSeekBarChangeListener;
+import android.widget.TextView;
 
 import com.triggertrap.seekarc.SeekArc;
 import com.triggertrap.seekarc.SeekArc.OnSeekArcChangeListener;
 
-public class MainActivity extends ListActivity {
+public class MainActivity extends Activity {
     private SeekArc mSeekArc;
     private SeekBar mRotation;
     private SeekBar mStartAngle;

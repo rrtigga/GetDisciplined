@@ -1,4 +1,4 @@
-package Spicycurryman.getdisciplined10.app;
+package com.spicycurryman.getdisciplined10.app;
 
 import android.app.Activity;
 import android.graphics.Typeface;
