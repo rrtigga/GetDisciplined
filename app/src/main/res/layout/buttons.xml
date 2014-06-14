@@ -1,15 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/layout" android:orientation="vertical"
+              android:layout_width="fill_parent" android:layout_height="fill_parent"
+              android:weightSum="1">
 
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+    <TableLayout android:id="@+id/tableLayout1"
+                 android:layout_height="wrap_content" android:layout_width="fill_parent" />
 
     <Button
-        android:id="@+id/button_send"
-        android:layout_width="wrap_content"
+        android:id="@+id/block_button"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="?android:attr/borderlessButtonStyle" />
+        android:background="#ff5ac3ff"
+        android:drawableLeft="@drawable/ic_action"
+        android:gravity="left|center_vertical"
+        android:text="@string/block_apps"
+
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_weight="0.09"/>
+
+    <Button
+        android:id="@+id/security_settings_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff5ac3ff"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_weight="0.09"/>
+
+    <Button
+        android:id="@+id/blacklist_whitelist_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff5ac3ff"
+        style="?android:attr/borderlessButtonStyle"
+        android:layout_weight="0.09"/>
 
 
-
-</RelativeLayout>
+</LinearLayout>

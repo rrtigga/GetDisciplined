@@ -9,9 +9,9 @@
     <string name="slogan">The only app you need to help you stay focused!</string>
     <string name="swipestart">Swipe now and get to work -> </string>
     <string name="title_activity_setup">SetupActivity</string>
-    <string name="dummy_button">Dummy Button</string>
-    <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="title_activity_simple">title_activity_simple</string>
+    <string name="block_apps">Block Apps</string>
+    <string name="security_settings">Security and Settings</string>
+    <string name="blacklist_whitelist">Blacklists and Whitelists</string>
 
     <string-array name="items">
         <item>Simple Holo theme</item>
