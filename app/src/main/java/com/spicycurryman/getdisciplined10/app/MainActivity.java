@@ -41,11 +41,11 @@ public class MainActivity extends Activity {
         mTouchInside = (CheckBox) findViewById(R.id.touchInside);
         mClockwise = (CheckBox) findViewById(R.id.clockwise);
 
-        mRotation.setProgress(mSeekArc.getArcRotation());
-        mStartAngle.setProgress(mSeekArc.getStartAngle());
-        mSweepAngle.setProgress(mSeekArc.getSweepAngle());
-        mArcWidth.setProgress(mSeekArc.getArcWidth());
-        mProgressWidth.setProgress(mSeekArc.getProgressWidth());
+       mRotation.setProgress(mSeekArc.getArcRotation());
+       mStartAngle.setProgress(mSeekArc.getStartAngle());
+       mSweepAngle.setProgress(mSeekArc.getSweepAngle());
+       mArcWidth.setProgress(mSeekArc.getArcWidth());
+       mProgressWidth.setProgress(mSeekArc.getProgressWidth());
 
         mSeekArc.setOnSeekArcChangeListener(new OnSeekArcChangeListener() {
 

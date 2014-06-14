@@ -17,19 +17,6 @@
         android:layout_height="wrap_content"
         >
 
-        <com.triggertrap.seekarc.SeekArc
-            android:id="@+id/seekArc"
-            android:layout_width="367dp"
-            android:layout_height="238dp"
-            android:layout_gravity="center_horizontal|top"
-            android:padding="30dp"
-            seekarc:rotation="180"
-            seekarc:startAngle="0"
-            seekarc:sweepAngle="360"
-            seekarc:touchInside="true"
-            seekarc:arcColor="#ff5ac3ff"
-            seekarc:progressColor="#ffff3a35"/>
-
         <TextView
             android:id="@+id/seekArcProgress"
             android:layout_width="wrap_content"
@@ -37,8 +24,24 @@
             android:layout_gravity="center"
             android:text="0"
             android:textSize="40sp" />
+
+        <com.triggertrap.seekarc.SeekArc
+            android:id="@+id/seekArc"
+            android:layout_width="300dp"
+            android:layout_height="250dp"
+            android:layout_gravity="center"
+            android:padding="30dp"
+            seekarc:rotation="180"
+            seekarc:startAngle="0"
+            seekarc:sweepAngle="360"
+            seekarc:touchInside="true"
+            seekarc:arcColor="#fffffafe"
+            seekarc:progressColor="#ffff3a35"/>
     </FrameLayout>
 
+    <include
+        layout="@layout/controls"
+        android:id="@+id/controls" />
 
 
 

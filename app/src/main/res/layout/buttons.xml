@@ -16,8 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="right|center_vertical"
-        android:layout_weight="1"
-        android:background="#ffb7fff8"
+        android:layout_weight="1.10"
         android:drawableLeft="@drawable/ic_action"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/block_apps"
@@ -27,9 +26,8 @@
         android:id="@+id/security_settings_button"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#ffb7fff8"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_weight="1"
+        android:layout_weight="1.10"
         android:drawableLeft="@drawable/ic_settings"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/security_settings"
@@ -39,12 +37,12 @@
         android:id="@+id/blacklist_whitelist_button"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:background="#ffb7fff8"
         style="?android:attr/borderlessButtonStyle"
         android:drawableLeft="@drawable/ic_blacklist_red"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/blacklist_whitelist"
         android:textSize="22sp"
-        android:layout_weight="1"/>
+        android:layout_weight="1.10"
+        />
 
     </LinearLayout>
