@@ -29,7 +29,7 @@ public class MainActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.merge);
         mSeekArc = (SeekArc) findViewById(R.id.seekArc);
         mSeekArcProgress = (TextView) findViewById(R.id.seekArcProgress);
         mRotation = (SeekBar) findViewById(R.id.rotation);

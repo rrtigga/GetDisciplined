@@ -13,19 +13,19 @@
 
     <FrameLayout
         android:id="@+id/seekArcContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_weight="1" >
+        android:layout_width="350dp"
+        android:layout_height="wrap_content"
+        >
 
         <com.triggertrap.seekarc.SeekArc
             android:id="@+id/seekArc"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_width="367dp"
+            android:layout_height="238dp"
+            android:layout_gravity="center_horizontal|top"
             android:padding="30dp"
             seekarc:rotation="180"
-            seekarc:startAngle="30"
-            seekarc:sweepAngle="300"
+            seekarc:startAngle="0"
+            seekarc:sweepAngle="360"
             seekarc:touchInside="true"
             seekarc:arcColor="#ff5ac3ff"
             seekarc:progressColor="#ffff3a35"/>
@@ -41,8 +41,7 @@
 
 
 
-    <include
-        android:id="@+id/controls"
-        layout="@layout/controls" />
+
 
 </LinearLayout>
+
