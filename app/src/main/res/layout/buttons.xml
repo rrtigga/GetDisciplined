@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@+id/layout" android:orientation="vertical"
-              android:layout_width="fill_parent" android:layout_height="fill_parent"
+              android:id="@+id/layout"
+              android:orientation="vertical"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
               android:weightSum="1">
 
     <TableLayout android:id="@+id/tableLayout1"
-                 android:layout_height="wrap_content" android:layout_width="fill_parent" />
+                 android:layout_height="wrap_content"
+                 android:layout_width="fill_parent" />
 
     <Button
         android:id="@+id/block_button"
@@ -15,6 +18,7 @@
         android:drawableLeft="@drawable/ic_action"
         android:gravity="left|center_vertical"
         android:text="@string/block_apps"
+        android:textSize="22sp"
 
         style="?android:attr/borderlessButtonStyle"
         android:layout_weight="0.09"/>
@@ -25,7 +29,11 @@
         android:layout_height="wrap_content"
         android:background="#ff5ac3ff"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_weight="0.09"/>
+        android:layout_weight="0.09"
+        android:drawableLeft="@drawable/ic_settings"
+        android:gravity="left|center_vertical"
+        android:text="@string/security_settings"
+        android:textSize="22sp"/>
 
     <Button
         android:id="@+id/blacklist_whitelist_button"
@@ -33,6 +41,10 @@
         android:layout_height="wrap_content"
         android:background="#ff5ac3ff"
         style="?android:attr/borderlessButtonStyle"
+        android:drawableLeft="@drawable/ic_blacklist_red"
+        android:gravity="left|center_vertical"
+        android:text="@string/blacklist_whitelist"
+        android:textSize="22sp"
         android:layout_weight="0.09"/>
 
 
