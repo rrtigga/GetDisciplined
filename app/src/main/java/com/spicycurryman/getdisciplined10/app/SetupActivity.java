@@ -21,15 +21,15 @@ public class SetupActivity extends Activity {
         setContentView(R.layout.activity_setup);
 
         MainT=(TextView) findViewById(R.id.main_text);
-        Typeface mainCustomFont = Typeface.createFromAsset(getAssets(),"fonts/Roboto-ThinItalic.ttf");
+        Typeface mainCustomFont = Typeface.createFromAsset(getAssets(), "src/main/fonts/roboto-thinitalic.ttf");
         MainT.setTypeface(mainCustomFont);
 
         sloganT=(TextView) findViewById(R.id.theslogan);
-        Typeface sloganCustomFont = Typeface.createFromAsset(getAssets(),"fonts/Roboto-BoldItalic.ttf");
+        Typeface sloganCustomFont = Typeface.createFromAsset(getAssets(), "src/main/fonts/Roboto-BoldItalic.ttf");
         sloganT.setTypeface(sloganCustomFont);
 
         swipeT=(TextView) findViewById(R.id.swipestart);
-        Typeface swipeCustomFont = Typeface.createFromAsset(getAssets(),"fonts/Roboto-ThinItalic.ttf");
+        Typeface swipeCustomFont = Typeface.createFromAsset(getAssets(), "src/main/fonts/roboto-thinitalic.ttf");
         swipeT.setTypeface(swipeCustomFont);
     }
 

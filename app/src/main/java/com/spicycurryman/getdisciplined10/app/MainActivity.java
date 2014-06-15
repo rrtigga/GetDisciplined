@@ -1,7 +1,10 @@
 package com.spicycurryman.getdisciplined10.app;
 
 import android.app.Activity;
+import android.content.pm.ActivityInfo;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
@@ -23,13 +26,29 @@ public class MainActivity extends Activity {
     private CheckBox mClockwise;
     private TextView mSeekArcProgress;
 
+    private Button block_button_text;
+    private Button security_settings_button_text;
+    private Button blacklist_whitelist_button_text;
 
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.merge);
+
+        //Editing Button Text
+
+        block_button_text = (Button)findViewById(R.id.block_button);
+        block_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+
+        security_settings_button_text = (Button)findViewById(R.id.security_settings_button);
+        security_settings_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+
+        blacklist_whitelist_button_text = (Button)findViewById(R.id.blacklist_whitelist_button);
+        blacklist_whitelist_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+
         mSeekArc = (SeekArc) findViewById(R.id.seekArc);
         mSeekArcProgress = (TextView) findViewById(R.id.seekArcProgress);
         mRotation = (SeekBar) findViewById(R.id.rotation);
@@ -46,6 +65,11 @@ public class MainActivity extends Activity {
        mSweepAngle.setProgress(mSeekArc.getSweepAngle());
        mArcWidth.setProgress(mSeekArc.getArcWidth());
        mProgressWidth.setProgress(mSeekArc.getProgressWidth());
+
+
+
+
+
 
         mSeekArc.setOnSeekArcChangeListener(new OnSeekArcChangeListener() {
 
