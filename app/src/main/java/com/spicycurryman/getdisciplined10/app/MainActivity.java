@@ -1,9 +1,11 @@
 package com.spicycurryman.getdisciplined10.app;
 
-import android.app.Activity;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
@@ -14,7 +16,7 @@ import android.widget.TextView;
 import com.triggertrap.seekarc.SeekArc;
 import com.triggertrap.seekarc.SeekArc.OnSeekArcChangeListener;
 
-public class MainActivity extends Activity {
+public class MainActivity extends ActionBarActivity {
     private SeekArc mSeekArc;
     private SeekBar mRotation;
     private SeekBar mStartAngle;
@@ -29,6 +31,12 @@ public class MainActivity extends Activity {
     private Button block_button_text;
     private Button security_settings_button_text;
     private Button blacklist_whitelist_button_text;
+
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main, menu);
+        return true;
+    }
 
 
 
@@ -49,6 +57,12 @@ public class MainActivity extends Activity {
         blacklist_whitelist_button_text = (Button)findViewById(R.id.blacklist_whitelist_button);
         blacklist_whitelist_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
 
+
+
+
+
+
+
         mSeekArc = (SeekArc) findViewById(R.id.seekArc);
         mSeekArcProgress = (TextView) findViewById(R.id.seekArcProgress);
         mRotation = (SeekBar) findViewById(R.id.rotation);
@@ -65,7 +79,6 @@ public class MainActivity extends Activity {
        mSweepAngle.setProgress(mSeekArc.getSweepAngle());
        mArcWidth.setProgress(mSeekArc.getArcWidth());
        mProgressWidth.setProgress(mSeekArc.getProgressWidth());
-
 
 
 
@@ -192,5 +205,10 @@ public class MainActivity extends Activity {
 
     }
 
+
+
+
+
 }
+
 
