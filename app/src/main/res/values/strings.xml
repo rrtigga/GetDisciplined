@@ -12,6 +12,9 @@
     <string name="block_apps">Block Apps</string>
     <string name="security_settings">Security and Settings</string>
     <string name="blacklist_whitelist">Blacklists and Whitelists</string>
+    <string name="time_set">Hours</string>
+    <string name="search">Search</string>
+
 
     <string-array name="items">
         <item>Simple Holo theme</item>

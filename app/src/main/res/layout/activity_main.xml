@@ -38,13 +38,20 @@
             seekarc:touchInside="true"
             seekarc:arcColor="#fffffafe"
             seekarc:progressColor="#ffff3a35"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="97dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="@string/time_set"
+            android:id="@+id/time_text"
+            android:layout_gravity="center_horizontal|bottom"/>
+
     </FrameLayout>
 
     <include
         layout="@layout/controls"
         android:id="@+id/controls" />
-
-
 
 
 </LinearLayout>

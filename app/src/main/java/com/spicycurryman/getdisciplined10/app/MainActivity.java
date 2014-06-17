@@ -31,6 +31,8 @@ public class MainActivity extends ActionBarActivity {
     private Button block_button_text;
     private Button security_settings_button_text;
     private Button blacklist_whitelist_button_text;
+    private TextView hour_text;
+    private TextView number_text;
 
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
@@ -49,13 +51,21 @@ public class MainActivity extends ActionBarActivity {
         //Editing Button Text
 
         block_button_text = (Button)findViewById(R.id.block_button);
-        block_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+        block_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/robotocondensed-light.ttf"));
 
         security_settings_button_text = (Button)findViewById(R.id.security_settings_button);
-        security_settings_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+        security_settings_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/robotocondensed-light.ttf"));
 
         blacklist_whitelist_button_text = (Button)findViewById(R.id.blacklist_whitelist_button);
-        blacklist_whitelist_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+        blacklist_whitelist_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/robotocondensed-light.ttf"));
+
+        hour_text = (TextView)findViewById(R.id.time_text);
+        hour_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+
+        number_text = (TextView)findViewById(R.id.seekArcProgress);
+        number_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+
+
 
 
 
