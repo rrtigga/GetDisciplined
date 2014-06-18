@@ -1,17 +1,21 @@
 package com.spicycurryman.getdisciplined10.app;
 
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+import android.view.View.OnClickListener;
 
 import com.triggertrap.seekarc.SeekArc;
 import com.triggertrap.seekarc.SeekArc.OnSeekArcChangeListener;
@@ -34,6 +38,9 @@ public class MainActivity extends ActionBarActivity {
     private TextView hour_text;
     private TextView number_text;
 
+    Button block_button1,security_settings_button1,blacklist_whitelist_button1;
+
+
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
@@ -47,6 +54,12 @@ public class MainActivity extends ActionBarActivity {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.merge);
+
+        //Listeners for the three buttons
+        addListenerOnButton();
+        addListenerOnButton2();
+        addListenerOnButton3();
+
 
         //Editing Button Text
 
@@ -66,7 +79,9 @@ public class MainActivity extends ActionBarActivity {
         number_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
 
 
-
+        block_button1 = (Button)findViewById(R.id.block_button);
+        security_settings_button1 = (Button)findViewById(R.id.security_settings_button);
+        blacklist_whitelist_button1= (Button)findViewById(R.id.blacklist_whitelist_button);
 
 
 
@@ -211,6 +226,69 @@ public class MainActivity extends ActionBarActivity {
                 mSeekArc.setClockwise(isChecked);
                 mSeekArc.invalidate();
             }
+        });
+
+    }
+
+    // for the on click activity responses for each of the 3 buttons on the menu
+    public void addListenerOnButton() {
+
+        final Context context = this;
+
+        block_button1 = (Button) findViewById(R.id.block_button);
+
+        block_button1.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent intent = new Intent(context, BlockActivity.class);
+                startActivity(intent);
+
+            }
+
+        });
+
+    }
+
+    // Make sure that you change the intent and class
+    public void addListenerOnButton2() {
+
+        final Context context = this;
+
+        security_settings_button1 = (Button) findViewById(R.id.security_settings_button);
+
+        security_settings_button1.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent intent = new Intent(context, BlockActivity.class);
+                startActivity(intent);
+
+            }
+
+        });
+
+    }
+    // Make sure that you change the intent and class
+
+    public void addListenerOnButton3() {
+
+        final Context context = this;
+
+        blacklist_whitelist_button1 = (Button) findViewById(R.id.blacklist_whitelist_button);
+
+        blacklist_whitelist_button1.setOnClickListener(new OnClickListener() {
+
+            @Override
+            public void onClick(View arg0) {
+
+                Intent intent = new Intent(context, BlockActivity.class);
+                startActivity(intent);
+
+            }
+
         });
 
     }
