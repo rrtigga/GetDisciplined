@@ -17,8 +17,7 @@
         android:layout_height="wrap_content"
         android:textSize="53sp"
         android:textColor="#FFFCEAFF"
-        android:layout_centerHorizontal="true"
-        />
+        android:layout_centerHorizontal="true"/>
 
     <TextView
         android:id="@+id/theslogan"
