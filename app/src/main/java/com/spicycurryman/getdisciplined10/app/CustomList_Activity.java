@@ -10,7 +10,7 @@ public class CustomList_Activity extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+                               Bundle savedInstanceState) {
 
         return inflater.inflate(R.layout.customactivity, container, false);
 

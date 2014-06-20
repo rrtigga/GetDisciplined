@@ -22,7 +22,8 @@
 
         <activity android:name="com.spicycurryman.getdisciplined10.app.BlockActivity" >
         </activity>
-
+        <activity android:name="com.spicycurryman.getdisciplined10.app.InstalledAppActivity" >
+        </activity>
 
     </application>
 
