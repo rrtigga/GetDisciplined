@@ -1,16 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:background="#17df0d">
+                android:layout_height="match_parent" >
 
-    <TextView android:layout_width="fill_parent"
+    <ListView
+        android:id="@+id/applist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/appname"
+              android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:gravity="center"
-              android:text="CustomList Screen"
-              android:textSize="20dp"
-              android:layout_centerInParent="true"/>
-
+              android:gravity="center_vertical"
+              android:paddingTop="15dp"
+              android:paddingLeft="10dp"
+              android:paddingBottom="15dp"
+              android:textStyle="bold"
+              android:textSize="18dp"
+        />
 
 </RelativeLayout>
