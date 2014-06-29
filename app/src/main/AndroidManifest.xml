@@ -25,6 +25,9 @@
         <activity android:name="com.spicycurryman.getdisciplined10.app.InstalledAppActivity" >
         </activity>
 
+        <activity android:name="com.spicycurryman.getdisciplined10.app.SetupActivity" >
+        </activity>
+
     </application>
 
 </manifest>

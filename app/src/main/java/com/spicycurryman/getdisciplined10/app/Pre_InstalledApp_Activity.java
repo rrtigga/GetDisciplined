@@ -6,6 +6,8 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -29,6 +31,7 @@ public class Pre_InstalledApp_Activity extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
+        setHasOptionsMenu(true);
 
         View rootView = inflater.inflate(R.layout.installed_apps, container, false);
         packageManager = getActivity().getPackageManager();
@@ -74,6 +77,11 @@ public class Pre_InstalledApp_Activity extends Fragment
         return true;
     }*/
 
+ /*   public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.block, menu);
+        //super.onCreateOptionsMenu(menu,inflater);
+    }
+*/
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 

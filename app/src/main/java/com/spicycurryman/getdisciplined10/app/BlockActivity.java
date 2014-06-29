@@ -1,12 +1,16 @@
 package com.spicycurryman.getdisciplined10.app;
 
 import android.annotation.TargetApi;
+import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Build;
 import android.os.Bundle;
-import android.app.ActionBar;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.ActionBarActivity;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 import info.androidhive.tabsswipe.adapter.TabsPagerAdapter;
 
@@ -18,8 +22,10 @@ import info.androidhive.tabsswipe.adapter.TabsPagerAdapter;
 /**
  * Created by Spicycurryman on 6/17/14.
  */
-public  class BlockActivity extends FragmentActivity implements
+public  class BlockActivity extends ActionBarActivity implements
         ActionBar.TabListener {
+
+
 
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
@@ -32,6 +38,7 @@ public  class BlockActivity extends FragmentActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.block_apps);
+
 
         // Initilization
         viewPager = (ViewPager) findViewById(R.id.pager);
@@ -72,6 +79,31 @@ public  class BlockActivity extends FragmentActivity implements
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.block, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        return super.onPrepareOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.action_overflow) {
+            return true;
+        } else if(id == R.id.action_search) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
 
 
@@ -90,6 +122,7 @@ public  class BlockActivity extends FragmentActivity implements
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
 
     }
+
 
 
 

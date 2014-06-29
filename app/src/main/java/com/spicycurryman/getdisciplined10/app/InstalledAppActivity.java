@@ -1,11 +1,13 @@
 package com.spicycurryman.getdisciplined10.app;
 
-import android.support.v4.app.Fragment;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -29,7 +31,7 @@ public class InstalledAppActivity extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
+        setHasOptionsMenu(true);
         View rootView = inflater.inflate(R.layout.installed_apps, container, false);
         packageManager = getActivity().getPackageManager();
         List<PackageInfo> packageList = packageManager
@@ -68,11 +70,11 @@ public class InstalledAppActivity extends Fragment
 
 
 // Don't need in Fragment
- /*   @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.block, menu);
-        return true;
-    }*/
+/*@Override
+public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+    inflater.inflate(R.menu.block, menu);
+   // super.onCreateOptionsMenu(menu,inflater);
+}*/
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
