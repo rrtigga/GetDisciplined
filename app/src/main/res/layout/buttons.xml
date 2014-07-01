@@ -1,39 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
               android:id="@+id/layout"
               android:orientation="vertical"
               android:layout_width="fill_parent"
               android:layout_height="fill_parent">
 
-    <TextView android:id="@+id/emptySpace"
-              android:layout_height="0dp"
-              android:layout_width="fill_parent"
-              android:layout_weight="3" />
+
+
 
     <Button
-        android:id="@+id/block_button"
+    android:id="@+id/block_button"
+    style="?android:attr/borderlessButtonStyle"
+    android:layout_width="170dp"
+    android:layout_height="70dp"
+    android:layout_weight="1"
+    android:drawableLeft="@drawable/ic_action"
+    android:gravity="center_horizontal|center_vertical"
+    android:text="@string/block_apps"
+    android:textSize="20sp"
+        android:layout_alignTop="@+id/start_button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:id="@+id/start_button"
         style="?android:attr/borderlessButtonStyle"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="right|center_vertical"
-        android:layout_weight="1.10"
-        android:drawableLeft="@drawable/ic_action"
+        android:layout_width="170dp"
+        android:layout_height="70dp"
+        android:layout_gravity="right"
+        android:layout_weight="1"
+        android:drawableLeft="@drawable/ic_timer"
         android:gravity="center_horizontal|center_vertical"
-        android:text="@string/block_apps"
-        android:textSize="22sp" />
+        android:text="@string/start_apps"
+        android:textSize="20sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
-    <Button
-        android:id="@+id/security_settings_button"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_weight="1.10"
-        android:drawableLeft="@drawable/ic_settings"
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#ffff3a35"
+        android:layout_alignTop="@+id/block_button"
+        android:layout_alignRight="@+id/block_button"
+        android:layout_alignEnd="@+id/block_button"
+        android:id="@+id/view" />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="66dp"
+        android:background="#fffbfffd"
+
         android:gravity="center_horizontal|center_vertical"
-        android:text="@string/security_settings"
-        android:textSize="22sp"/>
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 
-    <Button
+
+    <!--   <Button
+           android:id="@+id/security_settings_button"
+           android:layout_width="match_parent"
+           android:layout_height="0dp"
+           style="?android:attr/borderlessButtonStyle"
+           android:layout_weight="1.10"
+           android:drawableLeft="@drawable/ic_settings"
+           android:gravity="center_horizontal|center_vertical"
+           android:text="@string/security_settings"
+           android:textSize="22sp"/>-->
+
+  <!--  <Button
         android:id="@+id/blacklist_whitelist_button"
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -43,6 +77,6 @@
         android:text="@string/blacklist_whitelist"
         android:textSize="22sp"
         android:layout_weight="1.10"
-        />
+        />-->
 
-    </LinearLayout>
+    </RelativeLayout>

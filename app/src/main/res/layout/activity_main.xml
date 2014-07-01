@@ -1,15 +1,16 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
-              xmlns:seekarc="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:orientation="vertical"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:seekarc="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
 
-              android:paddingBottom="@dimen/activity_vertical_margin"
-              android:paddingLeft="@dimen/activity_horizontal_margin"
-              android:paddingRight="@dimen/activity_horizontal_margin"
-              android:paddingTop="@dimen/activity_vertical_margin"
-              tools:context=".MainActivity" >
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context=".MainActivity"
+    >
 
     <FrameLayout
         android:id="@+id/seekArcContainer"
@@ -17,42 +18,83 @@
         android:layout_height="wrap_content"
         >
 
-        <TextView
-            android:id="@+id/seekArcProgress"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="0"
-            android:textSize="40sp" />
-
-        <com.triggertrap.seekarc.SeekArc
-            android:id="@+id/seekArc"
-            android:layout_width="300dp"
-            android:layout_height="250dp"
-            android:layout_gravity="center"
-            seekarc:thumb="@drawable/custom_seek_arc_control_selector"
-            android:padding="30dp"
-            seekarc:rotation="180"
-            seekarc:startAngle="0"
-            seekarc:sweepAngle="360"
-            seekarc:touchInside="true"
-            seekarc:arcColor="#fffffafe"
-            seekarc:progressColor="#ffff3a35"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="97dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="@string/time_set"
-            android:id="@+id/time_text"
-            android:layout_gravity="center_horizontal|bottom"/>
-
     </FrameLayout>
 
     <include
         layout="@layout/controls"
         android:id="@+id/controls" />
 
+    <com.triggertrap.seekarc.SeekArc
+        android:id="@+id/seekArc"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_gravity="center_horizontal|bottom"
+        seekarc:thumb="@drawable/custom_seek_arc_control_selector"
+        android:padding="30dp"
+        seekarc:rotation="0"
+        seekarc:startAngle="0"
+        seekarc:sweepAngle="360"
+        seekarc:touchInside="true"
+        seekarc:arcColor="#fffffafe"
+        seekarc:progressColor="#ffff3a35"
+        android:layout_below="@+id/seekArcContainer"
+        android:layout_centerHorizontal="true" />
 
-</LinearLayout>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="97dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="@string/time_set"
+        android:id="@+id/time_text"
+        android:layout_gravity="center_horizontal|bottom"
+        android:layout_below="@+id/seekArcProgress"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:id="@+id/seekArcProgress"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="0"
+        android:textSize="40sp"
+        android:layout_marginTop="119dp"
+        android:layout_below="@+id/seekArcContainer"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Hours"
+        android:textSize="30dp"
+
+        android:id="@+id/hourtext"
+        android:layout_marginLeft="45dp"
+        android:layout_alignTop="@+id/minutetext"
+        android:layout_alignLeft="@+id/seekArc"
+        android:layout_alignStart="@+id/seekArc" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Minutes"
+        android:textSize="30dp"
+        android:id="@+id/minutetext"
+        android:layout_below="@+id/seekArc"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="28dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/Second"
+        android:textSize="30dp"
+
+        android:id="@+id/secondtext"
+        android:layout_alignTop="@+id/minutetext"
+        android:layout_alignRight="@+id/seekArc"
+        android:layout_alignEnd="@+id/seekArc"
+        android:layout_marginRight="43dp" />
+
+
+</RelativeLayout>
 
