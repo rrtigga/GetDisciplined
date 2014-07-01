@@ -25,4 +25,6 @@
 <resources>
     <color name="progress_gray">#FFD8D8D8</color>
     <color name="progress_gray_dark">#FF383838</color>
+    <color name="red_highlight">#ffd13a3c</color>
+
 </resources>

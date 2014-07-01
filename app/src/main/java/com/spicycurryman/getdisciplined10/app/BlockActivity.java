@@ -5,9 +5,10 @@ import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -31,12 +32,20 @@ public  class BlockActivity extends ActionBarActivity implements
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
     // Tab titles
-    private String[] tabs = {"Installed", "System", "Custom"};
+    private String[] tabs = {"User-Installed", "Pre-Installed", "Favorites"};
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        SpannableString s = new SpannableString("GetDisciplined");
+        s.setSpan(new TypefaceSpan(this, "roboto-blackitalic.ttf"), 0, s.length(),
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+// Update the action bar title with the TypefaceSpan instance
+        ActionBar actionBar = getActionBar();
+        actionBar.setTitle(s);
         setContentView(R.layout.block_apps);
 
 
@@ -58,13 +67,14 @@ public  class BlockActivity extends ActionBarActivity implements
         /**
          * on swiping the viewpager make respective tab selected
          * */
+        final ActionBar finalActionBar = actionBar;
         viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 
             @Override
             public void onPageSelected(int position) {
                 // on changing the page
                 // make respected tab selected
-                actionBar.setSelectedNavigationItem(position);
+                finalActionBar.setSelectedNavigationItem(position);
             }
 
             @Override

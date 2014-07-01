@@ -4,8 +4,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.spicycurryman.getdisciplined10.app.InstalledAppActivity;
 import com.spicycurryman.getdisciplined10.app.CustomList_Activity;
+import com.spicycurryman.getdisciplined10.app.InstalledAppActivity;
 import com.spicycurryman.getdisciplined10.app.Pre_InstalledApp_Activity;
 
 
@@ -25,6 +25,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
                 return new Pre_InstalledApp_Activity();
             case 2:
                 return new CustomList_Activity();
+
         }
 
         return null;

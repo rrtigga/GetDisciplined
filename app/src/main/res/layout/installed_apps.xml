@@ -25,18 +25,15 @@
 
 
     <CheckBox
+        android:id="@+id/checkBox1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-
-        android:layout_alignBottom="@+id/appname"
+        android:layout_alignBaseline="@+id/app_name"
+        android:layout_alignBottom="@+id/app_name"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="30dp"
-        android:checked="false"
-        android:id="@+id/checkbox"
-       />
-
+        android:layout_marginRight="16dp"
+        android:focusable="false"
+        android:focusableInTouchMode="false" />
 
 
 
