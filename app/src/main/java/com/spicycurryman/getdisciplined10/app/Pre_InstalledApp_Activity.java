@@ -1,10 +1,11 @@
 package com.spicycurryman.getdisciplined10.app;
 
-import android.support.v4.app.Fragment;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
+import android.content.pm.PackageItemInfo;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,8 @@ import android.widget.ListView;
 import com.ibc.android.demo.appslist.app.ApkAdapter;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 
@@ -31,7 +34,7 @@ public class Pre_InstalledApp_Activity extends Fragment
 
         setHasOptionsMenu(true);
 
-        View rootView = inflater.inflate(R.layout.installed_apps, container, false);
+        View rootView = inflater.inflate(R.layout.system_installed, container, false);
         packageManager = getActivity().getPackageManager();
         List<PackageInfo> packageList = packageManager
                 .getInstalledPackages(PackageManager.GET_PERMISSIONS);
@@ -46,6 +49,17 @@ public class Pre_InstalledApp_Activity extends Fragment
             }
         }
         apkList = (ListView) rootView.findViewById(R.id.applist);
+
+        //sort by application name
+
+        final PackageItemInfo.DisplayNameComparator comparator = new PackageItemInfo.DisplayNameComparator(packageManager);
+
+        Collections.sort(packageList1, new Comparator<PackageInfo>() {
+            @Override
+            public int compare(PackageInfo lhs, PackageInfo rhs) {
+                return comparator.compare(lhs.applicationInfo, rhs.applicationInfo);
+            }
+        });
         apkList.setAdapter(new ApkAdapter(getActivity(), packageList1, packageManager));
 
         apkList.setOnItemClickListener(this);
