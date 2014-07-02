@@ -66,7 +66,7 @@ public class MainActivity extends ActionBarActivity {
 
 
         SpannableString s = new SpannableString("GetDisciplined");
-        s.setSpan(new TypefaceSpan(this, "roboto-blackitalic.ttf"), 0, s.length(),
+        s.setSpan(new TypefaceSpan(this, "roboto-lightitalic.ttf"), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 // Update the action bar title with the TypefaceSpan instance

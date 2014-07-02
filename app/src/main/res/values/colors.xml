@@ -27,4 +27,11 @@
     <color name="progress_gray_dark">#FF383838</color>
     <color name="red_highlight">#ffd13a3c</color>
 
+
+    <color name="OKButtonStartColor">#ffd13a3c</color>
+    <color name="OKButtonEndColor">#ffbf0e1f</color>
+    <color name="OKButtonDisabledStartColor">#565051</color>
+    <color name="OKButtonDisabledEndColor">#736F6E</color>
+    <color name="OKButtonBorderColor">#254117</color>
+
 </resources>

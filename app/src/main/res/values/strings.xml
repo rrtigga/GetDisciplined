@@ -11,6 +11,14 @@
     <string name="title_activity_setup">SetupActivity</string>
     <string name="block_apps">Select Apps</string>
     <string name="start_apps">Start Timer</string>
+    <string name="Ok">Ok</string>
+    <string name="Cancel">Cancel</string>
+    <string name="Select">Select</string>
+
+
+
+
+
 
     <string name="security_settings">Security and Settings</string>
     <string name="blacklist_whitelist">Blacklists and Whitelists</string>
