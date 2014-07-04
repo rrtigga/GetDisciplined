@@ -19,7 +19,7 @@
 
 <resources>
 
-    <style name="Theme.Customaction" parent="@style/Theme.AppCompat">
+    <style name="Theme.Customaction" parent="@style/android:Theme.Holo">
         <item name="actionBarItemBackground">@drawable/selectable_background_customaction</item>
         <item name="popupMenuStyle">@style/PopupMenu.Customaction</item>
         <item name="dropDownListViewStyle">@style/DropDownListView.Customaction</item>

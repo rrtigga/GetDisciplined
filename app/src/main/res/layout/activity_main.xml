@@ -4,13 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".MainActivity"
-    >
+                        >
 
     <FrameLayout
         android:id="@+id/seekArcContainer"
@@ -41,32 +40,43 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="97dp"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="@string/time_set"
-        android:id="@+id/time_text"
-        android:layout_gravity="center_horizontal|bottom"
-        android:layout_below="@+id/seekArcProgress"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:id="@+id/seekArcProgress"
+        android:id="@+id/hour_progress_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="0"
-        android:textSize="40sp"
-        android:layout_marginTop="119dp"
+        android:textSize="50sp"
+        android:layout_marginTop="130dp"
         android:layout_below="@+id/seekArcContainer"
+        android:layout_alignLeft="@+id/hourtext"
+        android:layout_alignStart="@+id/hourtext" />
+
+
+    <TextView
+        android:id="@+id/minute_progress_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="00"
+        android:textSize="50sp"
+        android:layout_alignTop="@+id/hour_progress_number"
         android:layout_centerHorizontal="true" />
+    <TextView
+        android:id="@+id/second_progress_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="00"
+        android:textSize="50sp"
+        android:layout_alignTop="@+id/minute_progress_number"
+        android:layout_alignRight="@+id/secondtext"
+        android:layout_alignEnd="@+id/secondtext" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Hours"
-        android:textSize="30dp"
-
+        android:textSize="30sp"
         android:id="@+id/hourtext"
         android:layout_marginLeft="45dp"
         android:layout_alignTop="@+id/minutetext"

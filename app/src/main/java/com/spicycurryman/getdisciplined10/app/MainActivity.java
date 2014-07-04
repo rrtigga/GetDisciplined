@@ -42,6 +42,10 @@ public class MainActivity extends ActionBarActivity {
     private TextView hour_text;
     private TextView number_text;
 
+    private TextView minute_text;
+    private TextView second_text;
+
+
     private TextView little_hour_text;
     private TextView little_minute_text;
     private TextView little_second_text;
@@ -94,11 +98,19 @@ public class MainActivity extends ActionBarActivity {
       /*  blacklist_whitelist_button_text = (Button)findViewById(R.id.blacklist_whitelist_button);
         blacklist_whitelist_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/robotocondensed-light.ttf"));*/
 
-        hour_text = (TextView)findViewById(R.id.time_text);
-        hour_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+//        hour_text = (TextView)findViewById(R.id.hourtext);
+//        hour_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
 
-        number_text = (TextView)findViewById(R.id.seekArcProgress);
+        number_text = (TextView)findViewById(R.id.hour_progress_number);
         number_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+
+        minute_text = (TextView)findViewById(R.id.minute_progress_number);
+        minute_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+
+        second_text = (TextView)findViewById(R.id.second_progress_number);
+        second_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+
+
 
 
       /*  block_button1 = (Button)findViewById(R.id.block_button);
@@ -118,7 +130,7 @@ public class MainActivity extends ActionBarActivity {
 
 
         mSeekArc = (SeekArc) findViewById(R.id.seekArc);
-        mSeekArcProgress = (TextView) findViewById(R.id.seekArcProgress);
+        mSeekArcProgress = (TextView) findViewById(R.id.hour_progress_number);
         mRotation = (SeekBar) findViewById(R.id.rotation);
         mStartAngle = (SeekBar) findViewById(R.id.startAngle);
         mSweepAngle  = (SeekBar) findViewById(R.id.sweepAngle);
