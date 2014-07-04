@@ -69,6 +69,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
 
+        //Make sure you find out why it appears after a whole 1 second after the app appears
         SpannableString s = new SpannableString("GetDisciplined");
         s.setSpan(new TypefaceSpan(this, "roboto-lightitalic.ttf"), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -130,6 +131,7 @@ public class MainActivity extends ActionBarActivity {
 
 
         mSeekArc = (SeekArc) findViewById(R.id.seekArc);
+//Here is the actual "hour progress number" aka the TextView that changes as the scrubber is dragged around
         mSeekArcProgress = (TextView) findViewById(R.id.hour_progress_number);
         mRotation = (SeekBar) findViewById(R.id.rotation);
         mStartAngle = (SeekBar) findViewById(R.id.startAngle);
@@ -159,6 +161,8 @@ public class MainActivity extends ActionBarActivity {
             public void onStartTrackingTouch(SeekArc seekArc) {
             }
 
+
+            //This sets the actual string for the hours
             @Override
             public void onProgressChanged(SeekArc seekArc, int progress,
                                           boolean fromUser) {
