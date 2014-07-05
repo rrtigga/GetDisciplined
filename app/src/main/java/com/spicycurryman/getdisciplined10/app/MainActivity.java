@@ -166,7 +166,50 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onProgressChanged(SeekArc seekArc, int progress,
                                           boolean fromUser) {
-                mSeekArcProgress.setText(String.valueOf(progress));
+                if (progress ==0){
+                    mSeekArcProgress.setText("00");
+                }
+               else if (progress ==1){
+                    mSeekArcProgress.setText("01");
+                }
+
+               else if (progress ==2){
+                    mSeekArcProgress.setText("02");
+                }
+
+                else if (progress ==3){
+                    mSeekArcProgress.setText("03");
+                }
+
+                else if (progress ==4){
+                    mSeekArcProgress.setText("04");
+                }
+
+                else if (progress ==5){
+                    mSeekArcProgress.setText("05");
+                }
+
+                else if (progress ==6){
+                    mSeekArcProgress.setText("06");
+                }
+
+                else if (progress ==7){
+                    mSeekArcProgress.setText("07");
+                }
+
+                else if (progress ==8){
+                    mSeekArcProgress.setText("08");
+                }
+
+                else if (progress ==9){
+                    mSeekArcProgress.setText("09");
+                }
+
+
+
+                else {
+                    mSeekArcProgress.setText(String.valueOf(progress));
+                }
             }
         });
 
