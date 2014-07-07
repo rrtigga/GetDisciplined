@@ -3,6 +3,7 @@ package com.spicycurryman.getdisciplined10.app;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
@@ -37,6 +38,8 @@ public  class BlockActivity extends ActionBarActivity implements
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+
         super.onCreate(savedInstanceState);
 
         SpannableString s = new SpannableString("GetDisciplined");

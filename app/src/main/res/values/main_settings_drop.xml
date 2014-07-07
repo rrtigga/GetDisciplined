@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="actions">
+        <item>Settings</item>
+        <item>Like Us!</item>
+        <item>Feedback</item>
+        <item>FAQ</item>
+        <item>About</item>
+    </string-array>
+</resources>
