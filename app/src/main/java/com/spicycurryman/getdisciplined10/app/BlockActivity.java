@@ -42,6 +42,11 @@ public  class BlockActivity extends ActionBarActivity implements
 
         super.onCreate(savedInstanceState);
 
+
+
+
+
+
         SpannableString s = new SpannableString("GetDisciplined");
         s.setSpan(new TypefaceSpan(this, "roboto-lightitalic.ttf.ttf"), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -106,14 +111,18 @@ public  class BlockActivity extends ActionBarActivity implements
     }
 
     @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.action_overflow) {
-            return true;
-        } else if(id == R.id.action_search) {
-            return true;
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
+        {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+
+            default:
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 
 

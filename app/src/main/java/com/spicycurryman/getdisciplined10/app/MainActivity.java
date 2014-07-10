@@ -37,8 +37,8 @@ public class MainActivity extends ActionBarActivity {
 
     private Button block_button_text;
     private Button start_timer_text;
-    private Button security_settings_button_text;
-    private Button blacklist_whitelist_button_text;
+//    private Button security_settings_button_text;
+//    private Button blacklist_whitelist_button_text;
     private TextView hour_text;
     private TextView number_text;
 
@@ -69,6 +69,7 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
 
 
+
         //Make sure you find out why it appears after a whole 1 second after the app appears
         SpannableString s = new SpannableString("GetDisciplined");
         s.setSpan(new TypefaceSpan(this, "roboto-lightitalic.ttf"), 0, s.length(),
@@ -77,7 +78,12 @@ public class MainActivity extends ActionBarActivity {
 // Update the action bar title with the TypefaceSpan instance
         ActionBar actionBar = getActionBar();
         actionBar.setTitle(s);
+        // set the action bar in this activity as the home
+        actionBar.setHomeButtonEnabled(true);
+
         setContentView(R.layout.merge);
+
+
 
         //Listeners for the three buttons
         addListenerOnButton();
@@ -131,8 +137,12 @@ public class MainActivity extends ActionBarActivity {
 
 
         mSeekArc = (SeekArc) findViewById(R.id.seekArc);
+
 //Here is the actual "hour progress number" aka the TextView that changes as the scrubber is dragged around
         mSeekArcProgress = (TextView) findViewById(R.id.hour_progress_number);
+
+
+
         mRotation = (SeekBar) findViewById(R.id.rotation);
         mStartAngle = (SeekBar) findViewById(R.id.startAngle);
         mSweepAngle  = (SeekBar) findViewById(R.id.sweepAngle);
@@ -317,6 +327,11 @@ public class MainActivity extends ActionBarActivity {
         });
 
     }
+
+
+
+
+
 
     // for the on click activity responses for each of the 3 buttons on the menu
     public void addListenerOnButton() {
