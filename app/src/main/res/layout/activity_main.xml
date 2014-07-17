@@ -34,7 +34,7 @@
         seekarc:startAngle="0"
         seekarc:sweepAngle="360"
         seekarc:touchInside="true"
-        seekarc:arcColor="#fffffafe"
+        seekarc:arcColor="#30ff5b56"
         seekarc:progressColor="#ffff3a35"
         android:layout_below="@+id/seekArcContainer"
         android:layout_centerHorizontal="true" />
@@ -44,6 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="@color/red_highlight"
         android:text="00"
         android:textSize="50sp"
         android:layout_marginTop="130dp"
@@ -57,6 +58,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="@color/red_highlight"
+
         android:text="00"
         android:textSize="50sp"
         android:layout_alignTop="@+id/hour_progress_number"
@@ -66,6 +69,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:textColor="@color/red_highlight"
+
         android:text="00"
         android:textSize="50sp"
         android:layout_alignTop="@+id/minute_progress_number"
@@ -75,8 +80,10 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:text="@string/Hours"
         android:textSize="30sp"
+        android:textColor="@drawable/selected_text"
         android:id="@+id/hourtext"
         android:layout_marginLeft="45dp"
         android:layout_alignTop="@+id/minutetext"
@@ -87,7 +94,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Minutes"
+        android:clickable="true"
+
         android:textSize="30dp"
+        android:textColor="@drawable/selected_text"
         android:id="@+id/minutetext"
         android:layout_below="@+id/seekArc"
         android:layout_centerHorizontal="true"
@@ -97,8 +107,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/Second"
+        android:clickable="true"
         android:textSize="30dp"
-
+        android:textColor="@drawable/selected_text"
         android:id="@+id/secondtext"
         android:layout_alignTop="@+id/minutetext"
         android:layout_alignRight="@+id/seekArc"

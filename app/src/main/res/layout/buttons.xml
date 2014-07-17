@@ -18,7 +18,9 @@
     android:drawableLeft="@drawable/ic_action"
     android:gravity="center_horizontal|center_vertical"
     android:text="@string/block_apps"
-    android:textSize="20sp"
+    android:textColor="@color/dark_red"
+
+        android:textSize="20sp"
         android:background="@drawable/button_highlight"
 
         android:layout_alignTop="@+id/start_button"
@@ -35,6 +37,8 @@
         android:drawableLeft="@drawable/ic_timer"
         android:gravity="center_horizontal|center_vertical"
         android:text="@string/start_apps"
+        android:textColor="@color/dark_red"
+
         android:background="@drawable/button_highlight"
         android:textSize="20sp"
         android:layout_alignParentBottom="true"
