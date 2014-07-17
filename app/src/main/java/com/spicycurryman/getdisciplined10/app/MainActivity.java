@@ -61,6 +61,7 @@ public class MainActivity extends ActionBarActivity {
         return true;
     }
 
+    View previousView;
 
 
     @Override
@@ -140,6 +141,35 @@ public class MainActivity extends ActionBarActivity {
 
 //Here is the actual "hour progress number" aka the TextView that changes as the scrubber is dragged around
         mSeekArcProgress = (TextView) findViewById(R.id.hour_progress_number);
+
+
+        //make textview selectable
+
+        View.OnClickListener clickListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView previousText = (TextView) previousView;
+                TextView curText = (TextView) v;
+                // If the clicked view is selected, deselect it
+                if (curText.isSelected()) {
+                    curText.setSelected(false);
+                    curText.setTextColor(getResources().getColor(R.color.red_highlight));
+                } else { // If this isn't selected, deselect  the previous one (if any)
+                    if (previousText != null && previousText.isSelected()) {
+                        previousText.setSelected(false);
+                        previousText.setTextColor(getResources().getColor(R.color.red_highlight));
+                    }
+                    curText.setSelected(true);
+                    curText.setTextColor(getResources().getColor(R.color.white));
+                    previousView = v;
+                }
+
+            }
+        };
+
+        findViewById(R.id.hourtext).setOnClickListener(clickListener);
+        findViewById(R.id.minutetext).setOnClickListener(clickListener);
+        findViewById(R.id.secondtext).setOnClickListener(clickListener);
 
 
 
