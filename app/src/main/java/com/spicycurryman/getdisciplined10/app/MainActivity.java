@@ -21,7 +21,6 @@ import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
 import com.triggertrap.seekarc.SeekArc;
-import com.triggertrap.seekarc.SeekArc.OnSeekArcChangeListener;
 
 public class MainActivity extends ActionBarActivity {
     private SeekArc mSeekArc;
@@ -34,6 +33,8 @@ public class MainActivity extends ActionBarActivity {
     private CheckBox mTouchInside;
     private CheckBox mClockwise;
     private TextView mSeekArcProgress;
+    private TextView mSeekArcMinuteProgress;
+    private TextView mSeekArcSecondProgress;
 
     private Button block_button_text;
     private Button start_timer_text;
@@ -142,6 +143,11 @@ public class MainActivity extends ActionBarActivity {
 //Here is the actual "hour progress number" aka the TextView that changes as the scrubber is dragged around
         mSeekArcProgress = (TextView) findViewById(R.id.hour_progress_number);
 
+        mSeekArcMinuteProgress = (TextView) findViewById(R.id.minute_progress_number);
+
+        mSeekArcSecondProgress = (TextView) findViewById(R.id.second_progress_number);
+
+
 
         //make textview selectable
 
@@ -162,6 +168,194 @@ public class MainActivity extends ActionBarActivity {
                     curText.setSelected(true);
                     curText.setTextColor(getResources().getColor(R.color.white));
                     previousView = v;
+                }
+
+                if(v.getId() == R.id.hourtext){
+                    //corresponding button logic should below here
+                    mSeekArc.setOnSeekArcChangeListener(new SeekArc.OnSeekArcChangeListener() {
+
+                        @Override
+                        public void onStopTrackingTouch(SeekArc seekArc) {
+                        }
+                        @Override
+                        public void onStartTrackingTouch(SeekArc seekArc) {
+                        }
+
+
+                        //This sets the actual string for the hours
+                        @Override
+                        public void onProgressChanged(SeekArc seekArc, int progress,
+                                                      boolean fromUser) {
+                            if (progress ==0){
+                                mSeekArcProgress.setText("00");
+                            }
+                            else if (progress ==1){
+                                mSeekArcProgress.setText("01");
+                            }
+
+                            else if (progress ==2){
+                                mSeekArcProgress.setText("02");
+                            }
+
+                            else if (progress ==3){
+                                mSeekArcProgress.setText("03");
+                            }
+
+                            else if (progress ==4){
+                                mSeekArcProgress.setText("04");
+                            }
+
+                            else if (progress ==5){
+                                mSeekArcProgress.setText("05");
+                            }
+
+                            else if (progress ==6){
+                                mSeekArcProgress.setText("06");
+                            }
+
+                            else if (progress ==7){
+                                mSeekArcProgress.setText("07");
+                            }
+
+                            else if (progress ==8){
+                                mSeekArcProgress.setText("08");
+                            }
+
+                            else if (progress ==9){
+                                mSeekArcProgress.setText("09");
+                            }
+
+
+
+                            else {
+                                mSeekArcProgress.setText(String.valueOf(progress));
+                            }
+                        }
+                    });
+                } else if (v.getId() == R.id.minutetext) {
+                    //corresponding button logic should below here
+                    mSeekArc.setOnSeekArcChangeListener(new SeekArc.OnSeekArcChangeListener() {
+
+                        @Override
+                        public void onStopTrackingTouch(SeekArc seekArc) {
+                        }
+                        @Override
+                        public void onStartTrackingTouch(SeekArc seekArc) {
+                        }
+
+
+                        //This sets the actual string for the hours
+                        @Override
+                        public void onProgressChanged(SeekArc seekArc, int progress,
+                                                      boolean fromUser) {
+                            if (progress ==0){
+                                mSeekArcMinuteProgress.setText("00");
+                            }
+                            else if (progress ==1){
+                                mSeekArcMinuteProgress.setText("01");
+                            }
+
+                            else if (progress ==2){
+                                mSeekArcMinuteProgress.setText("02");
+                            }
+
+                            else if (progress ==3){
+                                mSeekArcMinuteProgress.setText("03");
+                            }
+
+                            else if (progress ==4){
+                                mSeekArcMinuteProgress.setText("04");
+                            }
+
+                            else if (progress ==5){
+                                mSeekArcMinuteProgress.setText("05");
+                            }
+
+                            else if (progress ==6){
+                                mSeekArcMinuteProgress.setText("06");
+                            }
+
+                            else if (progress ==7){
+                                mSeekArcMinuteProgress.setText("07");
+                            }
+
+                            else if (progress ==8){
+                                mSeekArcMinuteProgress.setText("08");
+                            }
+
+                            else if (progress ==9){
+                                mSeekArcMinuteProgress.setText("09");
+                            }
+
+
+
+                            else {
+                                mSeekArcMinuteProgress.setText(String.valueOf(progress));
+                            }
+                        }
+                    });
+                } else if (v.getId() == R.id.secondtext) {
+                    //corresponding button logic should below here
+                    mSeekArc.setOnSeekArcChangeListener(new SeekArc.OnSeekArcChangeListener() {
+
+                        @Override
+                        public void onStopTrackingTouch(SeekArc seekArc) {
+                        }
+                        @Override
+                        public void onStartTrackingTouch(SeekArc seekArc) {
+                        }
+
+
+                        //This sets the actual string for the hours
+                        @Override
+                        public void onProgressChanged(SeekArc seekArc, int progress,
+                                                      boolean fromUser) {
+                            if (progress ==0){
+                                mSeekArcSecondProgress.setText("00");
+                            }
+                            else if (progress ==1){
+                                mSeekArcSecondProgress.setText("01");
+                            }
+
+                            else if (progress ==2){
+                                mSeekArcSecondProgress.setText("02");
+                            }
+
+                            else if (progress ==3){
+                                mSeekArcSecondProgress.setText("03");
+                            }
+
+                            else if (progress ==4){
+                                mSeekArcSecondProgress.setText("04");
+                            }
+
+                            else if (progress ==5){
+                                mSeekArcSecondProgress.setText("05");
+                            }
+
+                            else if (progress ==6){
+                                mSeekArcSecondProgress.setText("06");
+                            }
+
+                            else if (progress ==7){
+                                mSeekArcSecondProgress.setText("07");
+                            }
+
+                            else if (progress ==8){
+                                mSeekArcSecondProgress.setText("08");
+                            }
+
+                            else if (progress ==9){
+                                mSeekArcSecondProgress.setText("09");
+                            }
+
+
+
+                            else {
+                                mSeekArcSecondProgress.setText(String.valueOf(progress));
+                            }
+                        }
+                    });
                 }
 
             }
@@ -218,66 +412,7 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-        mSeekArc.setOnSeekArcChangeListener(new OnSeekArcChangeListener() {
 
-            @Override
-            public void onStopTrackingTouch(SeekArc seekArc) {
-            }
-            @Override
-            public void onStartTrackingTouch(SeekArc seekArc) {
-            }
-
-
-            //This sets the actual string for the hours
-            @Override
-            public void onProgressChanged(SeekArc seekArc, int progress,
-                                          boolean fromUser) {
-                if (progress ==0){
-                    mSeekArcProgress.setText("00");
-                }
-               else if (progress ==1){
-                    mSeekArcProgress.setText("01");
-                }
-
-               else if (progress ==2){
-                    mSeekArcProgress.setText("02");
-                }
-
-                else if (progress ==3){
-                    mSeekArcProgress.setText("03");
-                }
-
-                else if (progress ==4){
-                    mSeekArcProgress.setText("04");
-                }
-
-                else if (progress ==5){
-                    mSeekArcProgress.setText("05");
-                }
-
-                else if (progress ==6){
-                    mSeekArcProgress.setText("06");
-                }
-
-                else if (progress ==7){
-                    mSeekArcProgress.setText("07");
-                }
-
-                else if (progress ==8){
-                    mSeekArcProgress.setText("08");
-                }
-
-                else if (progress ==9){
-                    mSeekArcProgress.setText("09");
-                }
-
-
-
-                else {
-                    mSeekArcProgress.setText(String.valueOf(progress));
-                }
-            }
-        });
 
         mRotation.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
             @Override
