@@ -150,10 +150,10 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View v) {
                 TextView previousText = (TextView) previousView;
                 TextView curText = (TextView) v;
-                // If the clicked view is selected, deselect it
+                // If the clicked view is selected, do nothing
                 if (curText.isSelected()) {
-                    curText.setSelected(false);
-                    curText.setTextColor(getResources().getColor(R.color.red_highlight));
+                    //curText.setSelected(false);
+                    //curText.setTextColor(getResources().getColor(R.color.red_highlight));
                 } else { // If this isn't selected, deselect  the previous one (if any)
                     if (previousText != null && previousText.isSelected()) {
                         previousText.setSelected(false);
@@ -170,6 +170,32 @@ public class MainActivity extends ActionBarActivity {
         findViewById(R.id.hourtext).setOnClickListener(clickListener);
         findViewById(R.id.minutetext).setOnClickListener(clickListener);
         findViewById(R.id.secondtext).setOnClickListener(clickListener);
+
+
+
+/*//OnClickListener for the timer
+
+        View.OnClickListener clickListener_time = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(v.getId() == R.id.hourtext){
+                    //corresponding button logic should below here
+                } else if (v.getId() == R.id.minutetext) {
+                    //corresponding button logic should below here
+                } else if (v.getId() == R.id.secondtext) {
+                    //corresponding button logic should below here
+                }
+            }
+
+
+    };
+
+    findViewById(R.id.hourtext).setOnClickListener(clickListener_time);
+    findViewById(R.id.minutetext).setOnClickListener(clickListener_time);
+    findViewById(R.id.secondtext).setOnClickListener(clickListener_time);*/
+
+
+
 
 
 
