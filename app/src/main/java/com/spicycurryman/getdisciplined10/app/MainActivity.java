@@ -51,6 +51,10 @@ public class MainActivity extends ActionBarActivity {
     private TextView little_minute_text;
     private TextView little_second_text;
 
+    private TextView little_hour_text2;
+    private TextView little_minute_text2;
+    private TextView little_second_text2;
+
 
 
     Button block_button1,security_settings_button1,blacklist_whitelist_button1;
@@ -96,10 +100,10 @@ public class MainActivity extends ActionBarActivity {
         //Editing Button Text
 
         block_button_text = (Button)findViewById(R.id.block_button);
-        block_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+        block_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/robotocondensed-bold.ttf"));
 
         start_timer_text = (Button)findViewById(R.id.start_button);
-        start_timer_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+        start_timer_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/robotocondensed-bold.ttf"));
 /*
         security_settings_button_text = (Button)findViewById(R.id.security_settings_button);
         security_settings_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/robotocondensed-light.ttf"));*/
@@ -134,6 +138,15 @@ public class MainActivity extends ActionBarActivity {
 
         little_second_text = (TextView)findViewById(R.id.secondtext);
         little_second_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+
+        little_hour_text2 = (TextView)findViewById(R.id.little_hour_text2);
+        little_hour_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+
+        little_minute_text2 = (TextView)findViewById(R.id.little_minute_text2);
+        little_minute_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+
+        little_second_text2 = (TextView)findViewById(R.id.little_second_text2);
+        little_second_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
 
 
 
@@ -954,7 +967,7 @@ public class MainActivity extends ActionBarActivity {
         mTouchInside.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView,boolean isChecked) {
-                mSeekArc.setTouchInSide(isChecked);
+                mSeekArc.setTouchInSide(false);
             }
         });
 

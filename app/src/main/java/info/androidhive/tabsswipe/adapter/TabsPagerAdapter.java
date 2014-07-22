@@ -9,7 +9,7 @@ import com.spicycurryman.getdisciplined10.app.InstalledAppActivity;
 import com.spicycurryman.getdisciplined10.app.Pre_InstalledApp_Activity;
 
 
-public class TabsPagerAdapter extends FragmentPagerAdapter {
+public class TabsPagerAdapter extends FragmentPagerAdapter implements Runnable {
 
     public TabsPagerAdapter(FragmentManager fm) {
         super(fm);
@@ -37,4 +37,8 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
         return 3;
     }
 
+    @Override
+    public void run() {
+        
+    }
 }

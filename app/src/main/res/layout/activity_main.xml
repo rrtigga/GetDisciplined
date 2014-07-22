@@ -116,6 +116,39 @@
         android:layout_alignEnd="@+id/seekArc"
         android:layout_marginRight="43dp" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="H"
+        android:textColor="@color/red_highlight"
+        android:id="@+id/little_hour_text2"
+        android:layout_alignBottom="@+id/hour_progress_number"
+        android:layout_toLeftOf="@+id/minute_progress_number"
+        android:layout_toStartOf="@+id/minute_progress_number" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="M"
+        android:textColor="@color/red_highlight"
+        android:id="@+id/little_minute_text2"
+        android:layout_toEndOf="@+id/minute_progress_number"
+        android:layout_alignBottom="@+id/second_progress_number"
+        android:layout_toRightOf="@+id/minute_progress_number" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="S"
+        android:textColor="@color/red_highlight"
+        android:id="@+id/little_second_text2"
+        android:layout_toEndOf="@+id/second_progress_number"
+        android:layout_alignBottom="@+id/second_progress_number"
+        android:layout_toRightOf="@+id/second_progress_number" />
+
 
 </RelativeLayout>
 
