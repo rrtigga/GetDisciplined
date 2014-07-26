@@ -6,6 +6,7 @@ import android.app.FragmentTransaction;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Spannable;
@@ -13,6 +14,7 @@ import android.text.SpannableString;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.SearchView;
 
 import info.androidhive.tabsswipe.adapter.TabsPagerAdapter;
 
@@ -25,7 +27,7 @@ import info.androidhive.tabsswipe.adapter.TabsPagerAdapter;
  * Created by Spicycurryman on 6/17/14.
  */
 public  class BlockActivity extends ActionBarActivity implements
-        ActionBar.TabListener {
+        ActionBar.TabListener, SearchView.OnQueryTextListener {
 
 
 
@@ -101,13 +103,23 @@ public  class BlockActivity extends ActionBarActivity implements
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.block, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+
 
         return super.onCreateOptionsMenu(menu);
     }
 
+
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
+
+
         return super.onPrepareOptionsMenu(menu);
+
+
+
+
     }
 
     @Override
@@ -146,7 +158,13 @@ public  class BlockActivity extends ActionBarActivity implements
     }
 
 
+    @Override
+    public boolean onQueryTextSubmit(String s) {
+        return false;
+    }
 
-
-
+    @Override
+    public boolean onQueryTextChange(String s) {
+        return false;
+    }
 }

@@ -1,1 +1,1 @@
-include ':app', ':seekArc_library'
+include ':app', ':seekArc_library', ':picasso-2.3.3'

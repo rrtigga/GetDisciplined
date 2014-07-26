@@ -5,16 +5,18 @@
       tools:context=".BlockActivity" >
 
 
-
-<item android:id="@+id/action_overflow"
-      android:title="@string/action_settings"
-      android:orderInCategory="200"
-      android:icon="@drawable/ic_action_overflow"
-      app:showAsAction="always" />
-
 <item android:id="@+id/action_search"
       android:title="@string/search"
       android:orderInCategory="100"
       android:icon="@drawable/ic_action_search"
-      app:showAsAction="always" />
+      app:showAsAction="always|collapseActionView"
+      android:actionViewClass="android.widget.SearchView"
+      android:actionLayout="@layout/layout_search"
+
+
+
+    />
+
+
+
 </menu>

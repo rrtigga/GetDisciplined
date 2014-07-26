@@ -32,13 +32,13 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.example.MainActivity" />
 
+        </activity>
 
-        </activity>
-        <activity android:name="com.spicycurryman.getdisciplined10.app.InstalledAppActivity" >
-        </activity>
 
         <activity android:name="com.spicycurryman.getdisciplined10.app.SetupActivity" >
         </activity>
+
+
 
     </application>
 

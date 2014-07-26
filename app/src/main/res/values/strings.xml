@@ -54,6 +54,13 @@
     <string name="modified">Last Modified:</string>
 
 
+    <string name="loading">Just a sec! :)</string>
+
+    <string name="hint">Search apps...</string>
+
+
+
+
     <string-array name="items">
         <item>Simple Holo theme</item>
         <item>Custom style</item>

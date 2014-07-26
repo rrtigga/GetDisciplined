@@ -77,7 +77,7 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
 
     private class LoadApplications extends AsyncTask<Void, Void, Void> {
-        private ProgressDialog progress = null;
+        private ProgressDialog pDialog;
         List<PackageInfo> packageList1 = new ArrayList<PackageInfo>();
 
 
@@ -115,9 +115,22 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         }
 
         @Override
+        protected void onPreExecute() {
+            pDialog = new ProgressDialog(InstalledAppActivity.this.getActivity());
+            pDialog.setMessage("Loading your apps...");
+            pDialog.show();
+
+        }
+
+        @Override
         protected void onPostExecute(Void result) {
 
             apkList.setAdapter(new ApkAdapter(getActivity(), packageList1, packageManager));
+
+            if (pDialog.isShowing()){
+                pDialog.dismiss();
+
+        }
 
 
             super.onPostExecute(result);
