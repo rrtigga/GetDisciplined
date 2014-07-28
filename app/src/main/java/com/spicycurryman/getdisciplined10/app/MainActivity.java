@@ -10,6 +10,7 @@ import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.text.Spannable;
 import android.text.SpannableString;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
@@ -39,9 +40,6 @@ public class MainActivity extends ActionBarActivity {
 
     private Button block_button_text;
     private Button start_timer_text;
-//    private Button security_settings_button_text;
-//    private Button blacklist_whitelist_button_text;
-    private TextView hour_text;
 
     //will show the time
     private TextView number_text;
@@ -65,8 +63,10 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-    Button block_button1,security_settings_button1,blacklist_whitelist_button1;
+    Button block_button1;
     Button start_timer;
+
+    int hourint, minuteint,secondint;
 
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
@@ -96,8 +96,10 @@ public class MainActivity extends ActionBarActivity {
         setActionListeners ();
 
         // This determine what the actual "countdown" time will be.
-        totalTimeCountInMilliseconds = 60 * 1000;      // time count for 3 minutes = 180 seconds
-        timeBlinkInMilliseconds = 30 * 1000;
+        //totalTimeCountInMilliseconds = 60 * 1000;      // time count for 3 minutes = 180 seconds
+        //timeBlinkInMilliseconds = 30 * 1000;
+
+
 
 
 
@@ -116,10 +118,9 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-        //Listeners for the three buttons
+        //Listeners for the buttons
         addListenerOnButton();
-//        addListenerOnButton2();
-        //addListenerOnButton3();
+
 
 
         //Editing Button Text
@@ -129,15 +130,6 @@ public class MainActivity extends ActionBarActivity {
 
         start_timer_text = (Button)findViewById(R.id.start_button);
         start_timer_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/robotocondensed-bold.ttf"));
-/*
-        security_settings_button_text = (Button)findViewById(R.id.security_settings_button);
-        security_settings_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/robotocondensed-light.ttf"));*/
-
-      /*  blacklist_whitelist_button_text = (Button)findViewById(R.id.blacklist_whitelist_button);
-        blacklist_whitelist_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/robotocondensed-light.ttf"));*/
-
-//        hour_text = (TextView)findViewById(R.id.hourtext);
-//        hour_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
 
         number_text = (TextView)findViewById(R.id.hour_progress_number);
         number_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
@@ -148,13 +140,6 @@ public class MainActivity extends ActionBarActivity {
         second_text = (TextView)findViewById(R.id.second_progress_number);
         second_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
 
-
-
-
-      /*  block_button1 = (Button)findViewById(R.id.block_button);
-        security_settings_button1 = (Button)findViewById(R.id.security_settings_button);
-        blacklist_whitelist_button1= (Button)findViewById(R.id.blacklist_whitelist_button);
-*/
         little_hour_text = (TextView)findViewById(R.id.hourtext);
         little_hour_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
 
@@ -204,7 +189,7 @@ public class MainActivity extends ActionBarActivity {
                         previousText.setTextColor(getResources().getColor(R.color.red_highlight));
                     }
                     curText.setSelected(true);
-                    curText.setTextColor(getResources().getColor(R.color.white));
+                    curText.setTextColor(getResources().getColor(R.color.black));
                     previousView = v;
                 }
 
@@ -278,6 +263,7 @@ public class MainActivity extends ActionBarActivity {
 
                                 progress_count = progress_count + 2;
 
+
                             }
 
                         }
@@ -310,7 +296,7 @@ public class MainActivity extends ActionBarActivity {
 
 
                                 if (progress ==120) {
-                                    mSeekArcMinuteProgress.setText("00");
+                                    mSeekArcSecondProgress.setText("00");
 
                                 }
                                 else if (progress == progress_count)
@@ -320,6 +306,7 @@ public class MainActivity extends ActionBarActivity {
 
                                 progress_count = progress_count + 2;
 
+
                             }
 
                         }
@@ -328,33 +315,9 @@ public class MainActivity extends ActionBarActivity {
 
             }
         };
-
         findViewById(R.id.hourtext).setOnClickListener(clickListener);
         findViewById(R.id.minutetext).setOnClickListener(clickListener);
         findViewById(R.id.secondtext).setOnClickListener(clickListener);
-
-
-
-/*//OnClickListener for the timer
-
-        View.OnClickListener clickListener_time = new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(v.getId() == R.id.hourtext){
-                    //corresponding button logic should below here
-                } else if (v.getId() == R.id.minutetext) {
-                    //corresponding button logic should below here
-                } else if (v.getId() == R.id.secondtext) {
-                    //corresponding button logic should below here
-                }
-            }
-
-
-    };
-
-    findViewById(R.id.hourtext).setOnClickListener(clickListener_time);
-    findViewById(R.id.minutetext).setOnClickListener(clickListener_time);
-    findViewById(R.id.secondtext).setOnClickListener(clickListener_time);*/
 
 
         mRotation = (SeekBar) findViewById(R.id.rotation);
@@ -478,11 +441,6 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-
-
-
-
-
     // for the on click activity responses for each of the 3 buttons on the menu
     public void addListenerOnButton() {
 
@@ -503,7 +461,31 @@ public class MainActivity extends ActionBarActivity {
         });
 
     }
+
+
     private void setActionListeners() {
+
+        number_text = (TextView) findViewById(R.id.hour_progress_number);
+        minute_text = (TextView) findViewById(R.id.minute_progress_number);
+        second_text = (TextView) findViewById(R.id.second_progress_number);
+
+         hourint = Integer.valueOf(number_text.getText().toString());
+
+         minuteint = Integer.valueOf(minute_text.getText().toString());
+
+         secondint = Integer.valueOf(second_text.getText().toString());
+
+        Log.i("YourActivity", "Hours: " + hourint);
+
+        Log.i("YourActivity", "Minutes: " + minuteint);
+
+        Log.i("YourActivity", "Seconds: " + secondint);
+
+
+
+        totalTimeCountInMilliseconds = ((hourint*60*60) +(minuteint*60) + (secondint)) * 1000;      // time count for 3 minutes = 180 seconds
+        timeBlinkInMilliseconds = totalTimeCountInMilliseconds/1000;
+
 
         start_timer.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -518,9 +500,6 @@ public class MainActivity extends ActionBarActivity {
                     public void onTick(long leftTimeInMilliseconds) {
                         long seconds = leftTimeInMilliseconds / 1000;
                         mSeekArc.setVisibility(View.INVISIBLE);
-
-
-
 
 
                         if ( leftTimeInMilliseconds < timeBlinkInMilliseconds ) {
@@ -551,8 +530,6 @@ public class MainActivity extends ActionBarActivity {
                     }
 
 
-
-
                     @Override
                     public void onFinish() {
                         // this function will be called when the timecount is finished
@@ -578,53 +555,4 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-
-    // Make sure that you change the intent and class
-/*    public void addListenerOnButton2() {
-
-        final Context context = this;
-
-        security_settings_button1 = (Button) findViewById(R.id.security_settings_button);
-
-        security_settings_button1.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-                Intent intent = new Intent(context, SetupActivity.class);
-                startActivity(intent);
-
-            }
-
-        });
-
-    }*/
-    // Make sure that you change the intent and class
-
-/*    public void addListenerOnButton3() {
-
-        final Context context = this;
-
-        blacklist_whitelist_button1 = (Button) findViewById(R.id.blacklist_whitelist_button);
-
-        blacklist_whitelist_button1.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View arg0) {
-
-                Intent intent = new Intent(context, BlockActivity.class);
-                startActivity(intent);
-
-            }
-
-        });
-
-    }*/
-
-
-
-
-
 }
-
-
