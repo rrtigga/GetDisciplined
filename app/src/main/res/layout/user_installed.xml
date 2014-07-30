@@ -3,10 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
+
+
     <ListView
         android:id="@+id/applist"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+
+
 
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/appname"
@@ -19,42 +24,5 @@
         android:textStyle="bold"
         android:textSize="18sp"/>
 
-    <Button
-        android:id="@+id/select_button"
-        android:layout_width="175dp"
-        android:layout_height="40dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:background="@drawable/ok_button"
-        android:text="@string/Select"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:shadowRadius="1"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowColor="@android:color/black"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"></Button>
 
-    <Button
-        android:id="@+id/cancel_button"
-        android:layout_width="175dp"
-        android:layout_height="40dp"
-        android:gravity="center_horizontal|center_vertical"
-        android:background="@drawable/ok_button"
-        android:text="@string/Cancel"
-        android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:shadowRadius="1"
-        android:shadowDx="1"
-        android:shadowDy="1"
-        android:shadowColor="@android:color/black"
-        android:layout_alignTop="@+id/select_button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"></Button>
-
-
-
-
-
-</RelativeLayout> 
+</RelativeLayout>

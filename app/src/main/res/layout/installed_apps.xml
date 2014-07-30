@@ -24,16 +24,17 @@
         android:layout_height="wrap_content" />
 
 
-    <CheckBox
-        android:id="@+id/checkBox1"
+    <ImageButton
+        android:id="@+id/plus1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/appname"
-        android:layout_alignBottom="@+id/appname"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="16dp"
+        android:background="@drawable/ic_plus"
         android:focusable="false"
-        android:focusableInTouchMode="false" />
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="12dp"
+        android:focusableInTouchMode="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 
 

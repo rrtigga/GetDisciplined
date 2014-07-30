@@ -40,7 +40,9 @@ public class CustomList_Activity extends Fragment
 		/*To filter out System apps*/
         for(PackageInfo pi : packageList) {
             boolean b = isSystemPackage(pi);
-            if(!b) {
+            boolean c = isSystemPackage1(pi);
+            if(!b || !c ) {
+
             }
         }
         apkList = (ListView) rootView.findViewById(R.id.applist);
@@ -65,18 +67,13 @@ public class CustomList_Activity extends Fragment
                 : false;
     }
 
+    private boolean isSystemPackage1(PackageInfo pkgInfo) {
+        return ((pkgInfo.applicationInfo.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0) ? false
+                : true;
+    }
 
-// Don't need in Fragment
- /*   @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.block, menu);
-        return true;
-    }*/
-/*
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.block, menu);
-       // super.onCreateOptionsMenu(menu,inflater);
-    }*/
+
+
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
