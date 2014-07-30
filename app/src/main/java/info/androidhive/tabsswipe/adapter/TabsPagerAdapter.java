@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentPagerAdapter;
 
 import com.spicycurryman.getdisciplined10.app.CustomList_Activity;
 import com.spicycurryman.getdisciplined10.app.InstalledAppActivity;
-import com.spicycurryman.getdisciplined10.app.Pre_InstalledApp_Activity;
 
 
 public class TabsPagerAdapter extends FragmentPagerAdapter implements Runnable {
@@ -21,9 +20,8 @@ public class TabsPagerAdapter extends FragmentPagerAdapter implements Runnable {
         switch (index) {
             case 0:
                 return new InstalledAppActivity();
+
             case 1:
-                return new Pre_InstalledApp_Activity();
-            case 2:
                 return new CustomList_Activity();
 
         }
@@ -34,7 +32,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter implements Runnable {
     @Override
     public int getCount() {
         // get item count - equal to number of tabs
-        return 3;
+        return 2;
     }
 
     @Override

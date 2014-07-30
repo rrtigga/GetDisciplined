@@ -1,6 +1,7 @@
 package com.spicycurryman.getdisciplined10.app;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageItemInfo;
@@ -43,7 +44,7 @@ public class InstalledAppActivity extends Fragment
 
         apkList = (ListView) rootView.findViewById(R.id.applist);
 
-        new LoadApplications().execute();
+        new LoadApplications(getActivity().getApplicationContext()).execute();
 
 
         return rootView;
@@ -62,6 +63,11 @@ public class InstalledAppActivity extends Fragment
                 : false;
     }
 
+    private boolean isSystemPackage1(PackageInfo pkgInfo) {
+        return ((pkgInfo.applicationInfo.flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP) != 0) ? false
+                : true;
+    }
+
 
 // Don't need in Fragment
 /*@Override
@@ -77,20 +83,39 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
 
     private class LoadApplications extends AsyncTask<Void, Void, Void> {
+
+        Context mContext;
+
         private ProgressDialog pDialog;
         List<PackageInfo> packageList1 = new ArrayList<PackageInfo>();
+
+        public LoadApplications(Context context){
+            Context mContext = context;
+        }
+
+
 
 
         @Override
         protected Void doInBackground(Void... params) {
+
             List<PackageInfo> packageList = packageManager
                     .getInstalledPackages(PackageManager.GET_PERMISSIONS);
 
 
+          /*  List<ApplicationInfo> list = mContext.getPackageManager().getInstalledApplications(PackageManager.GET_UNINSTALLED_PACKAGES);
+
+
+            for(int n = 0;n<list.size();n++){
+                if ((list.get(n).flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP))
+            }*/
+
 
             for(PackageInfo pi : packageList) {
                 boolean b = isSystemPackage(pi);
-                if(!b) {
+                boolean c = isSystemPackage1(pi);
+
+                if(!b || !c ) {
                     packageList1.add(pi);
                 }
             }
@@ -130,7 +155,7 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
             if (pDialog.isShowing()){
                 pDialog.dismiss();
 
-        }
+            }
 
 
             super.onPostExecute(result);

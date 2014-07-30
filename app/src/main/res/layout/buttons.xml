@@ -18,7 +18,7 @@
     android:layout_weight="1"
     android:drawableLeft="@drawable/ic_action"
     android:gravity="center_horizontal|center_vertical"
-    android:text="@string/block_apps"
+    android:text="@string/blacklist"
     android:textColor="@color/dark_red"
 
         android:textSize="20sp"

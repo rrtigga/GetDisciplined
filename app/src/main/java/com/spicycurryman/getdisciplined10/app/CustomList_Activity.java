@@ -41,7 +41,6 @@ public class CustomList_Activity extends Fragment
         for(PackageInfo pi : packageList) {
             boolean b = isSystemPackage(pi);
             if(!b) {
-                packageList1.add(pi);
             }
         }
         apkList = (ListView) rootView.findViewById(R.id.applist);

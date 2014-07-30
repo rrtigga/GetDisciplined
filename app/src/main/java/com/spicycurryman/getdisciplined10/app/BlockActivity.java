@@ -35,7 +35,7 @@ public  class BlockActivity extends ActionBarActivity implements
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
     // Tab titles
-    private String[] tabs = {"User-Installed", "Pre-Installed", "Favorites"};
+    private String[] tabs = {"Installed Apps", "BlackList"};
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     @Override
