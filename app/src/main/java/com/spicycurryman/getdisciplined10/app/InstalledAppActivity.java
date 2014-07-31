@@ -82,7 +82,7 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+        //ApkAdapter apkAdapter=(ApkAdapter)apkList.getAdapter();
 
     }
 
