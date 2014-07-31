@@ -28,8 +28,12 @@ import java.util.List;
 public class InstalledAppActivity extends Fragment
         implements OnItemClickListener {
 
+
+
+
     PackageManager packageManager;
     ListView apkList;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -78,6 +82,7 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
 
     }
 
@@ -131,6 +136,8 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
                 }
             });
 
+
+
             return null;
         }
 
@@ -167,5 +174,7 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
             super.onProgressUpdate(values);
         }
     }
+
+
 
 }

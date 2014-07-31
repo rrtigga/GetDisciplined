@@ -16,6 +16,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.SearchView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import info.androidhive.tabsswipe.adapter.TabsPagerAdapter;
 
 
@@ -31,11 +34,16 @@ public  class BlockActivity extends ActionBarActivity implements
 
 
 
+    public static List<String> blacklist = new ArrayList<String>();
+
+
+
+
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
     // Tab titles
-    private String[] tabs = {"Installed Apps", "BlackList"};
+    private String[] tabs = {"Installed Apps"};
 
     @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
     @Override
@@ -43,11 +51,6 @@ public  class BlockActivity extends ActionBarActivity implements
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         super.onCreate(savedInstanceState);
-
-
-
-
-
 
         SpannableString s = new SpannableString("GetDisciplined");
         s.setSpan(new TypefaceSpan(this, "roboto-lightitalic.ttf.ttf"), 0, s.length(),
@@ -167,4 +170,6 @@ public  class BlockActivity extends ActionBarActivity implements
     public boolean onQueryTextChange(String s) {
         return false;
     }
+
+
 }
