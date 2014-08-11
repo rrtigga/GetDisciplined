@@ -23,7 +23,7 @@ import java.util.List;
 
 public class ApkAdapter extends BaseAdapter  {
 
-    //Use
+
     //Pastebin link:  http://pastebin.com/LGRicg4U , http://pastebin.com/c4WfmhMK , http://pastebin.com/gFuuM4dY
 
     //SharedPreferences sharedPrefs;
