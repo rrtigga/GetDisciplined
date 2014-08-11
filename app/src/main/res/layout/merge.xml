@@ -1,0 +1,9 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <include
+        layout="@layout/activity_main"
+        android:id="@+id/activity_main" />
+
+    <include
+        layout="@layout/buttons"
+        android:id="@+id/buttons" />
+</merge>
