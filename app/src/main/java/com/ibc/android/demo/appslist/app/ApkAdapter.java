@@ -120,23 +120,31 @@ public class ApkAdapter extends BaseAdapter {
         Log.d("just loaded??", appName);
 
 
-        Log.d("just loaded 2?", appName);
+        Log.d("just loaded 2?", appName+position);
 
+
+        for(int i= 0; i<packageList.size(); i++){
+            sharedPrefs = context.getSharedPreferences(String.valueOf(i), Context.MODE_PRIVATE);
+            holder.ck1.setChecked(sharedPrefs.getBoolean(String.valueOf(i),false));
+
+        }
 
         holder.ck1.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                sharedPrefs = context.getSharedPreferences("apps", Context.MODE_PRIVATE);
-                holder.ck1.setChecked(sharedPrefs.getBoolean(appName,false));
-                SharedPreferences.Editor editor = context.getSharedPreferences(appName, Context.MODE_PRIVATE).edit();
+
+
+
+
+                SharedPreferences.Editor editor = context.getSharedPreferences(String.valueOf(position), Context.MODE_PRIVATE).edit();
 
                 if (holder.ck1.isChecked()) {
                     itemChecked[position] = true;
                     holder.ck1.setChecked(true);
                     Log.i("This is", " checked: " + position);
-                    editor.putBoolean(appName, true);
-                    Log.d("put true", appName);
+                    editor.putBoolean(String.valueOf(position), true);
+                    Log.d("put true", appName+position);
 
                     editor.apply();
 
@@ -144,8 +152,8 @@ public class ApkAdapter extends BaseAdapter {
                     itemChecked[position] = false;
                     holder.ck1.setChecked(false);
                     Log.i("This is", " not checked: " + position);
-                    editor.putBoolean(appName, false);
-                    Log.d("put false", appName);
+                    editor.putBoolean(String.valueOf(position), false);
+                    Log.d("put false", appName+position);
 
                     editor.apply();
 
