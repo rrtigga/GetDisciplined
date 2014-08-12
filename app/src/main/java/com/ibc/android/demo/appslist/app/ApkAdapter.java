@@ -9,31 +9,32 @@ import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.content.SharedPreferences.Editor;
 
 import com.spicycurryman.getdisciplined10.app.R;
 
 import java.util.List;
 
-public class ApkAdapter extends BaseAdapter  {
+public class ApkAdapter extends BaseAdapter {
 
-    //
-    //Pastebin link:  http://pastebin.com/LGRicg4U , http://pastebin.com/c4WfmhMK , http://pastebin.com/gFuuM4dY
 
-    //SharedPreferences sharedPrefs;
-    Editor editor;
+
+    //Pastebin link:  http://pastebin.com/LGRicg4U , http://pastebin.com/c4WfmhMK
+
+    SharedPreferences sharedPrefs;
     List<PackageInfo> packageList;
     Activity context;
     PackageManager packageManager;
     boolean[] itemChecked;
 
     String PACKAGE_NAME;
+
+
+
 
 
     public ApkAdapter(Activity context, List<PackageInfo> packageList,
@@ -45,12 +46,11 @@ public class ApkAdapter extends BaseAdapter  {
         itemChecked = new boolean[packageList.size()];
 
 
+
     }
 
 
-
-
-    static class ViewHolder {
+    private class ViewHolder {
         TextView apkName;
         CheckBox ck1;
     }
@@ -69,9 +69,6 @@ public class ApkAdapter extends BaseAdapter  {
 
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
-
-        SharedPreferences sharedPrefs = context.getSharedPreferences("apps", Context.MODE_PRIVATE);
-
         final ViewHolder holder;
 
         LayoutInflater inflater = context.getLayoutInflater();
@@ -82,7 +79,7 @@ public class ApkAdapter extends BaseAdapter  {
 
             holder.apkName = (TextView) convertView
                     .findViewById(R.id.appname);
-            holder.ck1 = (CheckBox) convertView
+            holder.ck1= (CheckBox)convertView
                     .findViewById(R.id.checkBox1);
 
             convertView.setTag(holder);
@@ -94,8 +91,10 @@ public class ApkAdapter extends BaseAdapter  {
         }
 
 
+
         // ViewHolder holder = (ViewHolder) convertView.getTag();
         PackageInfo packageInfo = (PackageInfo) getItem(position);
+
 
 
         Drawable appIcon = packageManager
@@ -113,30 +112,58 @@ public class ApkAdapter extends BaseAdapter  {
         holder.ck1.setChecked(false);
 
 
+        if (itemChecked[position])
+            holder.ck1.setChecked(true);
+        else
+            holder.ck1.setChecked(false);
+
         Log.d("just loaded??", appName);
 
 
         Log.d("just loaded 2?", appName);
 
-        editor = sharedPrefs.edit();
 
-
-        holder.ck1.setChecked(sharedPrefs.getBoolean(appName +position, false));
-
-        //SharedPreferences.Editor editor = context.getSharedPreferences(appName, Context.MODE_PRIVATE).edit();
-
-        holder.ck1.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
+        holder.ck1.setOnClickListener(new OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+            public void onClick(View v) {
 
-                editor.putBoolean(appName + position, holder.ck1.isChecked());
-                editor.commit();
+                sharedPrefs = context.getSharedPreferences("apps", Context.MODE_PRIVATE);
+                holder.ck1.setChecked(sharedPrefs.getBoolean(appName,false));
+                SharedPreferences.Editor editor = context.getSharedPreferences(appName, Context.MODE_PRIVATE).edit();
+
+                if (holder.ck1.isChecked()) {
+                    itemChecked[position] = true;
+                    holder.ck1.setChecked(true);
+                    Log.i("This is", " checked: " + position);
+                    editor.putBoolean(appName, true);
+                    Log.d("put true", appName);
+
+                    editor.apply();
+
+                } else {
+                    itemChecked[position] = false;
+                    holder.ck1.setChecked(false);
+                    Log.i("This is", " not checked: " + position);
+                    editor.putBoolean(appName, false);
+                    Log.d("put false", appName);
+
+                    editor.apply();
+
+                }
+
             }
 
 
         });
+
+
+
+
         return convertView;
 
     }
+
+
+
+
 }
