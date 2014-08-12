@@ -23,7 +23,6 @@ public class ApkAdapter extends BaseAdapter {
 
 
 
-    //Pastebin link:  http://pastebin.com/LGRicg4U , http://pastebin.com/c4WfmhMK
 
     SharedPreferences sharedPrefs;
     List<PackageInfo> packageList;
