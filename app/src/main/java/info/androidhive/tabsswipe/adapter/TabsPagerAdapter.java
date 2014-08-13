@@ -8,7 +8,7 @@ import com.spicycurryman.getdisciplined10.app.InstalledAppActivity;
 
 
 public class TabsPagerAdapter extends FragmentPagerAdapter implements Runnable {
-//...
+//..
     public TabsPagerAdapter(FragmentManager fm) {
         super(fm);
     }
