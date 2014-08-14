@@ -62,6 +62,10 @@ public class MainActivity extends ActionBarActivity {
     boolean blink;
 
 
+    // Consider showing drawable scrubber after pressing H M or S
+
+
+
 
     Button block_button1;
     Button start_timer;
@@ -162,6 +166,7 @@ public class MainActivity extends ActionBarActivity {
 
 
         mSeekArc = (SeekArc) findViewById(R.id.seekArc);
+
 
 //Here is the actual "hour progress number" aka the TextView that changes as the scrubber is dragged around
         mSeekArcProgress = (TextView) findViewById(R.id.hour_progress_number);
@@ -469,22 +474,7 @@ public class MainActivity extends ActionBarActivity {
         minute_text = (TextView) findViewById(R.id.minute_progress_number);
         second_text = (TextView) findViewById(R.id.second_progress_number);
 
-         hourint = Integer.valueOf(number_text.getText().toString());
 
-         minuteint = Integer.valueOf(minute_text.getText().toString());
-
-         secondint = Integer.valueOf(second_text.getText().toString());
-
-        Log.i("YourActivity", "Hours: " + hourint);
-
-        Log.i("YourActivity", "Minutes: " + minuteint);
-
-        Log.i("YourActivity", "Seconds: " + secondint);
-
-
-
-        totalTimeCountInMilliseconds = ((hourint*60*60) +(minuteint*60) + (secondint)) * 1000;      // time count for 3 minutes = 180 seconds
-        timeBlinkInMilliseconds = totalTimeCountInMilliseconds/1000;
 
 
         start_timer.setOnClickListener(new View.OnClickListener() {
@@ -492,6 +482,21 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View view) {
 
                // textViewShowTime.setTextAppearance(getApplicationContext(), R.style.normalText);
+
+                hourint = Integer.valueOf(number_text.getText().toString());
+
+                minuteint = Integer.valueOf(minute_text.getText().toString());
+
+                secondint = Integer.valueOf(second_text.getText().toString());
+
+                Log.i("YourActivity", "Hours: " + hourint);
+
+                Log.i("YourActivity", "Minutes: " + minuteint);
+
+                Log.i("YourActivity", "Seconds: " + secondint);
+
+                totalTimeCountInMilliseconds = ((hourint*60*60) +(minuteint*60) + (secondint)) * 1000;      // time count for 3 minutes = 180 seconds
+                timeBlinkInMilliseconds = totalTimeCountInMilliseconds/1000;
 
                 countDownTimer = new CountDownTimer(totalTimeCountInMilliseconds, 500) {
                     // 500 means, onTick function will be called at every 500 milliseconds
