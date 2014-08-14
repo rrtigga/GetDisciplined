@@ -496,7 +496,7 @@ public class MainActivity extends ActionBarActivity {
                 Log.i("YourActivity", "Seconds: " + secondint);
 
                 totalTimeCountInMilliseconds = ((hourint*60*60) +(minuteint*60) + (secondint)) * 1000;      // time count for 3 minutes = 180 seconds
-                timeBlinkInMilliseconds = totalTimeCountInMilliseconds/1000;
+                timeBlinkInMilliseconds = 30*1000;
 
                 countDownTimer = new CountDownTimer(totalTimeCountInMilliseconds, 500) {
                     // 500 means, onTick function will be called at every 500 milliseconds
@@ -530,7 +530,7 @@ public class MainActivity extends ActionBarActivity {
                         }
 
                         second_text.setText(String.format("%02d", seconds % 60));
-                        minute_text.setText(String.format("%02d", seconds / 60));
+                        minute_text.setText(String.format("%02d", (seconds / 60) % 60));
                         number_text.setText(String.format("%02d", seconds / 3600));                     // format the textview to show the easily readable format
                     }
 
