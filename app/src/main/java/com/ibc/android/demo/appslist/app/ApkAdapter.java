@@ -26,13 +26,6 @@ public class ApkAdapter extends BaseAdapter {
     //Pastebin link:  http://pastebin.com/LGRicg4U , http://pastebin.com/c4WfmhMK , http://pastebin.com/gFuuM4dY, http://pastebin.com/4Q7EP9G4
     // http://pastebin.com/Te2g072w,  http://pastebin.com/NLT5iUiA ,
 
-
-
-
-
-
-
-
     SharedPreferences sharedPrefs;
     List<PackageInfo> packageList;
     Activity context;
@@ -40,10 +33,6 @@ public class ApkAdapter extends BaseAdapter {
     boolean[] itemChecked;
 
     String PACKAGE_NAME;
-
-
-
-
 
     public ApkAdapter(Activity context, List<PackageInfo> packageList,
                       PackageManager packageManager) {
@@ -53,14 +42,13 @@ public class ApkAdapter extends BaseAdapter {
         this.packageManager = packageManager;
         itemChecked = new boolean[packageList.size()];
 
-
-
     }
 
 
     private class ViewHolder {
         TextView apkName;
         CheckBox ck1;
+        TextView packageName;
     }
 
     public int getCount() {
@@ -89,6 +77,9 @@ public class ApkAdapter extends BaseAdapter {
                     .findViewById(R.id.appname);
             holder.ck1= (CheckBox)convertView
                     .findViewById(R.id.checkBox1);
+            holder.packageName = (TextView) convertView.findViewById(R.id.app_package);
+
+
 
             convertView.setTag(holder);
             //holder.ck1.setTag(packageList.get(position));
@@ -108,7 +99,11 @@ public class ApkAdapter extends BaseAdapter {
         Drawable appIcon = packageManager
                 .getApplicationIcon(packageInfo.applicationInfo);
 
+
+
+        // Make sure to define it again!
         PACKAGE_NAME = packageInfo.packageName;
+
 
         final String appName = packageManager.getApplicationLabel(
                 packageInfo.applicationInfo).toString();
@@ -116,6 +111,8 @@ public class ApkAdapter extends BaseAdapter {
         holder.apkName.setCompoundDrawables(appIcon, null, null, null);
         holder.apkName.setCompoundDrawablePadding(15);
         holder.apkName.setText(appName);
+        holder.packageName.setText(PACKAGE_NAME);
+
 
         holder.ck1.setChecked(false);
 
@@ -125,24 +122,26 @@ public class ApkAdapter extends BaseAdapter {
         else
             holder.ck1.setChecked(false);
 
-        Log.d("just loaded??", appName);
+        Log.d("just loaded??", PACKAGE_NAME);
 
 
         Log.d("just loaded 2?", appName+position);
+
+
+
+        // CHANGE UP EVERYTHING! MAKE THIS SHIT WORK, TIGGA!
 
 
         for(int i= 0; i<packageList.size(); i++){
             sharedPrefs = context.getSharedPreferences(String.valueOf(i), Context.MODE_PRIVATE);
             holder.ck1.setChecked(sharedPrefs.getBoolean(String.valueOf(i),false));
 
+
         }
 
         holder.ck1.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-
-
-
 
 
                 SharedPreferences.Editor editor = context.getSharedPreferences(String.valueOf(position), Context.MODE_PRIVATE).edit();
@@ -171,9 +170,6 @@ public class ApkAdapter extends BaseAdapter {
 
 
         });
-
-
-
 
         return convertView;
 

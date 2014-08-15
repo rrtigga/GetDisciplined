@@ -18,6 +18,15 @@
               android:textStyle="bold"
               android:textSize="18sp"/>
 
+<!--    <TextView
+        android:id="@+id/app_package"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:visibility="invisible"
+
+        />-->
+
     <ListView
         android:id="@+id/app"
         android:layout_width="wrap_content"

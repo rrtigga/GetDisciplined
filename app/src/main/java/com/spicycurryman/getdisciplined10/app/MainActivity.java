@@ -505,6 +505,9 @@ public class MainActivity extends ActionBarActivity {
                     public void onTick(long leftTimeInMilliseconds) {
                         long seconds = leftTimeInMilliseconds / 1000;
                         mSeekArc.setVisibility(View.INVISIBLE);
+                        start_timer.setVisibility(View.INVISIBLE);
+                        block_button1.setVisibility(View.INVISIBLE);
+
 
 
                         if ( leftTimeInMilliseconds < timeBlinkInMilliseconds ) {
@@ -543,6 +546,10 @@ public class MainActivity extends ActionBarActivity {
                         minute_text.setVisibility(View.VISIBLE);
                         second_text.setVisibility(View.VISIBLE);
                         mSeekArc.setVisibility(View.VISIBLE);
+                        start_timer.setVisibility(View.VISIBLE);
+                        block_button1.setVisibility(View.VISIBLE);
+
+
                     }
 
                 }.start();
