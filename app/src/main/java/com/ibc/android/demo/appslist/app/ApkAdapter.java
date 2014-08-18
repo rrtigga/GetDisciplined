@@ -92,7 +92,7 @@ public class ApkAdapter extends BaseAdapter {
 
 
         // ViewHolder holder = (ViewHolder) convertView.getTag();
-        PackageInfo packageInfo = (PackageInfo) getItem(position);
+        final PackageInfo packageInfo = (PackageInfo) getItem(position);
 
 
 
@@ -111,7 +111,7 @@ public class ApkAdapter extends BaseAdapter {
         holder.apkName.setCompoundDrawables(appIcon, null, null, null);
         holder.apkName.setCompoundDrawablePadding(15);
         holder.apkName.setText(appName);
-        holder.packageName.setText(PACKAGE_NAME);
+        //holder.packageName.setText(PACKAGE_NAME);
 
 
         holder.ck1.setChecked(false);
@@ -133,25 +133,32 @@ public class ApkAdapter extends BaseAdapter {
 
 
         for(int i= 0; i<packageList.size(); i++){
-            sharedPrefs = context.getSharedPreferences(String.valueOf(i), Context.MODE_PRIVATE);
-            holder.ck1.setChecked(sharedPrefs.getBoolean(String.valueOf(i),false));
+            PACKAGE_NAME = packageInfo.packageName;
+
+            sharedPrefs = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
+            Log.d("just got sharedpref??", PACKAGE_NAME);
+
+
+            holder.ck1.setChecked(sharedPrefs.getBoolean(PACKAGE_NAME,false));
+            Log.d("just got boolean??", PACKAGE_NAME);
 
 
         }
 
         holder.ck1.setOnClickListener(new OnClickListener() {
+
             @Override
             public void onClick(View v) {
 
 
-                SharedPreferences.Editor editor = context.getSharedPreferences(String.valueOf(position), Context.MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = context.getSharedPreferences(packageInfo.packageName, Context.MODE_PRIVATE).edit();
 
                 if (holder.ck1.isChecked()) {
                     itemChecked[position] = true;
                     holder.ck1.setChecked(true);
                     Log.i("This is", " checked: " + position);
-                    editor.putBoolean(String.valueOf(position), true);
-                    Log.d("put true", appName+position);
+                    editor.putBoolean(packageInfo.packageName, true);
+                    Log.d("put true", packageInfo.packageName);
 
                     editor.apply();
 
@@ -159,8 +166,8 @@ public class ApkAdapter extends BaseAdapter {
                     itemChecked[position] = false;
                     holder.ck1.setChecked(false);
                     Log.i("This is", " not checked: " + position);
-                    editor.putBoolean(String.valueOf(position), false);
-                    Log.d("put false", appName+position);
+                    editor.putBoolean(packageInfo.packageName, false);
+                    Log.d("put false", packageInfo.packageName);
 
                     editor.apply();
 

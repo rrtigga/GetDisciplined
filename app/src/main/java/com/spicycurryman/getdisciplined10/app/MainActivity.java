@@ -490,7 +490,7 @@ public class MainActivity extends ActionBarActivity {
             public void onClick(View view) {
 
                 new AlertDialog.Builder( MainActivity.this )
-                        .setMessage( "Are you sure you want to block the selected apps?" )
+                        .setMessage( "Are you sure you want to block the selected apps for the set amount of time?" )
                         .setPositiveButton( "Yeah man!", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 Log.d( "AlertDialog", "Positive" );
@@ -507,7 +507,7 @@ public class MainActivity extends ActionBarActivity {
 
                                 Log.i("YourActivity", "Seconds: " + secondint);
 
-                                totalTimeCountInMilliseconds = ((hourint*60*60) +(minuteint*60) + (secondint)) * 1000;      // time count for 3 minutes = 180 seconds
+                                totalTimeCountInMilliseconds = ((hourint*60*60) +(minuteint*60) + (secondint)) * 1000;      // time count
                                 timeBlinkInMilliseconds = 30*1000;
 
                                 countDownTimer = new CountDownTimer(totalTimeCountInMilliseconds, 500) {
@@ -567,7 +567,7 @@ public class MainActivity extends ActionBarActivity {
                                 }.start();
                             }
                         })
-                        .setNegativeButton( "Whoops! No I didn't!", new DialogInterface.OnClickListener() {
+                        .setNegativeButton( "Nope!", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 Log.d( "AlertDialog", "Negative" );
                                 dialog.cancel();
