@@ -131,6 +131,7 @@ public class ApkAdapter extends BaseAdapter {
 
         for(int i= 0; i<packageList.size(); i++){
             PACKAGE_NAME = packageInfo.packageName;
+            Log.d("lol", PACKAGE_NAME);
 
             sharedPrefs = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
 
@@ -169,9 +170,13 @@ public class ApkAdapter extends BaseAdapter {
 
         });
 
+
+
         return convertView;
 
     }
+
+
 
 
 

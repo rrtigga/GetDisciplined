@@ -1,6 +1,8 @@
 package com.spicycurryman.getdisciplined10.app;
 
 import android.app.ActionBar;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -23,8 +25,11 @@ import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.triggertrap.seekarc.SeekArc;
+
+import java.util.List;
 
 public class MainActivity extends ActionBarActivity {
     private SeekArc mSeekArc;
@@ -515,6 +520,23 @@ public class MainActivity extends ActionBarActivity {
 
                                     @Override
                                     public void onTick(long leftTimeInMilliseconds) {
+                                        Context context = MainActivity.this;
+
+                                        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+                                        List<RunningAppProcessInfo> procInfos = activityManager.getRunningAppProcesses();
+                                        for(int i = 0; i < procInfos.size(); i++)
+                                        {
+                                            if(procInfos.get(i).processName.equals("com.android.camera"))
+                                            {
+
+                                                activityManager.killBackgroundProcesses("com.android.camera");
+                                                Toast.makeText(getApplicationContext(), "App is running", Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+
+
+
+
                                         long seconds = leftTimeInMilliseconds / 1000;
                                         mSeekArc.setVisibility(View.INVISIBLE);
                                         start_timer.setVisibility(View.INVISIBLE);
@@ -567,12 +589,12 @@ public class MainActivity extends ActionBarActivity {
                                 }.start();
                             }
                         })
-                        .setNegativeButton( "Nope!", new DialogInterface.OnClickListener() {
+                        .setNegativeButton("Nope!", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                Log.d( "AlertDialog", "Negative" );
+                                Log.d("AlertDialog", "Negative");
                                 dialog.cancel();
                             }
-                        } )
+                        })
                         .show();
 
 
