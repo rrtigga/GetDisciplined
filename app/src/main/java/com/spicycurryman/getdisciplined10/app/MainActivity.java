@@ -1,12 +1,11 @@
 package com.spicycurryman.getdisciplined10.app;
 
 import android.app.ActionBar;
-import android.app.ActivityManager;
-import android.app.ActivityManager.RunningAppProcessInfo;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -25,11 +24,10 @@ import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.triggertrap.seekarc.SeekArc;
 
-import java.util.List;
+import java.util.Date;
 
 public class MainActivity extends ActionBarActivity {
     private SeekArc mSeekArc;
@@ -67,6 +65,18 @@ public class MainActivity extends ActionBarActivity {
     long totalTimeCountInMilliseconds;
     long timeBlinkInMilliseconds;           // start time of start blinking
     boolean blink;
+
+
+    SharedPreferences startimerPreferences;
+    SharedPreferences endTimerPreferences;
+
+    long timerstarted; //this is when the user hit start timer.
+    long timerends; //this is the time when the time when the timer will end;
+    long reopened; //this is when time when the user reopens the application;
+
+
+
+
 
 
     // Consider showing drawable scrubber after pressing H M or S
@@ -183,6 +193,35 @@ public class MainActivity extends ActionBarActivity {
         mSeekArcSecondProgress = (TextView) findViewById(R.id.second_progress_number);
 
 
+        startimerPreferences = getSharedPreferences("time", MODE_PRIVATE);
+        timerstarted = startimerPreferences.getLong("time",0);
+        Log.e("The time it started was: ", timerstarted+"");
+
+
+        endTimerPreferences = getSharedPreferences("time", MODE_PRIVATE);
+        timerends = endTimerPreferences.getLong("time",0);
+        Log.e("The time it will end is: ", timerends+"");
+
+
+        Date openagain = new Date(System.currentTimeMillis());
+        reopened = openagain.getTime();
+
+
+        if(timerends != 0 && timerstarted != 0)
+        {
+            if(reopened <timerends){
+                //start countdown timer with new time.
+                //set countdowntime to timerends-reopen.
+
+
+
+
+            }
+        }
+
+
+
+
 
         //make textview selectable
 
@@ -264,10 +303,10 @@ public class MainActivity extends ActionBarActivity {
                             for (int i=0;i<120;i++)
                             {
 
-                                 if (progress ==120) {
-                                     mSeekArcMinuteProgress.setText("00");
+                                if (progress ==120) {
+                                    mSeekArcMinuteProgress.setText("00");
 
-                                 }
+                                }
                                 else if (progress == progress_count)
                                 {
                                     mSeekArcMinuteProgress.setText(String.valueOf(String.format("%02d",i)));
@@ -295,7 +334,7 @@ public class MainActivity extends ActionBarActivity {
                         //This sets the actual string for the seconds
                         @Override
                         public void onProgressChanged(SeekArc seekArc, int progress,
-                                      boolean fromUser) {
+                                                      boolean fromUser) {
 
 
 
@@ -341,11 +380,11 @@ public class MainActivity extends ActionBarActivity {
         mTouchInside = (CheckBox) findViewById(R.id.touchInside);
         mClockwise = (CheckBox) findViewById(R.id.clockwise);
 
-       mRotation.setProgress(mSeekArc.getArcRotation());
-       mStartAngle.setProgress(mSeekArc.getStartAngle());
-       mSweepAngle.setProgress(mSeekArc.getSweepAngle());
-       mArcWidth.setProgress(mSeekArc.getArcWidth());
-       mProgressWidth.setProgress(mSeekArc.getProgressWidth());
+        mRotation.setProgress(mSeekArc.getArcRotation());
+        mStartAngle.setProgress(mSeekArc.getStartAngle());
+        mSweepAngle.setProgress(mSeekArc.getSweepAngle());
+        mArcWidth.setProgress(mSeekArc.getArcWidth());
+        mProgressWidth.setProgress(mSeekArc.getProgressWidth());
 
 
         mRotation.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
@@ -496,9 +535,9 @@ public class MainActivity extends ActionBarActivity {
 
                 new AlertDialog.Builder( MainActivity.this )
                         .setMessage( "Are you sure you want to block the selected apps for the set amount of time?" )
-                        .setPositiveButton( "Yeah man!", new DialogInterface.OnClickListener() {
+                        .setPositiveButton("Yeah man!", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
-                                Log.d( "AlertDialog", "Positive" );
+                                Log.d("AlertDialog", "Positive");
 
                                 hourint = Integer.valueOf(number_text.getText().toString());
 
@@ -512,30 +551,38 @@ public class MainActivity extends ActionBarActivity {
 
                                 Log.i("YourActivity", "Seconds: " + secondint);
 
-                                totalTimeCountInMilliseconds = ((hourint*60*60) +(minuteint*60) + (secondint)) * 1000;      // time count
-                                timeBlinkInMilliseconds = 30*1000;
+                                Date currenttime = new Date(System.currentTimeMillis());
+
+                                timerstarted = currenttime.getTime();
+                                Log.e("This is the current time:  ", timerstarted + "");
+                                startimerPreferences = getPreferences(MODE_APPEND);
+                                SharedPreferences.Editor starteditor = startimerPreferences.edit();
+                                starteditor.putLong("time", timerstarted);
+                                starteditor.commit();
+
+
+                                Date endtime = new Date(System.currentTimeMillis());
+
+                                timerends = endtime.getTime() + (((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000);
+                                Log.e("This is the end time:  ", timerends + "");
+                                endTimerPreferences = getPreferences(MODE_APPEND);
+                                SharedPreferences.Editor endeditor = endTimerPreferences.edit();
+                                endeditor.putLong("time", timerends);
+                                endeditor.commit();
+
+
+
+
+
+
+                                totalTimeCountInMilliseconds = (((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000);      // time count
+                                timeBlinkInMilliseconds = 30 * 1000;
 
                                 countDownTimer = new CountDownTimer(totalTimeCountInMilliseconds, 500) {
                                     // 500 means, onTick function will be called at every 500 milliseconds
 
                                     @Override
                                     public void onTick(long leftTimeInMilliseconds) {
-                                        Context context = MainActivity.this;
-
-                                        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-                                        List<RunningAppProcessInfo> procInfos = activityManager.getRunningAppProcesses();
-                                        for(int i = 0; i < procInfos.size(); i++)
-                                        {
-                                            if(procInfos.get(i).processName.equals("com.android.camera"))
-                                            {
-
-                                                activityManager.killBackgroundProcesses("com.android.camera");
-                                                Toast.makeText(getApplicationContext(), "App is running", Toast.LENGTH_LONG).show();
-                                            }
-                                        }
-
-
-
 
                                         long seconds = leftTimeInMilliseconds / 1000;
                                         mSeekArc.setVisibility(View.INVISIBLE);
@@ -543,12 +590,11 @@ public class MainActivity extends ActionBarActivity {
                                         block_button1.setVisibility(View.INVISIBLE);
 
 
-
-                                        if ( leftTimeInMilliseconds < timeBlinkInMilliseconds ) {
+                                        if (leftTimeInMilliseconds < timeBlinkInMilliseconds) {
                                             // textViewShowTime.setTextAppearance(getApplicationContext(), R.style.blinkText);
                                             // change the style of the textview .. giving a red alert style
 
-                                            if ( blink ) {
+                                            if (blink) {
                                                 number_text.setVisibility(View.VISIBLE);
                                                 minute_text.setVisibility(View.VISIBLE);
                                                 second_text.setVisibility(View.VISIBLE);
@@ -599,7 +645,7 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-               // textViewShowTime.setTextAppearance(getApplicationContext(), R.style.normalText);
+                // textViewShowTime.setTextAppearance(getApplicationContext(), R.style.normalText);
 
 
             }
