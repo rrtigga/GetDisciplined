@@ -75,6 +75,10 @@ public class MainActivity extends ActionBarActivity {
     long reopened; //this is when time when the user reopens the application;
 
 
+    long newtotalTimeCountInMilliseconds;
+
+
+
 
 
 
@@ -192,32 +196,24 @@ public class MainActivity extends ActionBarActivity {
 
         mSeekArcSecondProgress = (TextView) findViewById(R.id.second_progress_number);
 
+        startimerPreferences = getPreferences(MODE_APPEND);
 
-        startimerPreferences = getSharedPreferences("time", MODE_PRIVATE);
-        timerstarted = startimerPreferences.getLong("time",0);
-        Log.e("The time it started was: ", timerstarted+"");
+        Date startDate = new Date(startimerPreferences.getLong("time", 0));
+        timerstarted = startDate.getTime();
+        Log.e("This is the start time!!!!!:  ", timerstarted + "");
 
 
-        endTimerPreferences = getSharedPreferences("time", MODE_PRIVATE);
-        timerends = endTimerPreferences.getLong("time",0);
-        Log.e("The time it will end is: ", timerends+"");
+        endTimerPreferences = getPreferences(MODE_APPEND);
+        Date endDate = new Date(endTimerPreferences.getLong("time", 0));
+        timerends = endDate.getTime();
+        Log.e("This is the end time!!!!!:  ", timerends + "");
 
 
         Date openagain = new Date(System.currentTimeMillis());
         reopened = openagain.getTime();
 
 
-        if(timerends != 0 && timerstarted != 0)
-        {
-            if(reopened <timerends){
-                //start countdown timer with new time.
-                //set countdowntime to timerends-reopen.
 
-
-
-
-            }
-        }
 
 
 
@@ -490,6 +486,79 @@ public class MainActivity extends ActionBarActivity {
             }
         });
 
+
+        if(timerstarted > 0)
+        {
+            if(reopened <timerends){
+                //start countdown timer with new time.
+                //set countdowntime to timerends-reopen.
+
+                newtotalTimeCountInMilliseconds = timerends-reopened;
+                countDownTimer = new CountDownTimer(newtotalTimeCountInMilliseconds, 500) {
+                    // 500 means, onTick function will be called at every 500 milliseconds
+
+                    @Override
+                    public void onTick(long leftTimeInMilliseconds) {
+
+                        long seconds = leftTimeInMilliseconds / 1000;
+                        mSeekArc.setVisibility(View.INVISIBLE);
+                        start_timer.setVisibility(View.INVISIBLE);
+                        block_button1.setVisibility(View.INVISIBLE);
+
+
+                        if (leftTimeInMilliseconds < timeBlinkInMilliseconds) {
+                            // textViewShowTime.setTextAppearance(getApplicationContext(), R.style.blinkText);
+                            // change the style of the textview .. giving a red alert style
+
+                            if (blink) {
+                                number_text.setVisibility(View.VISIBLE);
+                                minute_text.setVisibility(View.VISIBLE);
+                                second_text.setVisibility(View.VISIBLE);
+
+
+                                // if blink is true, textview will be visible
+                            } else {
+                                number_text.setVisibility(View.INVISIBLE);
+                                minute_text.setVisibility(View.INVISIBLE);
+                                second_text.setVisibility(View.INVISIBLE);
+
+
+                            }
+
+                            blink = !blink;         // toggle the value of blink
+                        }
+
+                        second_text.setText(String.format("%02d", seconds % 60));
+                        minute_text.setText(String.format("%02d", (seconds / 60) % 60));
+                        number_text.setText(String.format("%02d", seconds / 3600));                     // format the textview to show the easily readable format
+                    }
+
+
+                    @Override
+                    public void onFinish() {
+                        // this function will be called when the timecount is finished
+                        //textViewShowTime.setText("Time up!");
+                        number_text.setVisibility(View.VISIBLE);
+                        minute_text.setVisibility(View.VISIBLE);
+                        second_text.setVisibility(View.VISIBLE);
+                        mSeekArc.setVisibility(View.VISIBLE);
+                        start_timer.setVisibility(View.VISIBLE);
+                        block_button1.setVisibility(View.VISIBLE);
+
+
+                    }
+
+                }.start();
+
+
+
+            }
+        }
+
+
+
+
+
     }
 
     // for the on click activity responses for each of the 3 buttons on the menu
@@ -569,6 +638,9 @@ public class MainActivity extends ActionBarActivity {
                                 SharedPreferences.Editor endeditor = endTimerPreferences.edit();
                                 endeditor.putLong("time", timerends);
                                 endeditor.commit();
+
+
+
 
 
 
