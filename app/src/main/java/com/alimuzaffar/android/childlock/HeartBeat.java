@@ -1,7 +1,6 @@
 package com.alimuzaffar.android.childlock;
 
 import android.app.ActivityManager;
-import android.app.ActivityManager.RecentTaskInfo;
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
@@ -10,11 +9,7 @@ import android.content.IntentFilter;
 import android.os.IBinder;
 import android.util.Log;
 
-import org.json.JSONArray;
-import org.json.JSONObject;
-
 import java.io.File;
-import java.io.FileInputStream;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -24,6 +19,9 @@ import java.util.TimerTask;
 public class HeartBeat extends Service {
     private static final String TAG = HeartBeat.class.getSimpleName();
     public Timer TIMER;
+
+   String CURRENT_PACKAGE_NAME;
+
 
     private static Set<AccessGranted> mAccessGrantedList = new HashSet<AccessGranted>();
     private Set<String> mLockedApps = new HashSet<String>();
@@ -38,7 +36,6 @@ public class HeartBeat extends Service {
     }
 
 
-
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         // Log.i("LocalService", "Received start id " + startId + ": " +
@@ -46,7 +43,6 @@ public class HeartBeat extends Service {
         // We want this service to continue running until it is explicitly
         // stopped, so return sticky.
         if (TIMER == null) {
-            updateBlockedApps();
 
             TIMER = new Timer(true);
             TIMER.scheduleAtFixedRate(new LockAppsTimerTask(), 1000, 250);
@@ -84,7 +80,7 @@ public class HeartBeat extends Service {
                 public void onReceive(Context context, Intent intent) {
                     String action = intent.getAction();
                     String packageName = intent.getStringExtra("packageName");
-                    if(action.equals(Constants.ACTION_GRANT_ACCESS) && packageName != null) {
+                    if (action.equals(Constants.ACTION_GRANT_ACCESS) && packageName != null) {
                         AccessGranted ag = new AccessGranted(packageName);
                         mAccessGrantedList.remove(ag);
                         mAccessGrantedList.add(ag);
@@ -109,78 +105,46 @@ public class HeartBeat extends Service {
         unregisterReceiver(mAccessGrantedReceiver);
     }
 
-    private void updateBlockedApps() {
-        try {
-            if(mLockedAppsFile == null)
-                mLockedAppsFile = new File(getFilesDir(),Constants.LOCKED_APP_FILE);
-
-            if(mLockedAppsFile == null || mLockedAppsFile.lastModified() == lastModified) {
-                Log.i(TAG, "NO CHANGE file = "+mLockedAppsFile);
-                return;
-            }
-            lastModified = mLockedAppsFile.lastModified();
-            Log.i(TAG, "CHANGE");
-            FileInputStream istream = getApplicationContext().openFileInput(Constants.LOCKED_APP_FILE);
-            String jsonStr = Utils.getStringFromInputStream(istream);
-            istream.close();
-            if (jsonStr != null && jsonStr.length() > 0) {
-                JSONObject json = new JSONObject(jsonStr);
-                JSONArray locked = json.optJSONArray("locked");
-                if (locked != null) {
-                    mLockedApps = new HashSet<String>();
-                    for (int i = 0; i < locked.length(); i++) {
-                        String packageName = locked.getString(i);
-                        mLockedApps.add(packageName);
-                    }
-                }
-            }
-
-        } catch (Exception e) {
-            Log.e(TAG, e.getMessage(), e);
-        }
-    }
 
     private class LockAppsTimerTask extends TimerTask {
 
         @Override
         public void run() {
-            updateBlockedApps();
             ActivityManager activityManager = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
 
             try {
-                List<RecentTaskInfo> recentTasks = activityManager.getRecentTasks(1, ActivityManager.RECENT_IGNORE_UNAVAILABLE);
-                if (recentTasks != null && recentTasks.size() > 0) {
-                    String packageName = recentTasks.get(0).baseIntent.getComponent().getPackageName();
-                    if (isBlocked(packageName)) {
-                        Intent i = new Intent(getApplicationContext(), LockScreenActivity.class);
-                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        i.putExtra("packageName", packageName);
-                        startActivity(i);
-                    }
+                //List<RecentTaskInfo> recentTasks = activityManager.getRecentTasks(1, ActivityManager.RECENT_IGNORE_UNAVAILABLE);
+                String packageName = "com.android.camera";
+                ActivityManager mActivityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
+                List<ActivityManager.RunningTaskInfo> RunningTask = mActivityManager
+                        .getRunningTasks(1);
+                ActivityManager.RunningTaskInfo ar = RunningTask.get(0);
+                String activityOnTop = ar.topActivity.getPackageName();
+
+                Log.e("activity on Top", "" + activityOnTop);
+                Log.e(" My package name", "" + getApplicationContext().getPackageName());
+
+
+
+// Provide the packagename(s) of apps here, you want to show password activity
+                if (activityOnTop.contains(packageName)  // you can make this check even better
+                        && !activityOnTop.contains("com.spicycurryman.getdisciplined10.app.dev"
+                )) {
+
+                    Intent i = new Intent(getApplicationContext(), LockScreenActivity.class);
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                    i.putExtra("packageName", packageName);
+                    startActivity(i);
                 }
+
 
             } catch (Exception e) {
                 Log.e("Foreground App", e.getMessage(), e);
             }
         }
 
-        private boolean isBlocked(String packageName) {
-            // Log.i("Foreground App", "SIZE => "+mAccessGrantedList.size());
 
-            if (mLockedApps.contains(packageName)) {
-                if (!mAccessGrantedList.contains(new AccessGranted(packageName))) {
-                    return true;
-                } else {
-                    for (AccessGranted ag : mAccessGrantedList) {
-                        if (ag.packageName.equals(packageName)) {
-                            return ag.isExpired();
-                        }
-                    }
-                }
-            }
-            return false;
-        }
 
-    };
+    }
 
 }

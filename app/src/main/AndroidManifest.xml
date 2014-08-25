@@ -9,6 +9,9 @@
     <uses-permission android:name="android.permission.FORCE_STOP_PACKAGES"
         tools:ignore="ProtectedPermissions" />
 
+    <uses-permission android:name="android.permission.GET_TASKS" >
+    </uses-permission>
+
 
 
     <application
@@ -43,6 +46,12 @@
 
         <activity android:name="com.spicycurryman.getdisciplined10.app.SetupActivity" >
         </activity>
+        <activity android:name="com.alimuzaffar.android.childlock.LockScreenActivity" >
+        </activity>
+
+
+        <service android:enabled="true" android:name="com.alimuzaffar.android.childlock.HeartBeat" />
+
 
 
 

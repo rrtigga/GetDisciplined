@@ -25,6 +25,7 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
+import com.alimuzaffar.android.childlock.HeartBeat;
 import com.triggertrap.seekarc.SeekArc;
 
 import java.util.Date;
@@ -111,7 +112,7 @@ public class MainActivity extends ActionBarActivity {
 
 
         // here is where the service is started.
-        startService(new Intent(this, SaveMyAppsService.class));
+        startService(new Intent(this, HeartBeat.class));
 
 
 
