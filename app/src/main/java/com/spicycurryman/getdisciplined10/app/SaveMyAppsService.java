@@ -1,6 +1,7 @@
 package com.spicycurryman.getdisciplined10.app;
 
 import android.app.ActivityManager;
+import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
@@ -15,17 +16,9 @@ import java.util.concurrent.TimeUnit;
 /**
  * Created by Spicycurryman on 8/21/14.
  */
-public class SaveMyAppsService extends android.app.Service {
+public class SaveMyAppsService extends Service{
 
-    public void onCreate(){
-        super.onCreate();
 
-        while(true) {
-            Toast.makeText(SaveMyAppsService.this,
-                    "Your Message", Toast.LENGTH_LONG).show();
-        }
-
-    }
 
     String CURRENT_PACKAGE_NAME = "com.spicycurryman.getdisciplined10.app.dev";
     String lastAppPN = "";
@@ -80,6 +73,11 @@ public class SaveMyAppsService extends android.app.Service {
                 .getRunningTasks(1);
         ActivityManager.RunningTaskInfo ar = RunningTask.get(0);
         String activityOnTop = ar.topActivity.getPackageName();
+
+
+
+        Toast.makeText(SaveMyAppsService.this,
+                "Your Message", Toast.LENGTH_LONG).show();
 
         Log.e("activity on TOp", "" + activityOnTop);
 

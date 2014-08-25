@@ -109,6 +109,12 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.merge);
 
 
+
+        // here is where the service is started.
+        startService(new Intent(this, SaveMyAppsService.class));
+
+
+
         //set views
 
         start_timer = (Button) findViewById(R.id.start_button);
@@ -365,6 +371,10 @@ public class MainActivity extends ActionBarActivity {
         findViewById(R.id.hourtext).setOnClickListener(clickListener);
         findViewById(R.id.minutetext).setOnClickListener(clickListener);
         findViewById(R.id.secondtext).setOnClickListener(clickListener);
+
+
+        findViewById(R.id.minutetext).performClick();
+
 
 
         mRotation = (SeekBar) findViewById(R.id.rotation);
