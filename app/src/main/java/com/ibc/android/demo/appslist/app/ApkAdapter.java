@@ -17,6 +17,7 @@ import android.widget.TextView;
 
 import com.spicycurryman.getdisciplined10.app.R;
 
+import java.util.ArrayList;
 import java.util.List;
 
 //
@@ -28,11 +29,16 @@ public class ApkAdapter extends BaseAdapter {
 
     SharedPreferences sharedPrefs;
     List<PackageInfo> packageList;
+    ArrayList <String> appchecklist;
+    static ArrayList <String> newappchecklist;
+
     Activity context;
     PackageManager packageManager;
     boolean[] itemChecked;
 
+
     String PACKAGE_NAME;
+    static TinyDB appcheckdb;
 
     public ApkAdapter(Activity context, List<PackageInfo> packageList,
                       PackageManager packageManager) {
@@ -41,6 +47,11 @@ public class ApkAdapter extends BaseAdapter {
         this.packageList = packageList;
         this.packageManager = packageManager;
         itemChecked = new boolean[packageList.size()];
+        appchecklist =  new ArrayList<String>();
+        newappchecklist =  new ArrayList<String>();
+
+        appcheckdb = new TinyDB(context);
+
 
     }
 
@@ -125,7 +136,6 @@ public class ApkAdapter extends BaseAdapter {
 
 
 
-
         // CHANGE UP EVERYTHING! MAKE THIS SHIT WORK, TIGGA!
 
 
@@ -135,6 +145,7 @@ public class ApkAdapter extends BaseAdapter {
 
             sharedPrefs = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
 
+            newappchecklist = appcheckdb.getList("appcheck");
 
             holder.ck1.setChecked(sharedPrefs.getBoolean(PACKAGE_NAME,false));
 
@@ -147,12 +158,15 @@ public class ApkAdapter extends BaseAdapter {
             public void onClick(View v) {
 
 
+
                 SharedPreferences.Editor editor = context.getSharedPreferences(packageInfo.packageName, Context.MODE_PRIVATE).edit();
 
                 if (holder.ck1.isChecked()) {
                     itemChecked[position] = true;
                     holder.ck1.setChecked(true);
                     editor.putBoolean(packageInfo.packageName, true);
+                    appchecklist.add(packageInfo.packageName);
+                    appcheckdb.putList("appcheck", appchecklist);
 
                     editor.apply();
 
@@ -160,6 +174,8 @@ public class ApkAdapter extends BaseAdapter {
                     itemChecked[position] = false;
                     holder.ck1.setChecked(false);
                     editor.putBoolean(packageInfo.packageName, false);
+                    appchecklist.remove(packageInfo.packageName);
+                    appcheckdb.putList("appcheck", appchecklist);
 
                     editor.apply();
 
@@ -170,10 +186,17 @@ public class ApkAdapter extends BaseAdapter {
 
         });
 
-
+        newappchecklist = appcheckdb.getList("appcheck");
 
         return convertView;
 
+    }
+
+    public static ArrayList getArrayList()
+    {
+        newappchecklist = appcheckdb.getList("appcheck");
+
+        return newappchecklist;
     }
 
 

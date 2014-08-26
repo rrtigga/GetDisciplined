@@ -1,4 +1,4 @@
-package com.alimuzaffar.android.childlock;
+package com.ibc.android.demo.appslist.app;
 
 /**
  * Created by Spicycurryman on 8/25/14.
@@ -26,9 +26,6 @@ public class AccessGranted {
             return false;
     }
 
-    public boolean isExpired() {
-        System.out.println(""+(System.currentTimeMillis() - tstamp));
-        return (System.currentTimeMillis() - tstamp) > ACCESS_TIMEOUT;
-    }
+
 
 }

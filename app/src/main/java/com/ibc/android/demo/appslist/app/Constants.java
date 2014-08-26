@@ -1,4 +1,4 @@
-package com.alimuzaffar.android.childlock;
+package com.ibc.android.demo.appslist.app;
 
 public interface Constants {
     public static final String LOCKED_APP_FILE = "lockedapps.txt";

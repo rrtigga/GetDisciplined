@@ -25,7 +25,7 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-import com.alimuzaffar.android.childlock.HeartBeat;
+import com.ibc.android.demo.appslist.app.HeartBeat;
 import com.triggertrap.seekarc.SeekArc;
 
 import java.util.Date;

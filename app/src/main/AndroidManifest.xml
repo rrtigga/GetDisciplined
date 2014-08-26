@@ -46,11 +46,11 @@
 
         <activity android:name="com.spicycurryman.getdisciplined10.app.SetupActivity" >
         </activity>
-        <activity android:name="com.alimuzaffar.android.childlock.LockScreenActivity" >
+        <activity android:name="com.ibc.android.demo.appslist.app.LockScreenActivity" >
         </activity>
 
 
-        <service android:enabled="true" android:name="com.alimuzaffar.android.childlock.HeartBeat" />
+        <service android:enabled="true" android:name="com.ibc.android.demo.appslist.app.HeartBeat" />
 
 
 

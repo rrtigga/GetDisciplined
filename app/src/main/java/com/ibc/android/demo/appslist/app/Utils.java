@@ -1,4 +1,4 @@
-package com.alimuzaffar.android.childlock;
+package com.ibc.android.demo.appslist.app;
 
 import java.io.BufferedReader;
 import java.io.IOException;

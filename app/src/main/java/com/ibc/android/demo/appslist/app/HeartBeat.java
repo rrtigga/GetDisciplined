@@ -1,4 +1,4 @@
-package com.alimuzaffar.android.childlock;
+package com.ibc.android.demo.appslist.app;
 
 import android.app.ActivityManager;
 import android.app.Service;
@@ -10,6 +10,7 @@ import android.os.IBinder;
 import android.util.Log;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -17,6 +18,9 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 public class HeartBeat extends Service {
+
+
+
     private static final String TAG = HeartBeat.class.getSimpleName();
     public Timer TIMER;
 
@@ -29,6 +33,9 @@ public class HeartBeat extends Service {
     private BroadcastReceiver mScreenStateReceiver;
     private BroadcastReceiver mAccessGrantedReceiver;
     private File mLockedAppsFile;
+    private ArrayList newArrayList = null;
+
+
 
     @Override
     public IBinder onBind(Intent arg0) {
@@ -38,6 +45,10 @@ public class HeartBeat extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+
+
+        startService(new Intent(this, HeartBeat.class));
+
         // Log.i("LocalService", "Received start id " + startId + ": " +
         // intent);
         // We want this service to continue running until it is explicitly
@@ -92,17 +103,20 @@ public class HeartBeat extends Service {
             registerReceiver(mAccessGrantedReceiver, filter2);
         }
         // this.stopSelf();
+
+
+
+ //startforeground goes here
+
+
+
         return START_STICKY;
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.i(TAG, "onDestroy()");
-        TIMER.cancel();
-        TIMER = null;
-        unregisterReceiver(mScreenStateReceiver);
-        unregisterReceiver(mAccessGrantedReceiver);
+        startService(new Intent(this, HeartBeat.class));
     }
 
 
@@ -121,15 +135,18 @@ public class HeartBeat extends Service {
                 ActivityManager.RunningTaskInfo ar = RunningTask.get(0);
                 String activityOnTop = ar.topActivity.getPackageName();
 
-                Log.e("activity on Top", "" + activityOnTop);
-                Log.e(" My package name", "" + getApplicationContext().getPackageName());
+               // Log.e("activity on Top", "" + activityOnTop);
+             //   Log.e(" My package name", "" + getApplicationContext().getPackageName());
 
-
-
+                newArrayList = ApkAdapter.getArrayList();
+                for (Object data : newArrayList) {
+                    Log.e("Data",data.toString());
+                }
 // Provide the packagename(s) of apps here, you want to show password activity
-                if (activityOnTop.contains(packageName)  // you can make this check even better
-                        && !activityOnTop.contains("com.spicycurryman.getdisciplined10.app.dev"
-                )) {
+                if ((activityOnTop.contains("com.android.camera") ) &&
+                (!activityOnTop.contains(getApplicationContext().getPackageName()
+                ))) {  // you have to make this check even better
+
 
                     Intent i = new Intent(getApplicationContext(), LockScreenActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
