@@ -64,6 +64,9 @@ public class HeartBeat extends Service {
 
                 @Override
                 public void onReceive(Context context, Intent intent) {
+
+
+                    
                     if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
                         screenOff = true;
                     } else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
@@ -140,18 +143,19 @@ public class HeartBeat extends Service {
 
                 newArrayList = ApkAdapter.getArrayList();
                 for (Object data : newArrayList) {
-                    Log.e("Data",data.toString());
-                }
+
+
 // Provide the packagename(s) of apps here, you want to show password activity
-                if ((activityOnTop.contains("com.android.camera") ) &&
-                (!activityOnTop.contains(getApplicationContext().getPackageName()
-                ))) {  // you have to make this check even better
+                    if ((activityOnTop.contains((CharSequence) data)) &&
+                            (!activityOnTop.contains(getApplicationContext().getPackageName()
+                            ))) {  // you have to make this check even better
 
 
-                    Intent i = new Intent(getApplicationContext(), LockScreenActivity.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    i.putExtra("packageName", packageName);
-                    startActivity(i);
+                        Intent i = new Intent(getApplicationContext(), LockScreenActivity.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        i.putExtra("packageName", packageName);
+                        startActivity(i);
+                    }
                 }
 
 

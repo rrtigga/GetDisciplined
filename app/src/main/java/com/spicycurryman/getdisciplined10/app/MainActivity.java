@@ -25,7 +25,6 @@ import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
 
-import com.ibc.android.demo.appslist.app.HeartBeat;
 import com.triggertrap.seekarc.SeekArc;
 
 import java.util.Date;
@@ -112,7 +111,7 @@ public class MainActivity extends ActionBarActivity {
 
 
         // here is where the service is started.
-        startService(new Intent(this, HeartBeat.class));
+        //startService(new Intent(this, HeartBeat.class));
 
 
 
@@ -631,6 +630,13 @@ public class MainActivity extends ActionBarActivity {
 
                                 Log.i("YourActivity", "Seconds: " + secondint);
 
+
+                        //Make sure it stays alive no matter what until stopservice is called when the timer runs out
+
+
+                                //Intent intent = new Intent(getApplicationContext(), HeartBeat.class);
+                                //startService(intent);
+
                                 Date currenttime = new Date(System.currentTimeMillis());
 
                                 timerstarted = currenttime.getTime();
@@ -711,6 +717,12 @@ public class MainActivity extends ActionBarActivity {
                                         mSeekArc.setVisibility(View.VISIBLE);
                                         start_timer.setVisibility(View.VISIBLE);
                                         block_button1.setVisibility(View.VISIBLE);
+
+
+                                        //Make sure it stops for good.
+
+                                        //Intent intent = new Intent(getApplicationContext(), HeartBeat.class);
+                                        //stopService(intent);
 
 
                                     }
