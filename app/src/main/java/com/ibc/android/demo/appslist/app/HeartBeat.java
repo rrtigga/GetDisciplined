@@ -24,7 +24,7 @@ public class HeartBeat extends Service {
     private static final String TAG = HeartBeat.class.getSimpleName();
     public Timer TIMER;
 
-   String CURRENT_PACKAGE_NAME;
+    String CURRENT_PACKAGE_NAME;
 
 
     private static Set<AccessGranted> mAccessGrantedList = new HashSet<AccessGranted>();
@@ -66,7 +66,7 @@ public class HeartBeat extends Service {
                 public void onReceive(Context context, Intent intent) {
 
 
-                    
+
                     if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {
                         screenOff = true;
                     } else if (intent.getAction().equals(Intent.ACTION_SCREEN_ON)) {
@@ -109,7 +109,7 @@ public class HeartBeat extends Service {
 
 
 
- //startforeground goes here
+        //startforeground goes here
 
 
 
@@ -123,6 +123,8 @@ public class HeartBeat extends Service {
     }
 
 
+
+
     private class LockAppsTimerTask extends TimerTask {
 
         @Override
@@ -131,15 +133,14 @@ public class HeartBeat extends Service {
 
             try {
                 //List<RecentTaskInfo> recentTasks = activityManager.getRecentTasks(1, ActivityManager.RECENT_IGNORE_UNAVAILABLE);
-                String packageName = "com.android.camera";
                 ActivityManager mActivityManager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
                 List<ActivityManager.RunningTaskInfo> RunningTask = mActivityManager
                         .getRunningTasks(1);
                 ActivityManager.RunningTaskInfo ar = RunningTask.get(0);
                 String activityOnTop = ar.topActivity.getPackageName();
 
-               // Log.e("activity on Top", "" + activityOnTop);
-             //   Log.e(" My package name", "" + getApplicationContext().getPackageName());
+                // Log.e("activity on Top", "" + activityOnTop);
+                //   Log.e(" My package name", "" + getApplicationContext().getPackageName());
 
                 newArrayList = ApkAdapter.getArrayList();
                 for (Object data : newArrayList) {
@@ -153,7 +154,7 @@ public class HeartBeat extends Service {
 
                         Intent i = new Intent(getApplicationContext(), LockScreenActivity.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        i.putExtra("packageName", packageName);
+                        i.putExtra( data+"", (CharSequence) data);
                         startActivity(i);
                     }
                 }

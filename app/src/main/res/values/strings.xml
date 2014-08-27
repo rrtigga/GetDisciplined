@@ -68,5 +68,9 @@
         <item>Custom style</item>
     </string-array>
 
+    <string name="pref_val_perf_normal">250</string>
+    56
+    <string name="pref_key_performance">com.twinone.locker.pref.performance</string>
+
 
 </resources>
