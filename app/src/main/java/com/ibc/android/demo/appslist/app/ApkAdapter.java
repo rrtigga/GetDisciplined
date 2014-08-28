@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.spicycurryman.getdisciplined10.app.R;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 //
@@ -29,33 +29,26 @@ public class ApkAdapter extends BaseAdapter {
 
     SharedPreferences sharedPrefs;
     List<PackageInfo> packageList;
-    ArrayList <String> appchecklist;
-    static ArrayList <String> newappchecklist;
 
     Activity context;
     PackageManager packageManager;
     boolean[] itemChecked;
+    HashSet checked;
 
 
     String PACKAGE_NAME;
-    static TinyDB appcheckdb;
 
     public ApkAdapter(Activity context, List<PackageInfo> packageList,
                       PackageManager packageManager) {
         super();
         this.context = context;
+
         this.packageList = packageList;
         this.packageManager = packageManager;
         itemChecked = new boolean[packageList.size()];
-        appchecklist =  new ArrayList<String>();
-        newappchecklist =  new ArrayList<String>();
-
-        appcheckdb = new TinyDB(context);
 
 
     }
-
-
     private class ViewHolder {
         TextView apkName;
         CheckBox ck1;
@@ -139,18 +132,31 @@ public class ApkAdapter extends BaseAdapter {
         // CHANGE UP EVERYTHING! MAKE THIS SHIT WORK, TIGGA!
 
 
-        for(int i= 0; i<packageList.size(); i++){
+
+
+
+        checked = new HashSet();
+
             PACKAGE_NAME = packageInfo.packageName;
-            Log.d("lol", PACKAGE_NAME);
+            //Log.d("just here: ", PACKAGE_NAME);
 
-            sharedPrefs = context.getSharedPreferences(PACKAGE_NAME, Context.MODE_PRIVATE);
-
-            newappchecklist = appcheckdb.getList("appcheck");
-
-            holder.ck1.setChecked(sharedPrefs.getBoolean(PACKAGE_NAME,false));
+            sharedPrefs = context.getSharedPreferences(context.getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
 
 
+        for (int i = 0; i< packageList.size(); i++) {
+            checked.add(packageInfo.packageName);
         }
+
+        for (Object s : checked) {
+            Log.e("just here: ", (String) s);
+            holder.ck1.setChecked(sharedPrefs.getBoolean((String) s ,false));
+        }
+
+
+
+
+
+
 
         holder.ck1.setOnClickListener(new OnClickListener() {
 
@@ -159,14 +165,13 @@ public class ApkAdapter extends BaseAdapter {
 
 
 
-                SharedPreferences.Editor editor = context.getSharedPreferences(packageInfo.packageName, Context.MODE_PRIVATE).edit();
+                SharedPreferences.Editor editor = context.getSharedPreferences(context.getApplicationContext().getPackageName(), Context.MODE_PRIVATE).edit();
 
                 if (holder.ck1.isChecked()) {
                     itemChecked[position] = true;
                     holder.ck1.setChecked(true);
                     editor.putBoolean(packageInfo.packageName, true);
-                    appchecklist.add(packageInfo.packageName);
-                    appcheckdb.putList("appcheck", appchecklist);
+
 
                     editor.apply();
 
@@ -174,10 +179,9 @@ public class ApkAdapter extends BaseAdapter {
                     itemChecked[position] = false;
                     holder.ck1.setChecked(false);
                     editor.putBoolean(packageInfo.packageName, false);
-                    appchecklist.remove(packageInfo.packageName);
-                    appcheckdb.putList("appcheck", appchecklist);
 
                     editor.apply();
+
 
                 }
 
@@ -186,22 +190,8 @@ public class ApkAdapter extends BaseAdapter {
 
         });
 
-        newappchecklist = appcheckdb.getList("appcheck");
 
         return convertView;
 
     }
-
-    public static ArrayList getArrayList()
-    {
-        newappchecklist = appcheckdb.getList("appcheck");
-
-        return newappchecklist;
-    }
-
-
-
-
-
-
 }

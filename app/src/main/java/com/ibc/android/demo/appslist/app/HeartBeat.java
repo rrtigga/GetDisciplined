@@ -6,6 +6,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -13,10 +14,10 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
-
 public class HeartBeat extends Service {
 
 
@@ -24,7 +25,6 @@ public class HeartBeat extends Service {
     private static final String TAG = HeartBeat.class.getSimpleName();
     public Timer TIMER;
 
-    String CURRENT_PACKAGE_NAME;
 
 
     private static Set<AccessGranted> mAccessGrantedList = new HashSet<AccessGranted>();
@@ -33,7 +33,11 @@ public class HeartBeat extends Service {
     private BroadcastReceiver mScreenStateReceiver;
     private BroadcastReceiver mAccessGrantedReceiver;
     private File mLockedAppsFile;
-    private ArrayList newArrayList = null;
+    ArrayList<String> packagezList;
+    SharedPreferences sharedPrefs;
+    String prefix;
+
+
 
 
 
@@ -48,6 +52,41 @@ public class HeartBeat extends Service {
 
 
         startService(new Intent(this, HeartBeat.class));
+
+
+
+
+
+
+
+
+
+
+        sharedPrefs = this.getApplicationContext().getSharedPreferences(getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
+        Map<String, ?> allEntries = sharedPrefs.getAll();
+
+        prefix = "m";
+         packagezList = new ArrayList<String>();
+
+        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+            //Log.e("map values", entry.getKey() + ": " + entry.getValue().toString());
+       }
+
+
+        for (Map.Entry<String, ?> entry : allEntries.entrySet())
+        {
+            //Check if the package name starts with the prefix.
+            if (entry.getKey().startsWith(prefix)) {
+                //Add JUST the package name (trim off the prefix).
+                packagezList.add(entry.getKey().substring(prefix.length()));
+            }
+        }
+
+        for(Object object: packagezList){
+            Log.e("YO!     ", (String) object);
+        }
+
+
 
         // Log.i("LocalService", "Received start id " + startId + ": " +
         // intent);
@@ -74,10 +113,10 @@ public class HeartBeat extends Service {
                     }
 
                     if (screenOff) {
-                        Log.i(TAG, "Cancel Timer");
+                        //Log.i(TAG, "Cancel Timer");
                         TIMER.cancel();
                     } else {
-                        Log.i(TAG, "Restart Timer");
+                       // Log.i(TAG, "Restart Timer");
                         TIMER = new Timer(true);
                         TIMER.scheduleAtFixedRate(new LockAppsTimerTask(), 1000, 250);
                     }
@@ -127,6 +166,9 @@ public class HeartBeat extends Service {
 
     private class LockAppsTimerTask extends TimerTask {
 
+
+
+
         @Override
         public void run() {
             ActivityManager activityManager = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
@@ -142,26 +184,32 @@ public class HeartBeat extends Service {
                 // Log.e("activity on Top", "" + activityOnTop);
                 //   Log.e(" My package name", "" + getApplicationContext().getPackageName());
 
-                newArrayList = ApkAdapter.getArrayList();
-                for (Object data : newArrayList) {
+
+
+
+
+
+
+
+                //for (Object data : newArrayList) {
 
 
 // Provide the packagename(s) of apps here, you want to show password activity
-                    if ((activityOnTop.contains((CharSequence) data)) &&
+                    if ((activityOnTop.contains("com.android.camera")) &&
                             (!activityOnTop.contains(getApplicationContext().getPackageName()
                             ))) {  // you have to make this check even better
 
 
                         Intent i = new Intent(getApplicationContext(), LockScreenActivity.class);
                         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        i.putExtra( data+"", (CharSequence) data);
+                        i.putExtra( "", "");
                         startActivity(i);
                     }
-                }
+               // }
 
 
             } catch (Exception e) {
-                Log.e("Foreground App", e.getMessage(), e);
+               // Log.e("Foreground App", e.getMessage(), e);
             }
         }
 

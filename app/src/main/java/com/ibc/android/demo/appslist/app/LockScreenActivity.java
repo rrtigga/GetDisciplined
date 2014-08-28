@@ -2,8 +2,6 @@ package com.ibc.android.demo.appslist.app;
 
 import android.app.Activity;
 import android.app.ActivityManager;
-import android.app.AlarmManager;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -58,10 +56,7 @@ public class LockScreenActivity extends Activity {
         // Now that we've got the PID, kill the Instagram process.
 
         ActivityManager  am1 = (ActivityManager) getApplicationContext().getSystemService(ACTIVITY_SERVICE);
-        newArrayList = ApkAdapter.getArrayList();
-        for (Object data : newArrayList) {
-            am1.killBackgroundProcesses((String) data);
-        }
+
 
         // Display confirmation here, finish() activity.
         Intent startMain = new Intent(Intent.ACTION_MAIN);
@@ -69,11 +64,15 @@ public class LockScreenActivity extends Activity {
         startMain.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(startMain);
 
-        Intent iHeartBeatService = new Intent(this, HeartBeat.class);
+
+        startService(new Intent(this, HeartBeat.class));
+
+
+  /*      Intent iHeartBeatService = new Intent(this, HeartBeat.class);
         PendingIntent piHeartBeatService = PendingIntent.getService(this, 0, iHeartBeatService, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(piHeartBeatService);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 300000, piHeartBeatService);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 300000, piHeartBeatService);*/
 
         finish();
         super.onBackPressed();

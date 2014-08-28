@@ -1,9 +1,7 @@
 package com.spicycurryman.getdisciplined10.app;
 
 import android.app.ActionBar;
-import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -114,12 +112,15 @@ public class MainActivity extends ActionBarActivity {
 
 
         // here is where the service is started.
+        startService(new Intent(this, HeartBeat.class));
 
+/*
         Intent iHeartBeatService = new Intent(this, HeartBeat.class);
         PendingIntent piHeartBeatService = PendingIntent.getService(this, 0, iHeartBeatService, PendingIntent.FLAG_UPDATE_CURRENT);
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarmManager.cancel(piHeartBeatService);
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 300000, piHeartBeatService);
+*/
 
 
 
