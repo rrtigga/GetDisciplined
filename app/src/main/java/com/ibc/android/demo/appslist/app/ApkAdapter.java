@@ -6,7 +6,6 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -28,6 +27,8 @@ public class ApkAdapter extends BaseAdapter {
     // http://pastebin.com/Te2g072w,  http://pastebin.com/NLT5iUiA ,
 
     SharedPreferences sharedPrefs;
+    SharedPreferences sharedPrefsapp;
+
     List<PackageInfo> packageList;
 
     Activity context;
@@ -141,16 +142,12 @@ public class ApkAdapter extends BaseAdapter {
             //Log.d("just here: ", PACKAGE_NAME);
 
             sharedPrefs = context.getSharedPreferences(context.getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
+            sharedPrefsapp = context.getSharedPreferences("appdb", Context.MODE_PRIVATE);
 
 
-        for (int i = 0; i< packageList.size(); i++) {
-            checked.add(packageInfo.packageName);
-        }
 
-        for (Object s : checked) {
-            Log.e("just here: ", (String) s);
-            holder.ck1.setChecked(sharedPrefs.getBoolean((String) s ,false));
-        }
+
+        holder.ck1.setChecked(sharedPrefs.getBoolean(PACKAGE_NAME,false));
 
 
 
@@ -166,21 +163,29 @@ public class ApkAdapter extends BaseAdapter {
 
 
                 SharedPreferences.Editor editor = context.getSharedPreferences(context.getApplicationContext().getPackageName(), Context.MODE_PRIVATE).edit();
+                SharedPreferences.Editor editorapp = context.getSharedPreferences("appdb", Context.MODE_PRIVATE).edit();
 
                 if (holder.ck1.isChecked()) {
                     itemChecked[position] = true;
                     holder.ck1.setChecked(true);
                     editor.putBoolean(packageInfo.packageName, true);
 
+                    editorapp.putString(packageInfo.packageName, packageInfo.packageName);
+
 
                     editor.apply();
+                    editorapp.apply();
 
                 } else {
                     itemChecked[position] = false;
                     holder.ck1.setChecked(false);
                     editor.putBoolean(packageInfo.packageName, false);
+                    editorapp.remove(packageInfo.packageName);
+
 
                     editor.apply();
+                    editorapp.apply();
+
 
 
                 }

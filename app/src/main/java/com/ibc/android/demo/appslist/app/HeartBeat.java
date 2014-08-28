@@ -35,6 +35,8 @@ public class HeartBeat extends Service {
     private File mLockedAppsFile;
     ArrayList<String> packagezList;
     SharedPreferences sharedPrefs;
+    SharedPreferences sharedPrefsapp;
+
     String prefix;
 
 
@@ -62,8 +64,10 @@ public class HeartBeat extends Service {
 
 
 
-        sharedPrefs = this.getApplicationContext().getSharedPreferences(getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
-        Map<String, ?> allEntries = sharedPrefs.getAll();
+        //sharedPrefs = this.getApplicationContext().getSharedPreferences(getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
+        sharedPrefsapp = this.getApplicationContext().getSharedPreferences("appdb", Context.MODE_PRIVATE);
+
+        Map<String, ?> allEntries = sharedPrefsapp.getAll();
 
         prefix = "m";
          packagezList = new ArrayList<String>();
@@ -76,14 +80,16 @@ public class HeartBeat extends Service {
         for (Map.Entry<String, ?> entry : allEntries.entrySet())
         {
             //Check if the package name starts with the prefix.
-            if (entry.getKey().startsWith(prefix)) {
+            //if (entry.getKey().startsWith(prefix)) {
                 //Add JUST the package name (trim off the prefix).
-                packagezList.add(entry.getKey().substring(prefix.length()));
-            }
+                //packagezList.add(entry.getKey().substring(prefix.length()));
+            packagezList.add(entry.getKey());
+
+            //}
         }
 
         for(Object object: packagezList){
-            Log.e("YO!     ", (String) object);
+            Log.e("YO!", (String) object);
         }
 
 
