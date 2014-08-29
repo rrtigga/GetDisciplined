@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,9 +74,9 @@ public class HeartBeat extends Service {
 
 
 
-        for(Object object: packagezList){
+        /*for(Object object: packagezList){
             Log.e("YO!", (String) object);
-        }
+        }*/
 
         ActivityManager activityManager = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
 

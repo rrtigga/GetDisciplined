@@ -158,7 +158,7 @@ public class MainActivity extends ActionBarActivity {
 
         //Make sure you find out why it appears after a whole 1 second after the app appears
         SpannableString s = new SpannableString("GetDisciplined");
-        s.setSpan(new TypefaceSpan(this, "roboto-lightitalic.ttf"), 0, s.length(),
+        s.setSpan(new TypefaceSpan(this, "roboto-light.ttf"), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 // Update the action bar title with the TypefaceSpan instance
@@ -633,161 +633,207 @@ public class MainActivity extends ActionBarActivity {
         start_timer.setOnClickListener(new View.OnClickListener() {
 
 
+
+
+
+
+
             @Override
             public void onClick(View view) {
 
-                new AlertDialog.Builder( MainActivity.this )
-                        .setMessage( "Are you sure you want to block the selected apps for the set amount of time?" )
-                        .setPositiveButton("Yeah man!", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                Log.d("AlertDialog", "Positive");
-
-                                hourint = Integer.valueOf(number_text.getText().toString());
-
-                                minuteint = Integer.valueOf(minute_text.getText().toString());
-
-                                secondint = Integer.valueOf(second_text.getText().toString());
-
-                                Log.i("YourActivity", "Hours: " + hourint);
-
-                                Log.i("YourActivity", "Minutes: " + minuteint);
-
-                                Log.i("YourActivity", "Seconds: " + secondint);
 
 
-                        //Make sure it stays alive no matter what until stopservice is called when the timer runs out
 
 
-                                //Intent intent = new Intent(getApplicationContext(), HeartBeat.class);
-                                //startService(intent);
-
-                                Date currenttime = new Date(System.currentTimeMillis());
-
-                                timerstarted = currenttime.getTime();
-                                Log.e("This is the current time:  ", timerstarted + "");
-                                startimerPreferences = getPreferences(MODE_APPEND);
-                                SharedPreferences.Editor starteditor = startimerPreferences.edit();
-                                starteditor.putLong("time", timerstarted);
-                                starteditor.apply();
-
-
-                                Date endtime = new Date(System.currentTimeMillis());
-
-                                //timerends = endtime.getTime() + (((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000);
-
-                                if((((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000) > 0){
-                                    timerends = endtime.getTime() + (((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000);
-
-
+                  AlertDialog.Builder zeroerror = new AlertDialog.Builder(MainActivity.this)
+                            .setMessage("Dude, you didn't set a time! :P")
+                            .setNegativeButton("Whoops! My bad!", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Log.d("AlertDialog", "Negative");
+                                    dialog.cancel();
                                 }
-                                else {
-                                    timerends = 0;
-                                }
+                            });
 
 
-                                Log.e("This is the end time:  ", timerends + "");
-                                endTimerPreferences = getPreferences(MODE_APPEND);
-                                SharedPreferences.Editor endeditor = endTimerPreferences.edit();
-                                endeditor.putLong("endtime", timerends);
-                                endeditor.apply();
-
-                                endservice = getApplicationContext().getSharedPreferences("endservice", Context.MODE_PRIVATE);
-                                SharedPreferences.Editor serviceeditor = endservice.edit();
-                                serviceeditor.putLong("endservice", timerstarted+(((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000) );
-                                Log.e("Check out this time:  ", timerends + "");
-
-                                serviceeditor.apply();
+                AlertDialog alertzero = zeroerror.create();
 
 
 
 
 
 
+                AlertDialog.Builder timeset = new AlertDialog.Builder(MainActivity.this)
 
 
+                .setMessage("Are you sure you want to block the selected apps for the set amount of time?")
+                .setPositiveButton("Yeah man!", new DialogInterface.OnClickListener() {
 
 
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Log.d("AlertDialog", "Positive");
 
-                                totalTimeCountInMilliseconds = (((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000);      // time count
-                                timeBlinkInMilliseconds = 30 * 1000;
+                                    hourint = Integer.valueOf(number_text.getText().toString());
 
-                                countDownTimer = new CountDownTimer(totalTimeCountInMilliseconds, 500) {
-                                    // 500 means, onTick function will be called at every 500 milliseconds
+                                    minuteint = Integer.valueOf(minute_text.getText().toString());
 
-                                    @Override
-                                    public void onTick(long leftTimeInMilliseconds) {
+                                    secondint = Integer.valueOf(second_text.getText().toString());
 
-                                        long seconds = leftTimeInMilliseconds / 1000;
-                                        mSeekArc.setVisibility(View.INVISIBLE);
-                                        start_timer.setVisibility(View.INVISIBLE);
-                                        block_button1.setVisibility(View.INVISIBLE);
+                                    Log.i("YourActivity", "Hours: " + hourint);
 
+                                    Log.i("YourActivity", "Minutes: " + minuteint);
 
-                                        if (leftTimeInMilliseconds < timeBlinkInMilliseconds) {
-                                            // textViewShowTime.setTextAppearance(getApplicationContext(), R.style.blinkText);
-                                            // change the style of the textview .. giving a red alert style
-
-                                            if (blink) {
-                                                number_text.setVisibility(View.VISIBLE);
-                                                minute_text.setVisibility(View.VISIBLE);
-                                                second_text.setVisibility(View.VISIBLE);
+                                    Log.i("YourActivity", "Seconds: " + secondint);
 
 
-                                                // if blink is true, textview will be visible
-                                            } else {
-                                                number_text.setVisibility(View.INVISIBLE);
-                                                minute_text.setVisibility(View.INVISIBLE);
-                                                second_text.setVisibility(View.INVISIBLE);
+                                    //Make sure it stays alive no matter what until stopservice is called when the timer runs out
 
 
+                                    //Intent intent = new Intent(getApplicationContext(), HeartBeat.class);
+                                    //startService(intent);
+
+                                    Date currenttime = new Date(System.currentTimeMillis());
+
+                                    timerstarted = currenttime.getTime();
+                                    Log.e("This is the current time:  ", timerstarted + "");
+                                    startimerPreferences = getPreferences(MODE_APPEND);
+                                    SharedPreferences.Editor starteditor = startimerPreferences.edit();
+                                    starteditor.putLong("time", timerstarted);
+                                    starteditor.apply();
+
+
+                                    Date endtime = new Date(System.currentTimeMillis());
+
+                                    //timerends = endtime.getTime() + (((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000);
+
+                                    if ((((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000) > 0) {
+                                        timerends = endtime.getTime() + (((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000);
+
+
+                                    } else {
+                                        timerends = 0;
+                                    }
+
+
+                                    Log.e("This is the end time:  ", timerends + "");
+                                    endTimerPreferences = getPreferences(MODE_APPEND);
+                                    SharedPreferences.Editor endeditor = endTimerPreferences.edit();
+                                    endeditor.putLong("endtime", timerends);
+                                    endeditor.apply();
+
+                                    endservice = getApplicationContext().getSharedPreferences("endservice", Context.MODE_PRIVATE);
+                                    SharedPreferences.Editor serviceeditor = endservice.edit();
+                                    serviceeditor.putLong("endservice", timerstarted + (((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000));
+                                    Log.e("Check out this time:  ", timerends + "");
+
+                                    serviceeditor.apply();
+
+
+                                    totalTimeCountInMilliseconds = (((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000);      // time count
+                                    timeBlinkInMilliseconds = 30 * 1000;
+
+                                    countDownTimer = new CountDownTimer(totalTimeCountInMilliseconds, 500) {
+                                        // 500 means, onTick function will be called at every 500 milliseconds
+
+                                        @Override
+                                        public void onTick(long leftTimeInMilliseconds) {
+
+                                            long seconds = leftTimeInMilliseconds / 1000;
+                                            mSeekArc.setVisibility(View.INVISIBLE);
+                                            start_timer.setVisibility(View.INVISIBLE);
+                                            block_button1.setVisibility(View.INVISIBLE);
+
+
+                                            if (leftTimeInMilliseconds < timeBlinkInMilliseconds) {
+                                                // textViewShowTime.setTextAppearance(getApplicationContext(), R.style.blinkText);
+                                                // change the style of the textview .. giving a red alert style
+
+                                                if (blink) {
+                                                    number_text.setVisibility(View.VISIBLE);
+                                                    minute_text.setVisibility(View.VISIBLE);
+                                                    second_text.setVisibility(View.VISIBLE);
+
+
+                                                    // if blink is true, textview will be visible
+                                                } else {
+                                                    number_text.setVisibility(View.INVISIBLE);
+                                                    minute_text.setVisibility(View.INVISIBLE);
+                                                    second_text.setVisibility(View.INVISIBLE);
+
+
+                                                }
+
+                                                blink = !blink;         // toggle the value of blink
                                             }
 
-                                            blink = !blink;         // toggle the value of blink
+                                            second_text.setText(String.format("%02d", seconds % 60));
+                                            minute_text.setText(String.format("%02d", (seconds / 60) % 60));
+                                            number_text.setText(String.format("%02d", seconds / 3600));                     // format the textview to show the easily readable format
                                         }
 
-                                        second_text.setText(String.format("%02d", seconds % 60));
-                                        minute_text.setText(String.format("%02d", (seconds / 60) % 60));
-                                        number_text.setText(String.format("%02d", seconds / 3600));                     // format the textview to show the easily readable format
-                                    }
+
+                                        @Override
+                                        public void onFinish() {
+                                            // this function will be called when the timecount is finished
+                                            //textViewShowTime.setText("Time up!");
+                                            number_text.setVisibility(View.VISIBLE);
+                                            minute_text.setVisibility(View.VISIBLE);
+                                            second_text.setVisibility(View.VISIBLE);
+                                            mSeekArc.setVisibility(View.VISIBLE);
+                                            start_timer.setVisibility(View.VISIBLE);
+                                            block_button1.setVisibility(View.VISIBLE);
 
 
-                                    @Override
-                                    public void onFinish() {
-                                        // this function will be called when the timecount is finished
-                                        //textViewShowTime.setText("Time up!");
-                                        number_text.setVisibility(View.VISIBLE);
-                                        minute_text.setVisibility(View.VISIBLE);
-                                        second_text.setVisibility(View.VISIBLE);
-                                        mSeekArc.setVisibility(View.VISIBLE);
-                                        start_timer.setVisibility(View.VISIBLE);
-                                        block_button1.setVisibility(View.VISIBLE);
+                                            //Make sure it stops for good.
+
+                                            //Intent intent = new Intent(getApplicationContext(), HeartBeat.class);
+                                            //stopService(intent);
 
 
-                                        //Make sure it stops for good.
+                                        }
 
-                                        //Intent intent = new Intent(getApplicationContext(), HeartBeat.class);
-                                        //stopService(intent);
-
-
-                                    }
-
-                                }.start();
-                            }
-                        })
-                        .setNegativeButton("Nope!", new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                Log.d("AlertDialog", "Negative");
-                                dialog.cancel();
-                            }
-                        })
-                        .show();
+                                    }.start();
+                                }
+                            });
+                timeset.setNegativeButton("Nope!", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    Log.d("AlertDialog", "Negative");
+                                    dialog.cancel();
+                                }
+                            });
 
 
+                AlertDialog timerright = timeset.create();
 
-                // textViewShowTime.setTextAppearance(getApplicationContext(), R.style.normalText);
+                hourint = Integer.valueOf(number_text.getText().toString());
+
+                minuteint = Integer.valueOf(minute_text.getText().toString());
+
+                secondint = Integer.valueOf(second_text.getText().toString());
 
 
-            }
+                if((((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000)== 0)
+                {
+                    alertzero.show();
+                }
+
+                else
+                {
+                    timerright.show();
+                }
+
+
+
+
+
+
+                    // textViewShowTime.setTextAppearance(getApplicationContext(), R.style.normalText);
+                }
+
+
+
+
+
+
         });
     }
 
