@@ -4,21 +4,22 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.EditText;
-import android.widget.TextView;
+import android.util.Log;
 
 import com.spicycurryman.getdisciplined10.app.R;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class LockScreenActivity extends Activity {
     private static final String TAG = LockScreenActivity.class.getSimpleName();
-    EditText pin;
-    TextView pinMsg;
-    String firstPin;
-    private ArrayList newArrayList = null;
+    Map<String, ?> allEntries;
+    SharedPreferences sharedPrefsapp;
+    ArrayList<String> packagezList;
+
 
 
     @Override
@@ -51,6 +52,37 @@ public class LockScreenActivity extends Activity {
         List<ActivityManager.RunningAppProcessInfo> pids = am.getRunningAppProcesses();
 
         // Now loop through the list of PIDs and find Instagram's PID.
+        sharedPrefsapp = getApplicationContext().getSharedPreferences("appdb", Context.MODE_PRIVATE);
+        allEntries= null;
+        allEntries = sharedPrefsapp.getAll();
+
+        //prefix = "m";
+        packagezList= null;
+
+
+        packagezList = new ArrayList<String>();
+
+
+
+
+        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+            //Log.e("right key: ", entry.getKey() + "right value: " + entry.getValue().toString()  );
+            packagezList.add(entry.getKey());
+        }
+
+
+        // Killing any process for blocked applications when the back button is pressed while the lock screen is displayed
+
+        for(Object object: packagezList){
+            am.killBackgroundProcesses((String) object);
+            Log.d("Killed Background Process!: ", (String) object);
+
+
+        }
+
+
+
+        // Now that we've got the PID, kill the Instagram process.
 
 
         // Now that we've got the PID, kill the Instagram process.
