@@ -122,7 +122,7 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
                 boolean b = isSystemPackage(pi);
                 boolean c = isSystemPackage1(pi);
 
-                if(!b || !c ) {
+                if(!b || !c) {
                     packageList1.add(pi);
                 }
             }
