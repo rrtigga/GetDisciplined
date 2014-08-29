@@ -72,10 +72,12 @@ public class MainActivity extends ActionBarActivity {
 
     SharedPreferences startimerPreferences;
     SharedPreferences endTimerPreferences;
+    SharedPreferences endservice;
 
     long timerstarted; //this is when the user hit start timer.
     long timerends; //this is the time when the time when the timer will end;
     long reopened; //this is when time when the user reopens the application;
+
 
 
     long newtotalTimeCountInMilliseconds;
@@ -229,7 +231,7 @@ public class MainActivity extends ActionBarActivity {
 
 
         endTimerPreferences = getPreferences(MODE_APPEND);
-        Date endDate = new Date(endTimerPreferences.getLong("time", 0));
+        Date endDate = new Date(endTimerPreferences.getLong("endtime", 0));
         timerends = endDate.getTime();
         Log.e("This is the end time!!!!!:  ", timerends + "");
 
@@ -523,6 +525,9 @@ public class MainActivity extends ActionBarActivity {
                 //set countdowntime to timerends-reopen.
 
                 newtotalTimeCountInMilliseconds = timerends-reopened;
+
+
+
                 countDownTimer = new CountDownTimer(newtotalTimeCountInMilliseconds, 500) {
                     // 500 means, onTick function will be called at every 500 milliseconds
 
@@ -663,17 +668,37 @@ public class MainActivity extends ActionBarActivity {
                                 startimerPreferences = getPreferences(MODE_APPEND);
                                 SharedPreferences.Editor starteditor = startimerPreferences.edit();
                                 starteditor.putLong("time", timerstarted);
-                                starteditor.commit();
+                                starteditor.apply();
 
 
                                 Date endtime = new Date(System.currentTimeMillis());
 
-                                timerends = endtime.getTime() + (((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000);
+                                //timerends = endtime.getTime() + (((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000);
+
+                                if((((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000) > 0){
+                                    timerends = endtime.getTime() + (((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000);
+
+
+                                }
+                                else {
+                                    timerends = 0;
+                                }
+
+
                                 Log.e("This is the end time:  ", timerends + "");
                                 endTimerPreferences = getPreferences(MODE_APPEND);
                                 SharedPreferences.Editor endeditor = endTimerPreferences.edit();
-                                endeditor.putLong("time", timerends);
-                                endeditor.commit();
+                                endeditor.putLong("endtime", timerends);
+                                endeditor.apply();
+
+                                endservice = getApplicationContext().getSharedPreferences("endservice", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor serviceeditor = endservice.edit();
+                                serviceeditor.putLong("endservice", timerstarted+(((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000) );
+                                Log.e("Check out this time:  ", timerends + "");
+
+                                serviceeditor.apply();
+
+
 
 
 
@@ -765,14 +790,6 @@ public class MainActivity extends ActionBarActivity {
             }
         });
     }
-    private void getReferenceOfViews() {
 
-        start_timer = (Button) findViewById(R.id.start_button);
-        number_text = (TextView) findViewById(R.id.hour_progress_number);
-        minute_text = (TextView) findViewById(R.id.minute_progress_number);
-        second_text = (TextView) findViewById(R.id.second_progress_number);
-
-
-    }
 
 }

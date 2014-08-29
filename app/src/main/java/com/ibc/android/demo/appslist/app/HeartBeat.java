@@ -21,6 +21,8 @@ public class HeartBeat extends Service {
     SharedPreferences sharedPrefs;
     Map<String, ?> allEntries;
     SharedPreferences sharedPrefsapp;
+    SharedPreferences endTimerPreferences;
+    long timerends;
 
 
 
@@ -34,6 +36,15 @@ public class HeartBeat extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
 
         //startService(new Intent(this, HeartBeat.class));
+
+        endTimerPreferences = getApplicationContext().getSharedPreferences("endservice", Context.MODE_PRIVATE);
+        timerends= endTimerPreferences.getLong("endservice", 0);
+        //Log.e("MONOLO  ", timerends + "");
+
+
+
+
+
 
 
 
@@ -90,20 +101,23 @@ public class HeartBeat extends Service {
 
             //for (Object data : newArrayList) {
 
-            for(Object object: packagezList){
+            if(System.currentTimeMillis() < timerends ) {
+
+                for (Object object : packagezList) {
 
 // Provide the packagename(s) of apps here, you want to show password activity
-                if ((activityOnTop.contains((CharSequence) object)) &&
-                        (!activityOnTop.contains(getApplicationContext().getPackageName()
-                        ))) {  // you have to make this check even better
+                    if ((activityOnTop.contains((CharSequence) object)) &&
+                            (!activityOnTop.contains(getApplicationContext().getPackageName()
+                            ))) {  // you have to make this check even better
 
 
-                    Intent i = new Intent(getApplicationContext(), LockScreenActivity.class);
-                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                    i.putExtra( "", "");
-                    startActivity(i);
+                        Intent i = new Intent(getApplicationContext(), LockScreenActivity.class);
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                        i.putExtra("", "");
+                        startActivity(i);
+                    }
+
                 }
-
             }
 
 
