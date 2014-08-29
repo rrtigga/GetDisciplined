@@ -35,6 +35,7 @@ public class HeartBeat extends Service {
     private File mLockedAppsFile;
     ArrayList<String> packagezList;
     SharedPreferences sharedPrefs;
+    Map<String, ?> allEntries;
     SharedPreferences sharedPrefsapp;
 
     String prefix;
@@ -63,34 +64,6 @@ public class HeartBeat extends Service {
 
 
 
-
-        //sharedPrefs = this.getApplicationContext().getSharedPreferences(getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
-        sharedPrefsapp = this.getApplicationContext().getSharedPreferences("appdb", Context.MODE_PRIVATE);
-
-        Map<String, ?> allEntries = sharedPrefsapp.getAll();
-
-        prefix = "m";
-         packagezList = new ArrayList<String>();
-
-        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-            //Log.e("map values", entry.getKey() + ": " + entry.getValue().toString());
-       }
-
-
-        for (Map.Entry<String, ?> entry : allEntries.entrySet())
-        {
-            //Check if the package name starts with the prefix.
-            //if (entry.getKey().startsWith(prefix)) {
-                //Add JUST the package name (trim off the prefix).
-                //packagezList.add(entry.getKey().substring(prefix.length()));
-            packagezList.add(entry.getKey());
-
-            //}
-        }
-
-        for(Object object: packagezList){
-            Log.e("YO!", (String) object);
-        }
 
 
 
@@ -177,6 +150,55 @@ public class HeartBeat extends Service {
 
         @Override
         public void run() {
+
+
+            sharedPrefs = getApplicationContext().getSharedPreferences(getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
+            sharedPrefsapp = getApplicationContext().getSharedPreferences("appdb", Context.MODE_PRIVATE);
+            allEntries= null;
+             allEntries = sharedPrefsapp.getAll();
+
+            //prefix = "m";
+            packagezList= null;
+
+
+            packagezList = new ArrayList<String>();
+
+
+
+
+            for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+                    //Log.e("right key: ", entry.getKey() + "right value: " + entry.getValue().toString()  );
+                    packagezList.add(entry.getKey());
+
+
+
+
+
+            }
+
+
+/*        for (Map.Entry<String, ?> entry : allEntries.entrySet())
+        {
+            //Check if the package name starts with the prefix.
+            if (entry.getKey().startsWith(prefix)) {
+                //Add JUST the package name (trim off the prefix).
+                packagezList.add(entry.getKey().substring(prefix.length()));
+            packagezList.add(entry.getKey());
+
+            }
+        }*/
+
+            for(Object object: packagezList){
+                Log.e("YO!", (String) object);
+            }
+
+
+
+
+
+
+
+
             ActivityManager activityManager = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
 
             try {
@@ -199,9 +221,10 @@ public class HeartBeat extends Service {
 
                 //for (Object data : newArrayList) {
 
+                for(Object object: packagezList){
 
 // Provide the packagename(s) of apps here, you want to show password activity
-                    if ((activityOnTop.contains("com.android.camera")) &&
+                    if ((activityOnTop.contains((CharSequence) object)) &&
                             (!activityOnTop.contains(getApplicationContext().getPackageName()
                             ))) {  // you have to make this check even better
 
@@ -211,7 +234,8 @@ public class HeartBeat extends Service {
                         i.putExtra( "", "");
                         startActivity(i);
                     }
-               // }
+
+                }
 
 
             } catch (Exception e) {

@@ -147,6 +147,7 @@ public class ApkAdapter extends BaseAdapter {
 
 
 
+
         holder.ck1.setChecked(sharedPrefs.getBoolean(PACKAGE_NAME,false));
 
 
@@ -166,15 +167,19 @@ public class ApkAdapter extends BaseAdapter {
                 SharedPreferences.Editor editorapp = context.getSharedPreferences("appdb", Context.MODE_PRIVATE).edit();
 
                 if (holder.ck1.isChecked()) {
+
                     itemChecked[position] = true;
                     holder.ck1.setChecked(true);
                     editor.putBoolean(packageInfo.packageName, true);
-
                     editorapp.putString(packageInfo.packageName, packageInfo.packageName);
+
 
 
                     editor.apply();
                     editorapp.apply();
+
+                   // sharedPrefs = context.getSharedPreferences(context.getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
+
 
                 } else {
                     itemChecked[position] = false;
@@ -185,6 +190,8 @@ public class ApkAdapter extends BaseAdapter {
 
                     editor.apply();
                     editorapp.apply();
+                    //sharedPrefs = context.getSharedPreferences(context.getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
+
 
 
 
@@ -193,7 +200,11 @@ public class ApkAdapter extends BaseAdapter {
             }
 
 
+
         });
+
+
+
 
 
         return convertView;
