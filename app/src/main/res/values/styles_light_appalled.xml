@@ -30,6 +30,8 @@
         <item name="actionModeSplitBackground">@drawable/cab_background_bottom_light_appalled</item>
         <item name="actionModeCloseButtonStyle">@style/ActionButton.CloseMode.Light_appalled</item>
 
+
+
                 <!-- Light.DarkActionBar specific -->
         <item name="actionBarWidgetTheme">@style/Theme.Light_appalled.Widget</item>
 
@@ -48,7 +50,7 @@
     </style>
 	
     <style name="PopupMenu.Light_appalled" parent="@style/Widget.AppCompat.PopupMenu">	
-        <item name="android:popupBackground">@drawable/menu_dropdown_panel_light_appalled</item>	
+        <item name="android:popupBackground">@drawable/menu_dropdown_panel_light_appalled</item>
     </style>
 	
     <style name="DropDownListView.Light_appalled" parent="@style/Widget.AppCompat.ListView.DropDown">
@@ -78,5 +80,8 @@
         <item name="popupMenuStyle">@style/PopupMenu.Light_appalled</item>
         <item name="dropDownListViewStyle">@style/DropDownListView.Light_appalled</item>
     </style>
+
+
+
 
 </resources>

@@ -18,7 +18,7 @@ public class SetupActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_setup);
+        setContentView(R.layout.lock_screen);
 
         MainT=(TextView) findViewById(R.id.main_text);
         Typeface mainCustomFont = Typeface.createFromAsset(getAssets(), "fonts/roboto-thinitalic.ttf");
@@ -28,7 +28,7 @@ public class SetupActivity extends Activity {
         Typeface sloganCustomFont = Typeface.createFromAsset(getAssets(), "fonts/roboto-bolditalic.ttf");
         sloganT.setTypeface(sloganCustomFont);
 
-        swipeT=(TextView) findViewById(R.id.swipestart);
+        swipeT=(TextView) findViewById(R.id.disciplined);
         Typeface swipeCustomFont = Typeface.createFromAsset(getAssets(), "fonts/roboto-thinitalic.ttf");
         swipeT.setTypeface(swipeCustomFont);
     }

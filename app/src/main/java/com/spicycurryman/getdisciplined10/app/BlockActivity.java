@@ -51,6 +51,8 @@ public  class BlockActivity extends ActionBarActivity implements
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         super.onCreate(savedInstanceState);
+        setTheme(R.style.Theme_Light_appalled);
+
 
         SpannableString s = new SpannableString("GetDisciplined");
         s.setSpan(new TypefaceSpan(this, "roboto-lightitalic.ttf.ttf"), 0, s.length(),

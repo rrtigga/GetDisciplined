@@ -23,8 +23,6 @@ public class HeartBeat extends Service {
     SharedPreferences endTimerPreferences;
     long timerends;
 
-
-
     @Override
     public IBinder onBind(Intent arg0) {
         return null;
@@ -41,19 +39,10 @@ public class HeartBeat extends Service {
         //Log.e("MONOLO  ", timerends + "");
 
 
-
-
-
-
-
-
-
-
         sharedPrefs = getApplicationContext().getSharedPreferences(getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
         sharedPrefsapp = getApplicationContext().getSharedPreferences("appdb", Context.MODE_PRIVATE);
         allEntries= null;
         allEntries = sharedPrefsapp.getAll();
-        //prefix = "m";
         packagezList= null;
 
 
@@ -90,11 +79,6 @@ public class HeartBeat extends Service {
 
             // Log.e("activity on Top", "" + activityOnTop);
             //   Log.e(" My package name", "" + getApplicationContext().getPackageName());
-
-
-
-
-
 
 
 
@@ -150,18 +134,9 @@ public class HeartBeat extends Service {
         alarm.cancel(pintent);
         alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),150000, pintent);
         //startService(new Intent(this, HeartBeat.class));
-
     }
-
 
         // this.stopSelf();
         //startforeground goes here
 
-
-
     }
-
-
-
-
-

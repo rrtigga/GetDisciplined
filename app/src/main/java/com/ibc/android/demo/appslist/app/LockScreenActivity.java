@@ -5,8 +5,12 @@ import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
+import android.widget.TextView;
 
 import com.spicycurryman.getdisciplined10.app.R;
 
@@ -21,11 +25,26 @@ public class LockScreenActivity extends Activity {
     ArrayList<String> packagezList;
 
 
+    TextView MainT, sloganT, swipeT;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_setup);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        setContentView(R.layout.lock_screen);
+
+        MainT=(TextView) findViewById(R.id.main_text);
+        Typeface mainCustomFont = Typeface.createFromAsset(getAssets(), "fonts/roboto-thinitalic.ttf");
+        MainT.setTypeface(mainCustomFont);
+
+        sloganT=(TextView) findViewById(R.id.theslogan);
+        Typeface sloganCustomFont = Typeface.createFromAsset(getAssets(), "fonts/roboto-bolditalic.ttf");
+        sloganT.setTypeface(sloganCustomFont);
+
+        swipeT=(TextView) findViewById(R.id.disciplined);
+        Typeface swipeCustomFont = Typeface.createFromAsset(getAssets(), "fonts/roboto-thinitalic.ttf");
+        swipeT.setTypeface(swipeCustomFont);
 
     }
     @Override

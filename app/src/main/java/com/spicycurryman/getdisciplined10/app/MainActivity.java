@@ -111,8 +111,9 @@ public class MainActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.merge);
+        setTheme(R.style.Theme_Light_appalled);
 
+        setContentView(R.layout.merge);
 
 
         // here is where the service is started.
@@ -151,11 +152,6 @@ public class MainActivity extends ActionBarActivity {
         //totalTimeCountInMilliseconds = 60 * 1000;      // time count for 3 minutes = 180 seconds
         //timeBlinkInMilliseconds = 30 * 1000;
 
-
-
-
-
-
         //Make sure you find out why it appears after a whole 1 second after the app appears
         SpannableString s = new SpannableString("GetDisciplined");
         s.setSpan(new TypefaceSpan(this, "roboto-light.ttf"), 0, s.length(),
@@ -166,9 +162,6 @@ public class MainActivity extends ActionBarActivity {
         actionBar.setTitle(s);
         // set the action bar in this activity as the home
         actionBar.setHomeButtonEnabled(true);
-
-
-
 
         //Listeners for the buttons
         addListenerOnButton();
@@ -592,7 +585,6 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-
     }
 
     // for the on click activity responses for each of the 3 buttons on the menu
@@ -811,7 +803,7 @@ public class MainActivity extends ActionBarActivity {
                 secondint = Integer.valueOf(second_text.getText().toString());
 
 
-                if((((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000)== 0)
+                if((((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000) == 0)
                 {
                     alertzero.show();
                 }
@@ -821,17 +813,8 @@ public class MainActivity extends ActionBarActivity {
                     timerright.show();
                 }
 
-
-
-
-
-
                     // textViewShowTime.setTextAppearance(getApplicationContext(), R.style.normalText);
                 }
-
-
-
-
 
 
         });
