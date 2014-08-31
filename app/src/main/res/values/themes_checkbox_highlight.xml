@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- Generated with http://android-holo-colors.com -->
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <style name="CheckBox_Highlight" parent="@style/_CheckBox_Highlight"/>
+
+  <style name="_CheckBox_Highlight" parent="android:Theme.Holo.Light">
+
+    <item name="android:listChoiceIndicatorMultiple">@drawable/checkbox_highlight_btn_check_holo_light</item>
+
+  </style>
+
+</resources>

@@ -39,6 +39,8 @@ public class ApkAdapter extends BaseAdapter {
 
     String PACKAGE_NAME;
 
+    TextView appname;
+
     public ApkAdapter(Activity context, List<PackageInfo> packageList,
                       PackageManager packageManager) {
         super();
@@ -49,12 +51,17 @@ public class ApkAdapter extends BaseAdapter {
         itemChecked = new boolean[packageList.size()];
 
 
+
+
     }
     private class ViewHolder {
         TextView apkName;
         CheckBox ck1;
         TextView packageName;
     }
+
+
+
 
     public int getCount() {
         return packageList.size();
@@ -93,6 +100,9 @@ public class ApkAdapter extends BaseAdapter {
 
             holder = (ViewHolder) convertView.getTag();
         }
+
+
+
 
 
 
