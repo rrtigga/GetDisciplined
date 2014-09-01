@@ -31,7 +31,7 @@ public class TypefaceSpan extends MetricAffectingSpan {
 
         if (mTypeface == null) {
             mTypeface = Typeface.createFromAsset(context.getApplicationContext()
-                    .getAssets(), String.format("fonts/roboto-light.ttf", typefaceName));
+                    .getAssets(), String.format("fonts/raleway-medium.otf", typefaceName));
 
             // Cache the loaded Typeface
             sTypefaceCache.put(typefaceName, mTypeface);

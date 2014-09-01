@@ -30,6 +30,7 @@ public class ApkAdapter extends BaseAdapter {
     SharedPreferences sharedPrefsapp;
 
     List<PackageInfo> packageList;
+    TextView appnamestyle;
 
     Activity context;
     PackageManager packageManager;
@@ -53,11 +54,16 @@ public class ApkAdapter extends BaseAdapter {
 
 
 
+
+
     }
     private class ViewHolder {
         TextView apkName;
         CheckBox ck1;
         TextView packageName;
+
+
+
     }
 
 
@@ -100,6 +106,9 @@ public class ApkAdapter extends BaseAdapter {
 
             holder = (ViewHolder) convertView.getTag();
         }
+
+
+
 
 
 

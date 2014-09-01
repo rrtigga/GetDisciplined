@@ -45,7 +45,8 @@
         android:layout_gravity="center"
         android:textColor="@color/red_highlight"
         android:text="00"
-        android:textSize="55sp"
+
+        android:textSize="50sp"
         android:layout_marginTop="130dp"
         android:layout_below="@+id/seekArcContainer"
         android:layout_alignLeft="@+id/hourtext"
@@ -60,7 +61,7 @@
         android:textColor="@color/red_highlight"
 
         android:text="00"
-        android:textSize="55sp"
+        android:textSize="50sp"
         android:layout_alignTop="@+id/hour_progress_number"
         android:layout_centerHorizontal="true" />
     <TextView
@@ -71,7 +72,7 @@
         android:textColor="@color/red_highlight"
 
         android:text="00"
-        android:textSize="55sp"
+        android:textSize="50sp"
         android:layout_alignTop="@+id/minute_progress_number"
         android:layout_alignRight="@+id/secondtext"
         android:layout_alignEnd="@+id/secondtext" />

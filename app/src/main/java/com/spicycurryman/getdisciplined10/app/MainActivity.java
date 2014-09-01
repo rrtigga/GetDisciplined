@@ -154,7 +154,7 @@ public class MainActivity extends ActionBarActivity {
 
         //Make sure you find out why it appears after a whole 1 second after the app appears
         SpannableString s = new SpannableString("GetDisciplined");
-        s.setSpan(new TypefaceSpan(this, "roboto-light.ttf"), 0, s.length(),
+        s.setSpan(new TypefaceSpan(this, "ralewaylight.otf"), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 // Update the action bar title with the TypefaceSpan instance
@@ -171,37 +171,37 @@ public class MainActivity extends ActionBarActivity {
         //Editing Button Text
 
         block_button_text = (Button)findViewById(R.id.block_button);
-        block_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/robotocondensed-bold.ttf"));
+        block_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-bold.otf"));
 
         start_timer_text = (Button)findViewById(R.id.start_button);
-        start_timer_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/robotocondensed-bold.ttf"));
+        start_timer_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-bold.otf"));
 
         number_text = (TextView)findViewById(R.id.hour_progress_number);
-        number_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+        number_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-semibold.otf"));
 
         minute_text = (TextView)findViewById(R.id.minute_progress_number);
-        minute_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+        minute_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-semibold.otf"));
 
         second_text = (TextView)findViewById(R.id.second_progress_number);
-        second_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+        second_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-semibold.otf"));
 
         little_hour_text = (TextView)findViewById(R.id.hourtext);
-        little_hour_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+        little_hour_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-regular.otf"));
 
         little_minute_text = (TextView)findViewById(R.id.minutetext);
-        little_minute_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+        little_minute_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-regular.otf"));
 
         little_second_text = (TextView)findViewById(R.id.secondtext);
-        little_second_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+        little_second_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-regular.otf"));
 
         little_hour_text2 = (TextView)findViewById(R.id.little_hour_text2);
-        little_hour_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+        little_hour_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-light.otf"));
 
         little_minute_text2 = (TextView)findViewById(R.id.little_minute_text2);
-        little_minute_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+        little_minute_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-light.otf"));
 
         little_second_text2 = (TextView)findViewById(R.id.little_second_text2);
-        little_second_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-light.ttf"));
+        little_second_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-light.otf"));
 
 
 
