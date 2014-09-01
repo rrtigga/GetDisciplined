@@ -30,7 +30,9 @@ import android.widget.TextView;
 import com.ibc.android.demo.appslist.app.HeartBeat;
 import com.triggertrap.seekarc.SeekArc;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Map;
 
 public class MainActivity extends ActionBarActivity {
     private SeekArc mSeekArc;
@@ -73,6 +75,12 @@ public class MainActivity extends ActionBarActivity {
     SharedPreferences startimerPreferences;
     SharedPreferences endTimerPreferences;
     SharedPreferences endservice;
+
+
+    ArrayList<String> packagezList;
+    SharedPreferences sharedPrefsapp;
+    Map<String, ?> allEntries;
+
 
     long timerstarted; //this is when the user hit start timer.
     long timerends; //this is the time when the time when the timer will end;
@@ -650,6 +658,19 @@ public class MainActivity extends ActionBarActivity {
                 AlertDialog alertzero = zeroerror.create();
 
 
+                AlertDialog.Builder noapp = new AlertDialog.Builder(MainActivity.this)
+                        .setMessage("Hey silly! You didn't select any apps to block!")
+                        .setNegativeButton("Oh, silly me!", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Log.d("AlertDialog", "Negative");
+                                dialog.cancel();
+                            }
+                        });
+
+
+                AlertDialog zeroapp = noapp.create();
+
+
 
 
 
@@ -803,10 +824,32 @@ public class MainActivity extends ActionBarActivity {
                 secondint = Integer.valueOf(second_text.getText().toString());
 
 
+
+                sharedPrefsapp = getApplicationContext().getSharedPreferences("appdb", Context.MODE_PRIVATE);
+                allEntries= null;
+                allEntries = sharedPrefsapp.getAll();
+                packagezList= null;
+
+                packagezList = new ArrayList<String>();
+
+                for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+                    //Log.e("right key: ", entry.getKey() + "right value: " + entry.getValue().toString()  );
+                    packagezList.add(entry.getKey());
+
+                }
+
+
+
                 if((((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000) == 0)
                 {
                     alertzero.show();
                 }
+
+                else if (packagezList.size() ==0){
+                    noapp.show();
+                }
+
+
 
                 else
                 {
