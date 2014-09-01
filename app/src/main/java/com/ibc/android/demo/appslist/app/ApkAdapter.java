@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -93,6 +94,8 @@ public class ApkAdapter extends BaseAdapter {
 
             holder.apkName = (TextView) convertView
                     .findViewById(R.id.appname);
+            holder.apkName.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/raleway-medium.otf"));
+
             holder.ck1= (CheckBox)convertView
                     .findViewById(R.id.checkBox1);
             holder.packageName = (TextView) convertView.findViewById(R.id.app_package);

@@ -74,6 +74,13 @@ public class InstalledAppActivity extends Fragment
                 : true;
     }
 
+    private boolean isSystemPackage2(PackageInfo pkgInfo) {
+        return ((pkgInfo.packageName.contains("com.spicycurryman.getdisciplined10.app"))) ? false
+                : true;
+    }
+
+
+
 
 // Don't need in Fragment
 /*@Override
@@ -91,7 +98,6 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
     private class LoadApplications extends AsyncTask<Void, Void, Void> {
 
-        Context mContext;
 
         private ProgressDialog pDialog;
         List<PackageInfo> packageList1 = new ArrayList<PackageInfo>();
@@ -110,22 +116,25 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
                     .getInstalledPackages(PackageManager.GET_PERMISSIONS);
 
 
-          /*  List<ApplicationInfo> list = mContext.getPackageManager().getInstalledApplications(PackageManager.GET_UNINSTALLED_PACKAGES);
-
-
-            for(int n = 0;n<list.size();n++){
-                if ((list.get(n).flags & ApplicationInfo.FLAG_UPDATED_SYSTEM_APP))
-            }*/
 
 
             for(PackageInfo pi : packageList) {
                 boolean b = isSystemPackage(pi);
                 boolean c = isSystemPackage1(pi);
+                boolean d = isSystemPackage2(pi);
 
-                if(!b || !c) {
-                    packageList1.add(pi);
+
+
+                if ((!b || !c ) && d ){
+                        packageList1.add(pi);
+                    }
                 }
-            }
+
+
+
+
+
+
 
             //sort by application name
 
