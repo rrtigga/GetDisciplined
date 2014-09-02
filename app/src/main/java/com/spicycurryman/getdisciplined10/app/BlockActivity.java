@@ -3,21 +3,23 @@ package com.spicycurryman.getdisciplined10.app;
 import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.widget.SearchView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.SearchView;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.ibc.android.demo.appslist.app.ApkAdapter;
 
 import info.androidhive.tabsswipe.adapter.TabsPagerAdapter;
 
@@ -32,16 +34,15 @@ import info.androidhive.tabsswipe.adapter.TabsPagerAdapter;
 public  class BlockActivity extends ActionBarActivity implements
         ActionBar.TabListener, SearchView.OnQueryTextListener {
 
-
-
-    public static List<String> blacklist = new ArrayList<String>();
-
-
-
-
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
+     ApkAdapter mAppAdapter;
+    private ListView mListView;
+    private ArrayAdapter<String> hanadapter;
+
+    SearchManager searchManager;
+    SearchView searchView;
     // Tab titles
     private String[] tabs = {"Installed Apps"};
 
@@ -105,25 +106,51 @@ public  class BlockActivity extends ActionBarActivity implements
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
+
         inflater.inflate(R.menu.block, menu);
-        MenuItem searchItem = menu.findItem(R.id.action_search);
-        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
 
 
-        return super.onCreateOptionsMenu(menu);
+
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                if (!isLoading()) {
+                   // mAppAdapter.getFilter().filter(query);
+                }
+                return true;
+            }
+
+            private boolean isLoading() {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (!isLoading()) {
+                    if (newText.contains(newText)) {
+                        //mAppAdapter.getFilter().filter(newText);
+                    }
+                }
+                return true;
+            }
+        });
+        return false;
     }
+
+
 
 
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-
-
         return super.onPrepareOptionsMenu(menu);
-
-
-
 
     }
 
