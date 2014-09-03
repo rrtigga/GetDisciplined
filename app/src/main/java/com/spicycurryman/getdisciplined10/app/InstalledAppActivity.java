@@ -53,7 +53,7 @@ public class InstalledAppActivity extends ActionBarActivity
         setTheme(R.style.Theme_Light_appalled);
 
         SpannableString s = new SpannableString("Installed Apps");
-        s.setSpan(new TypefaceSpan(this, "ralewaylight.otf"), 0, s.length(),
+        s.setSpan(new TypefaceSpan(this, "miso-bold.otf"), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 // Update the action bar title with the TypefaceSpan instance
@@ -249,9 +249,9 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
 
                 if ((!b || !c ) && d ){
-                        packageList1.add(pi);
-                    }
+                    packageList1.add(pi);
                 }
+            }
 
 
 

@@ -114,7 +114,7 @@ public class MainActivity extends ActionBarActivity {
         return true;
     }
 
-    View previousView;
+    View previousView, previousView2;
 
 
     @Override
@@ -164,7 +164,7 @@ public class MainActivity extends ActionBarActivity {
 
         //Make sure you find out why it appears after a whole 1 second after the app appears
         SpannableString s = new SpannableString("GetDisciplined");
-        s.setSpan(new TypefaceSpan(this, "ralewaylight.otf"), 0, s.length(),
+        s.setSpan(new TypefaceSpan(this, "miso.otf"), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 // Update the action bar title with the TypefaceSpan instance
@@ -181,37 +181,37 @@ public class MainActivity extends ActionBarActivity {
         //Editing Button Text
 
         block_button_text = (Button)findViewById(R.id.block_button);
-        block_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-bold.otf"));
+        block_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso-bold.otf"));
 
         start_timer_text = (Button)findViewById(R.id.start_button);
-        start_timer_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-bold.otf"));
+        start_timer_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso-bold.otf"));
 
         number_text = (TextView)findViewById(R.id.hour_progress_number);
-        number_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-semibold.otf"));
+        number_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso.otf"));
 
         minute_text = (TextView)findViewById(R.id.minute_progress_number);
-        minute_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-semibold.otf"));
+        minute_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso.otf"));
 
         second_text = (TextView)findViewById(R.id.second_progress_number);
-        second_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-semibold.otf"));
+        second_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso.otf"));
 
         little_hour_text = (TextView)findViewById(R.id.hourtext);
-        little_hour_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-regular.otf"));
+        little_hour_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso.otf"));
 
         little_minute_text = (TextView)findViewById(R.id.minutetext);
-        little_minute_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-regular.otf"));
+        little_minute_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso.otf"));
 
         little_second_text = (TextView)findViewById(R.id.secondtext);
-        little_second_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-regular.otf"));
+        little_second_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso.otf"));
 
         little_hour_text2 = (TextView)findViewById(R.id.little_hour_text2);
-        little_hour_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-light.otf"));
+        little_hour_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso-light.otf"));
 
         little_minute_text2 = (TextView)findViewById(R.id.little_minute_text2);
-        little_minute_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-light.otf"));
+        little_minute_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso-light.otf"));
 
         little_second_text2 = (TextView)findViewById(R.id.little_second_text2);
-        little_second_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/raleway-light.otf"));
+        little_second_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso-light.otf"));
 
 
 
@@ -254,23 +254,24 @@ public class MainActivity extends ActionBarActivity {
         View.OnClickListener clickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TextView previousText = (TextView) previousView;
-                TextView curText = (TextView) v;
-                // If the clicked view is selected, do nothing
-                if (curText.isSelected()) {
-                    //curText.setSelected(false);
-                    //curText.setTextColor(getResources().getColor(R.color.red_highlight));
-                } else { // If this isn't selected, deselect  the previous one (if any)
-                    if (previousText != null && previousText.isSelected()) {
-                        previousText.setSelected(false);
-                        previousText.setTextColor(getResources().getColor(R.color.red_highlight));
-                    }
-                    curText.setSelected(true);
-                    curText.setTextColor(getResources().getColor(R.color.black));
-                    previousView = v;
-                }
 
-                if(v.getId() == R.id.hourtext){
+                if((v.getId() == R.id.hourtext)  || (v.getId() == R.id.hour_progress_number)){
+                  number_text.setTextColor(getResources().getColor(R.color.black));
+                  little_hour_text2.setTextColor(getResources().getColor(R.color.black));
+                    little_hour_text.setTextColor(getResources().getColor(R.color.black));
+
+
+                    minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                    little_minute_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+                    little_minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
+
+
+                    second_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                    little_second_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+                    little_second_text.setTextColor(getResources().getColor(R.color.red_highlight));
+
+
+
                     //corresponding button logic should below here
                     mSeekArc.setOnSeekArcChangeListener(new SeekArc.OnSeekArcChangeListener() {
 
@@ -279,6 +280,9 @@ public class MainActivity extends ActionBarActivity {
                         }
                         @Override
                         public void onStartTrackingTouch(SeekArc seekArc) {
+                            number_text.setTextColor(getResources().getColor(R.color.black));
+                            little_hour_text2.setTextColor(getResources().getColor(R.color.black));
+                            little_hour_text.setTextColor(getResources().getColor(R.color.black));
                         }
 
 
@@ -306,7 +310,23 @@ public class MainActivity extends ActionBarActivity {
                             }
                         }
                     });
-                } else if (v.getId() == R.id.minutetext) {
+                } else if((v.getId() == R.id.minutetext)  || (v.getId() == R.id.minute_progress_number)){
+
+                    minute_text.setTextColor(getResources().getColor(R.color.black));
+                    little_minute_text2.setTextColor(getResources().getColor(R.color.black));
+                    little_minute_text.setTextColor(getResources().getColor(R.color.black));
+
+
+                    number_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                    little_hour_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+                    little_hour_text.setTextColor(getResources().getColor(R.color.red_highlight));
+
+
+
+                    second_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                    little_second_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+                    little_second_text.setTextColor(getResources().getColor(R.color.red_highlight));
+
                     //corresponding button logic should below here
 
                     mSeekArc.setOnSeekArcChangeListener(new SeekArc.OnSeekArcChangeListener() {
@@ -317,6 +337,9 @@ public class MainActivity extends ActionBarActivity {
                         }
                         @Override
                         public void onStartTrackingTouch(SeekArc seekArc) {
+                            minute_text.setTextColor(getResources().getColor(R.color.black));
+                            little_minute_text2.setTextColor(getResources().getColor(R.color.black));
+                            little_minute_text.setTextColor(getResources().getColor(R.color.black));
                         }
 
 
@@ -345,7 +368,21 @@ public class MainActivity extends ActionBarActivity {
 
                         }
                     });
-                } else if (v.getId() == R.id.secondtext) {
+                } else if ((v.getId() == R.id.secondtext) ||( v.getId() == R.id.second_progress_number)) {
+
+                    second_text.setTextColor(getResources().getColor(R.color.black));
+                    little_second_text2.setTextColor(getResources().getColor(R.color.black));
+                    little_second_text.setTextColor(getResources().getColor(R.color.black));
+
+                    minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                    little_minute_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+                    little_minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
+
+
+                    number_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                    little_hour_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+                    little_hour_text.setTextColor(getResources().getColor(R.color.red_highlight));
+
                     //corresponding button logic should below here
                     mSeekArc.setOnSeekArcChangeListener(new SeekArc.OnSeekArcChangeListener() {
 
@@ -354,6 +391,9 @@ public class MainActivity extends ActionBarActivity {
                         }
                         @Override
                         public void onStartTrackingTouch(SeekArc seekArc) {
+                            second_text.setTextColor(getResources().getColor(R.color.black));
+                            little_second_text2.setTextColor(getResources().getColor(R.color.black));
+                            little_second_text.setTextColor(getResources().getColor(R.color.black));
                         }
 
 
@@ -395,6 +435,9 @@ public class MainActivity extends ActionBarActivity {
         findViewById(R.id.hourtext).setOnClickListener(clickListener);
         findViewById(R.id.minutetext).setOnClickListener(clickListener);
         findViewById(R.id.secondtext).setOnClickListener(clickListener);
+        findViewById(R.id.hour_progress_number).setOnClickListener(clickListener);
+        findViewById(R.id.minute_progress_number).setOnClickListener(clickListener);
+        findViewById(R.id.second_progress_number).setOnClickListener(clickListener);
 
 
         findViewById(R.id.minutetext).performClick();
@@ -530,6 +573,35 @@ public class MainActivity extends ActionBarActivity {
                 newtotalTimeCountInMilliseconds = timerends-reopened;
 
 
+                number_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                little_hour_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+
+                minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                little_minute_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+
+                second_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                little_second_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+
+                little_hour_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                little_minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                little_second_text.setTextColor(getResources().getColor(R.color.red_highlight));
+
+                // yo
+
+                number_text.setClickable(false);
+                little_hour_text2.setClickable(false);
+
+                minute_text.setClickable(false);
+                little_minute_text2.setClickable(false);
+
+                second_text.setClickable(false);
+                little_second_text2.setClickable(false);
+
+                little_hour_text.setClickable(false);
+                little_minute_text.setClickable(false);
+                little_second_text.setClickable(false);
+
+
 
                 countDownTimer = new CountDownTimer(newtotalTimeCountInMilliseconds, 500) {
                     // 500 means, onTick function will be called at every 500 milliseconds
@@ -581,6 +653,35 @@ public class MainActivity extends ActionBarActivity {
                         mSeekArc.setVisibility(View.VISIBLE);
                         start_timer.setVisibility(View.VISIBLE);
                         block_button1.setVisibility(View.VISIBLE);
+
+
+                        number_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                        little_hour_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+
+                        minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                        little_minute_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+
+                        second_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                        little_second_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+
+                        little_hour_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                        little_minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                        little_second_text.setTextColor(getResources().getColor(R.color.red_highlight));
+
+
+
+                        number_text.setClickable(true);
+                        little_hour_text2.setClickable(true);
+
+                        minute_text.setClickable(true);
+                        little_minute_text2.setClickable(true);
+
+                        second_text.setClickable(true);
+                        little_second_text2.setClickable(true);
+
+                        little_hour_text.setClickable(true);
+                        little_minute_text.setClickable(true);
+                        little_second_text.setClickable(true);
 
 
                     }
@@ -684,7 +785,39 @@ public class MainActivity extends ActionBarActivity {
                 .setPositiveButton("Yeah man!", new DialogInterface.OnClickListener() {
 
 
+
                                 public void onClick(DialogInterface dialog, int which) {
+
+                                    number_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                                    little_hour_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+
+                                    minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                                    little_minute_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+
+                                    second_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                                    little_second_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+
+                                    little_hour_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                                    little_minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                                    little_second_text.setTextColor(getResources().getColor(R.color.red_highlight));
+
+                                    // yo
+
+                                    number_text.setClickable(false);
+                                    little_hour_text2.setClickable(false);
+
+                                    minute_text.setClickable(false);
+                                    little_minute_text2.setClickable(false);
+
+                                    second_text.setClickable(false);
+                                    little_second_text2.setClickable(false);
+
+                                    little_hour_text.setClickable(false);
+                                    little_minute_text.setClickable(false);
+                                    little_second_text.setClickable(false);
+
+
+
                                     Log.d("AlertDialog", "Positive");
 
                                     hourint = Integer.valueOf(number_text.getText().toString());
@@ -796,6 +929,35 @@ public class MainActivity extends ActionBarActivity {
                                             mSeekArc.setVisibility(View.VISIBLE);
                                             start_timer.setVisibility(View.VISIBLE);
                                             block_button1.setVisibility(View.VISIBLE);
+
+
+
+                                            number_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                                            little_hour_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+
+                                            minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                                            little_minute_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+
+                                            second_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                                            little_second_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+
+                                            little_hour_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                                            little_minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                                            little_second_text.setTextColor(getResources().getColor(R.color.red_highlight));
+
+
+                                            number_text.setClickable(true);
+                                            little_hour_text2.setClickable(true);
+
+                                            minute_text.setClickable(true);
+                                            little_minute_text2.setClickable(true);
+
+                                            second_text.setClickable(true);
+                                            little_second_text2.setClickable(true);
+
+                                            little_hour_text.setClickable(true);
+                                            little_minute_text.setClickable(true);
+                                            little_second_text.setClickable(true);
 
 
                                             //Make sure it stops for good.

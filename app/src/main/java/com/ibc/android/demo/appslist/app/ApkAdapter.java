@@ -98,7 +98,7 @@ public class ApkAdapter extends BaseAdapter implements Filterable {
 
             holder.apkName = (TextView) convertView
                     .findViewById(R.id.appname);
-            holder.apkName.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/raleway-medium.otf"));
+            holder.apkName.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/miso.otf"));
 
             holder.ck1= (CheckBox)convertView
                     .findViewById(R.id.checkBox1);
