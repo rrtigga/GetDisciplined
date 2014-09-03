@@ -163,11 +163,11 @@ public class ApkAdapter extends BaseAdapter implements Filterable {
 
         checked = new HashSet();
 
-            PACKAGE_NAME = packageInfo.packageName;
-            //Log.d("just here: ", PACKAGE_NAME);
+        PACKAGE_NAME = packageInfo.packageName;
+        //Log.d("just here: ", PACKAGE_NAME);
 
-            sharedPrefs = context.getSharedPreferences(context.getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
-            sharedPrefsapp = context.getSharedPreferences("appdb", Context.MODE_PRIVATE);
+        sharedPrefs = context.getSharedPreferences(context.getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
+        sharedPrefsapp = context.getSharedPreferences("appdb", Context.MODE_PRIVATE);
 
 
 
@@ -203,7 +203,7 @@ public class ApkAdapter extends BaseAdapter implements Filterable {
                     editor.apply();
                     editorapp.apply();
 
-                   // sharedPrefs = context.getSharedPreferences(context.getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
+                    // sharedPrefs = context.getSharedPreferences(context.getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
 
 
                 } else {

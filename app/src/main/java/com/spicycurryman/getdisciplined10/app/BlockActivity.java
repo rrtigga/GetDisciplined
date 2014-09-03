@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.app.ActionBar;
 import android.app.FragmentTransaction;
 import android.app.SearchManager;
+import android.app.SearchableInfo;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
@@ -18,8 +19,11 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.ibc.android.demo.appslist.app.ApkAdapter;
+
+import java.util.List;
 
 import info.androidhive.tabsswipe.adapter.TabsPagerAdapter;
 
@@ -31,14 +35,15 @@ import info.androidhive.tabsswipe.adapter.TabsPagerAdapter;
 /**
  * Created by Spicycurryman on 6/17/14.
  */
-public  class BlockActivity extends ActionBarActivity implements
-        ActionBar.TabListener, SearchView.OnQueryTextListener {
+public class BlockActivity extends ActionBarActivity implements SearchView.OnQueryTextListener, ActionBar.TabListener {
 
     private ViewPager viewPager;
     private TabsPagerAdapter mAdapter;
     private ActionBar actionBar;
      ApkAdapter mAppAdapter;
     private ListView mListView;
+    private SearchView mSearchView;
+    private TextView mStatusView;
     private ArrayAdapter<String> hanadapter;
 
     SearchManager searchManager;
@@ -54,9 +59,8 @@ public  class BlockActivity extends ActionBarActivity implements
         super.onCreate(savedInstanceState);
         setTheme(R.style.Theme_Light_appalled);
 
-
-        SpannableString s = new SpannableString("GetDisciplined");
-        s.setSpan(new TypefaceSpan(this, "roboto-lightitalic.ttf.ttf"), 0, s.length(),
+        SpannableString s = new SpannableString("");
+        s.setSpan(new TypefaceSpan(this, "ralewaylight.otf"), 0, s.length(),
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 // Update the action bar title with the TypefaceSpan instance
@@ -110,40 +114,16 @@ public  class BlockActivity extends ActionBarActivity implements
         MenuInflater inflater = getMenuInflater();
 
         inflater.inflate(R.menu.block, menu);
-        searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        searchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+        MenuItem searchItem = menu.findItem(R.id.action_search);
 
+        mSearchView = (SearchView) searchItem.getActionView();
 
+        setupSearchView(searchItem);
 
-        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        return true;
 
-
-
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                if (!isLoading()) {
-                   // mAppAdapter.getFilter().filter(query);
-                }
-                return true;
-            }
-
-            private boolean isLoading() {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                if (!isLoading()) {
-                    if (newText.contains(newText)) {
-                        //mAppAdapter.getFilter().filter(newText);
-                    }
-                }
-                return true;
-            }
-        });
-        return false;
     }
+
 
 
 
@@ -168,23 +148,45 @@ public  class BlockActivity extends ActionBarActivity implements
         }
         return true;
     }
+    private void setupSearchView(MenuItem searchItem) {
+
+        if (isAlwaysExpanded()) {
+            mSearchView.setIconifiedByDefault(false);
+        } else {
+            searchItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM
+                    | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
+        }
+
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        if (searchManager != null) {
+            List<SearchableInfo> searchables = searchManager.getSearchablesInGlobalSearch();
+
+            // Try to use the "applications" global search provider
+            SearchableInfo info = searchManager.getSearchableInfo(getComponentName());
+            for (SearchableInfo inf : searchables) {
+                if (inf.getSuggestAuthority() != null
+                        && inf.getSuggestAuthority().startsWith("applications")) {
+                    info = inf;
+                }
+            }
+            mSearchView.setSearchableInfo(info);
+        }
+
+        mSearchView.setOnQueryTextListener(this);
+    }
 
 
 
 
-
-    @Override
     public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
         viewPager.setCurrentItem(tab.getPosition());
 
     }
 
-    @Override
     public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
 
     }
 
-    @Override
     public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
 
     }
@@ -201,4 +203,12 @@ public  class BlockActivity extends ActionBarActivity implements
     }
 
 
+    public boolean onClose() {
+        mStatusView.setText("Closed!");
+        return false;
+    }
+
+    protected boolean isAlwaysExpanded() {
+        return false;
+    }
 }

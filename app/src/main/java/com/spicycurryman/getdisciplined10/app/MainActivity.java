@@ -3,6 +3,8 @@ package com.spicycurryman.getdisciplined10.app;
 import android.app.ActionBar;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.Notification;
+import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -800,6 +802,18 @@ public class MainActivity extends ActionBarActivity {
 
                                             //Intent intent = new Intent(getApplicationContext(), HeartBeat.class);
                                             //stopService(intent);
+
+
+                                            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                                            Notification myNotification = new Notification(R.drawable.ic_launcher, "Time's up!", System.currentTimeMillis());
+                                            Context context = getApplicationContext();
+                                            String notificationTitle = "Apps are now unlocked!";
+                                            String notificationText = "Great job being productive! ;)";
+                                            Intent myIntent = new Intent(MainActivity.this, MainActivity.class);
+                                            PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, 0,   myIntent, Intent.FILL_IN_ACTION);
+                                            myNotification.flags |= Notification.FLAG_AUTO_CANCEL;
+                                            myNotification.setLatestEventInfo(context, notificationTitle, notificationText, pendingIntent);
+                                            notificationManager.notify(1, myNotification);
 
 
                                         }
