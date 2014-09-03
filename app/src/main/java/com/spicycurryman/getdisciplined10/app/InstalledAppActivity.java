@@ -288,19 +288,35 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
         }
 
+
+
+        //Inefficient patch to prevent Window Manager error
+
+
         @Override
         protected void onPostExecute(Void result) {
 
             apkList.setAdapter(new ApkAdapter(InstalledAppActivity.this, packageList1, packageManager));
 
-            if (pDialog.isShowing()){
-                pDialog.dismiss();
-
+            try {
+                if ((this.pDialog != null) && this.pDialog.isShowing()) {
+                    this.pDialog.dismiss();
+                }
+            } catch (final IllegalArgumentException e) {
+                // Handle or log or ignore
+            } catch (final Exception e) {
+                // Handle or log or ignore
+            } finally {
+                this.pDialog = null;
             }
 
 
             super.onPostExecute(result);
         }
+
+
+
+
 
 
         @Override
