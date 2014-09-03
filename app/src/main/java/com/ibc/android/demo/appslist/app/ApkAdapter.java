@@ -13,10 +13,11 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
+import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Filter;
+
 import com.spicycurryman.getdisciplined10.app.R;
 
 import java.util.ArrayList;
