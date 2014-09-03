@@ -97,7 +97,7 @@ public class InstalledAppActivity extends ActionBarActivity
 
         mSearchView = (SearchView) searchItem.getActionView();
 
-//        setupSearchView(searchItem);
+        setupSearchView(searchItem);
 
         return true;
 
@@ -156,6 +156,9 @@ public class InstalledAppActivity extends ActionBarActivity
 
         mSearchView.setOnQueryTextListener(this);
     }
+
+
+
     @Override
     public boolean onQueryTextSubmit(String s) {
         return false;
