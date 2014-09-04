@@ -24,18 +24,12 @@
         jar="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/exploded-aar/GetDisciplined1_0/seekArc_library/unspecified/classes.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="d2d8ab7117a068c5c9346272db6c2269b61c3eba"/>
+        sha1="ce57a2f2c5da547ce8f7fadc271f2b69b76f9c4e"/>
     <item
         dex="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/pre-dexed/debug/classes-725a42402cdcec28a77996426c3d9d5b4c99fbf9.jar"
         jar="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/classes.jar"
         jumboMode="false"
         revision="19.1.0"
         sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef"/>
-    <item
-        dex="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/pre-dexed/debug/picasso-2.3.3-ba493621bc3a84eff3b4667a72b859bf137ff653.jar"
-        jar="/Users/Spicycurryman/.gradle/caches/modules-2/files-2.1/com.squareup.picasso/picasso/2.3.3/1262995965440e28ba5c4d480c9c9ab4ccce84cc/picasso-2.3.3.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="1262995965440e28ba5c4d480c9c9ab4ccce84cc"/>
 
 </pre-dex-items>

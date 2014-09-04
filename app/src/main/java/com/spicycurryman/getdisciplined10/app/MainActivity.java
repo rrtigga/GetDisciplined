@@ -28,6 +28,7 @@ import android.widget.CompoundButton;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ibc.android.demo.appslist.app.HeartBeat;
 import com.triggertrap.seekarc.SeekArc;
@@ -93,11 +94,6 @@ public class MainActivity extends ActionBarActivity {
     long newtotalTimeCountInMilliseconds;
 
 
-
-
-
-
-
     // Consider showing drawable scrubber after pressing H M or S
 
 
@@ -143,6 +139,8 @@ public class MainActivity extends ActionBarActivity {
         AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         alarm.cancel(pintent);
         alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),150000, pintent);
+        getApplicationContext().startService(ishintent);
+
 
 
 
@@ -697,6 +695,30 @@ public class MainActivity extends ActionBarActivity {
 
 
     }
+
+
+
+
+    private static final long TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    private long mBackPressed;
+
+    @Override
+    public void onBackPressed()
+    {
+        if (mBackPressed + TIME_INTERVAL > System.currentTimeMillis())
+        {
+            super.onBackPressed();
+            return;
+        }
+        else { Toast.makeText(getBaseContext(), "Tap back button again to exit", Toast.LENGTH_SHORT).show(); }
+
+        mBackPressed = System.currentTimeMillis();
+    }
+
+
+
+
+
 
     // for the on click activity responses for each of the 3 buttons on the menu
     public void addListenerOnButton() {

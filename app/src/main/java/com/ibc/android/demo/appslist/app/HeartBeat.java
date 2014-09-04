@@ -112,7 +112,8 @@ public class HeartBeat extends Service {
         PendingIntent pintent = PendingIntent.getService(this, 0, ishintent, 0);
         AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         alarm.cancel(pintent);
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),150000, pintent);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),1000, pintent);
+
 
 
 
@@ -128,11 +129,18 @@ public class HeartBeat extends Service {
     @Override
     public void onDestroy() {
 
+        Intent in = new Intent();
+        in.setAction("YouWillNeverKillMe");
+        sendBroadcast(in);
+
         Intent ishintent = new Intent(this, HeartBeat.class);
         PendingIntent pintent = PendingIntent.getService(this, 0, ishintent, 0);
         AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         alarm.cancel(pintent);
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),150000, pintent);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),1000, pintent);
+
+
+
         //startService(new Intent(this, HeartBeat.class));
     }
 

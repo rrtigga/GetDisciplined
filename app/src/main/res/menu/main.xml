@@ -14,7 +14,7 @@
 
         <item
             android:id="@+id/setting_drop"
-            android:orderInCategory="100"
+            android:orderInCategory="1"
             app:showAsAction="never"
             android:icon="@drawable/drop_white_settings"
 
@@ -22,7 +22,7 @@
 
         <item
             android:id="@+id/like_us_drop"
-            android:orderInCategory="100"
+            android:orderInCategory="2"
             app:showAsAction="never"
             android:icon="@drawable/ic_thumbsup"
 
@@ -30,7 +30,7 @@
 
         <item
             android:id="@+id/feedback_drop"
-            android:orderInCategory="100"
+            android:orderInCategory="3"
             app:showAsAction="never"
             android:icon="@drawable/ic_feedback"
 
@@ -38,7 +38,7 @@
 
         <item
             android:id="@+id/FAQ_drop"
-            android:orderInCategory="100"
+            android:orderInCategory="4"
             app:showAsAction="never"
             android:icon="@drawable/ic_question"
 
@@ -46,7 +46,7 @@
 
         <item
             android:id="@+id/About_drop"
-            android:orderInCategory="100"
+            android:orderInCategory="5"
             app:showAsAction="never"
             android:icon="@drawable/ic_about"
             android:title="@string/About"/>

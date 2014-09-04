@@ -2,53 +2,12 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="fill_parent"
                 android:layout_height="fill_parent"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                android:background="@color/black"
 
-                tools:context="com.Spicycurryman.GetDisciplined10.app.SetupActivity">
+                android:background="@drawable/lockscreen"
 
-    <Button
-        android:id="@+id/main_text"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="180dp"
-        android:layout_height="65dp"
-        android:layout_gravity="end"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="@string/app_name"
-        android:textColor="#ffff3a35"
-        android:enabled="false"
-        android:textSize="50sp"
-        android:layout_alignRight="@+id/theslogan"
-        android:layout_alignEnd="@+id/theslogan"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:id="@+id/theslogan"
-        android:text="@string/slogan"
-        android:layout_width="500dp"
-        android:layout_height="60dp"
-        android:textSize="20sp"
-
-        android:textColor="#ffff3a35"
-        android:layout_marginTop="100dp"/>
+                tools:context="com.ibc.android.demo.appslist.app.LockScreenActivity">
 
 
-    <TextView
-        android:id="@+id/disciplined"
-        android:text="@string/discipline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="50sp"
-        android:gravity="center_horizontal|center_vertical"
-
-        android:textColor="#ffff3a35"
-        android:layout_below="@+id/theslogan"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>

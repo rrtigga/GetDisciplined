@@ -14,7 +14,7 @@ public class mBroadCastReceiver extends BroadcastReceiver {
         Intent ishintent = new Intent(context, HeartBeat.class);
         PendingIntent pintent = PendingIntent.getService(context, 0, ishintent, 0);
         AlarmManager alarm = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),150000, pintent);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),1000, pintent);
         context.startService(ishintent);
 
         if (intent.getAction().equals(Intent.ACTION_SCREEN_OFF)) {

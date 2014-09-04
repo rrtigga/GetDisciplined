@@ -2,16 +2,16 @@ package com.ibc.android.demo.appslist.app;
 
 import android.app.Activity;
 import android.app.ActivityManager;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.ActivityInfo;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.TextView;
 
 import com.spicycurryman.getdisciplined10.app.R;
 
@@ -26,29 +26,17 @@ public class LockScreenActivity extends Activity {
     ArrayList<String> packagezList;
 
 
-    TextView MainT, sloganT, swipeT;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.lock_screen);
 
-        MainT=(TextView) findViewById(R.id.main_text);
-        Typeface mainCustomFont = Typeface.createFromAsset(getAssets(), "fonts/roboto-thinitalic.ttf");
-        MainT.setTypeface(mainCustomFont);
-
-        sloganT=(TextView) findViewById(R.id.theslogan);
-        Typeface sloganCustomFont = Typeface.createFromAsset(getAssets(), "fonts/roboto-bolditalic.ttf");
-        sloganT.setTypeface(sloganCustomFont);
-
-        swipeT=(TextView) findViewById(R.id.disciplined);
-        Typeface swipeCustomFont = Typeface.createFromAsset(getAssets(), "fonts/roboto-thinitalic.ttf");
-        swipeT.setTypeface(swipeCustomFont);
 
     }
+
     @Override
     public void onBackPressed() {
 
@@ -74,16 +62,14 @@ public class LockScreenActivity extends Activity {
 
         // Now loop through the list of PIDs and find Instagram's PID.
         sharedPrefsapp = getApplicationContext().getSharedPreferences("appdb", Context.MODE_PRIVATE);
-        allEntries= null;
+        allEntries = null;
         allEntries = sharedPrefsapp.getAll();
 
         //prefix = "m";
-        packagezList= null;
+        packagezList = null;
 
 
         packagezList = new ArrayList<String>();
-
-
 
 
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
@@ -94,7 +80,11 @@ public class LockScreenActivity extends Activity {
 
         // Killing any process for blocked applications when the back button is pressed while the lock screen is displayed
 
-        for(Object object: packagezList){
+
+        packagezList.add("com.spicycurryman.getdisciplined10.app.dev");
+        packagezList.add("com.spicycurryman.getdisciplined10.app");
+
+        for (Object object : packagezList) {
             am.killBackgroundProcesses((String) object);
             Log.d("Killed Background Process!: ", (String) object);
 
@@ -102,13 +92,12 @@ public class LockScreenActivity extends Activity {
         }
 
 
-
         // Now that we've got the PID, kill the Instagram process.
 
 
         // Now that we've got the PID, kill the Instagram process.
 
-        ActivityManager  am1 = (ActivityManager) getApplicationContext().getSystemService(ACTIVITY_SERVICE);
+        ActivityManager am1 = (ActivityManager) getApplicationContext().getSystemService(ACTIVITY_SERVICE);
 
 
         // Display confirmation here, finish() activity.
@@ -118,7 +107,14 @@ public class LockScreenActivity extends Activity {
         startActivity(startMain);
 
 
-        startService(new Intent(this, HeartBeat.class));
+        //startService(new Intent(this, HeartBeat.class));
+
+
+        Intent ishintent = new Intent(this, HeartBeat.class);
+        PendingIntent pintent = PendingIntent.getService(this, 0, ishintent, 0);
+        AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarm.cancel(pintent);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000, pintent);
 
 
   /*      Intent iHeartBeatService = new Intent(this, HeartBeat.class);
@@ -132,9 +128,8 @@ public class LockScreenActivity extends Activity {
     }
 
 
-
     @Override
-    public void onStop(){
+    public void onStop() {
 
 
         /*
@@ -153,33 +148,33 @@ public class LockScreenActivity extends Activity {
          * PID of the blocked app (Instagram in this case).
          */
 
-            // Grab a list of all running processes and their PIDs.
-            ActivityManager am = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
-            List<ActivityManager.RunningAppProcessInfo> pids = am.getRunningAppProcesses();
+        // Grab a list of all running processes and their PIDs.
+        ActivityManager am = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> pids = am.getRunningAppProcesses();
 
-            // Now loop through the list of PIDs and find Instagram's PID.
-            sharedPrefsapp = getApplicationContext().getSharedPreferences("appdb", Context.MODE_PRIVATE);
-            allEntries= null;
-            allEntries = sharedPrefsapp.getAll();
+        // Now loop through the list of PIDs and find Instagram's PID.
+        sharedPrefsapp = getApplicationContext().getSharedPreferences("appdb", Context.MODE_PRIVATE);
+        allEntries = null;
+        allEntries = sharedPrefsapp.getAll();
 
-            //prefix = "m";
-            packagezList= null;
-
-
-            packagezList = new ArrayList<String>();
+        //prefix = "m";
+        packagezList = null;
 
 
+        packagezList = new ArrayList<String>();
 
 
-            for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-                //Log.e("right key: ", entry.getKey() + "right value: " + entry.getValue().toString()  );
-                packagezList.add(entry.getKey());
-            }
+        for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
+            //Log.e("right key: ", entry.getKey() + "right value: " + entry.getValue().toString()  );
+            packagezList.add(entry.getKey());
+
+            packagezList.add("com.spicycurryman.getdisciplined10.app.dev");
+            packagezList.add("com.spicycurryman.getdisciplined10.app");
 
 
             // Killing any process for blocked applications when the back button is pressed while the lock screen is displayed
 
-            for(Object object: packagezList){
+            for (Object object : packagezList) {
                 am.killBackgroundProcesses((String) object);
                 Log.d("Killed Background Process!: ", (String) object);
 
@@ -187,13 +182,12 @@ public class LockScreenActivity extends Activity {
             }
 
 
-
             // Now that we've got the PID, kill the Instagram process.
 
 
             // Now that we've got the PID, kill the Instagram process.
 
-            ActivityManager  am1 = (ActivityManager) getApplicationContext().getSystemService(ACTIVITY_SERVICE);
+            ActivityManager am1 = (ActivityManager) getApplicationContext().getSystemService(ACTIVITY_SERVICE);
 
 
             // Display confirmation here, finish() activity.
@@ -203,8 +197,11 @@ public class LockScreenActivity extends Activity {
             startActivity(startMain);
 
 
-            startService(new Intent(this, HeartBeat.class));
-
+            Intent ishintent = new Intent(this, HeartBeat.class);
+            PendingIntent pintent = PendingIntent.getService(this, 0, ishintent, 0);
+            AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+            alarm.cancel(pintent);
+            alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000, pintent);
 
   /*      Intent iHeartBeatService = new Intent(this, HeartBeat.class);
         PendingIntent piHeartBeatService = PendingIntent.getService(this, 0, iHeartBeatService, PendingIntent.FLAG_UPDATE_CURRENT);
@@ -217,3 +214,4 @@ public class LockScreenActivity extends Activity {
         }
     }
 
+}
