@@ -63,13 +63,7 @@ public class InstalledAppActivity extends ActionBarActivity
 
         actionBar.setHomeButtonEnabled(true);
 
-
-
         setContentView(R.layout.user_installed);
-
-
-
-
 
 // Update the action bar title with the TypefaceSpan instance
 
@@ -81,7 +75,6 @@ public class InstalledAppActivity extends ActionBarActivity
         apkList = (ListView) findViewById(R.id.applist);
 
         new LoadApplications(InstalledAppActivity.this.getApplicationContext()).execute();
-
 
     }
 
@@ -202,6 +195,17 @@ public class InstalledAppActivity extends ActionBarActivity
                 : true;
     }
 
+    private boolean isSystemPackage3(PackageInfo pkgInfo) {
+        return ((pkgInfo.packageName.contains("com.android.mms"))) ? true
+                : false;
+    }
+
+    private boolean isSystemPackage4(PackageInfo pkgInfo) {
+        return ((pkgInfo.packageName.contains("com.android.email"))) ? true
+                : false;
+    }
+
+
 
 
 
@@ -218,7 +222,6 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
     }
 
-
     private class LoadApplications extends AsyncTask<Void, Void, Void> {
 
 
@@ -229,30 +232,41 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
             Context mContext = context;
         }
 
-
-
-
         @Override
         protected Void doInBackground(Void... params) {
 
             List<PackageInfo> packageList = packageManager
                     .getInstalledPackages(PackageManager.GET_PERMISSIONS);
 
-
-
+            List<PackageInfo> packageList2 = packageManager
+                    .getInstalledPackages(PackageManager.GET_PERMISSIONS);
 
             for(PackageInfo pi : packageList) {
+
                 boolean b = isSystemPackage(pi);
                 boolean c = isSystemPackage1(pi);
                 boolean d = isSystemPackage2(pi);
 
 
-
                 if ((!b || !c ) && d ){
                     packageList1.add(pi);
                 }
+
             }
 
+            //here you got email and message apps in the 
+
+            for(PackageInfo pi : packageList) {
+
+                boolean b = isSystemPackage3(pi);
+                boolean c = isSystemPackage4(pi);
+
+
+                if (b || c){
+                    packageList1.add(pi);
+                }
+
+            }
 
 
 
@@ -270,11 +284,8 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
                 }
             });
 
-
-
             return null;
         }
-
         @Override
         protected void onCancelled() {
             super.onCancelled();
@@ -287,9 +298,6 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
             pDialog.show();
 
         }
-
-
-
         //Inefficient patch to prevent Window Manager error
 
 
@@ -314,17 +322,9 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
             super.onPostExecute(result);
         }
 
-
-
-
-
-
         @Override
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
         }
     }
-
-
-
 }

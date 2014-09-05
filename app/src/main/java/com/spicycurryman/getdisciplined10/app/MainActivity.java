@@ -353,6 +353,9 @@ public class MainActivity extends ActionBarActivity {
                                 if (progress ==120) {
                                     mSeekArcMinuteProgress.setText("00");
 
+
+
+
                                 }
                                 else if (progress == progress_count)
                                 {
@@ -401,6 +404,13 @@ public class MainActivity extends ActionBarActivity {
                                                       boolean fromUser) {
 
 
+                           /* hourint = Integer.valueOf(number_text.getText().toString());
+
+                            minuteint = Integer.valueOf(minute_text.getText().toString());
+
+                            secondint = Integer.valueOf(second_text.getText().toString());*/
+
+
 
                             // so ur setting it to HALF of what "progress" is = to
 
@@ -412,6 +422,8 @@ public class MainActivity extends ActionBarActivity {
 
                                 if (progress ==120) {
                                     mSeekArcSecondProgress.setText("00");
+                                    //mSeekArcMinuteProgress.setText(String.valueOf(String.format("%02d",(minuteint+1)) ));
+
 
                                 }
                                 else if (progress == progress_count)

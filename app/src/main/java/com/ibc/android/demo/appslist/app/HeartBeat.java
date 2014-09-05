@@ -112,7 +112,7 @@ public class HeartBeat extends Service {
         PendingIntent pintent = PendingIntent.getService(this, 0, ishintent, 0);
         AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         alarm.cancel(pintent);
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),1000, pintent);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),5000, pintent);
 
 
 
@@ -137,7 +137,7 @@ public class HeartBeat extends Service {
         PendingIntent pintent = PendingIntent.getService(this, 0, ishintent, 0);
         AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         alarm.cancel(pintent);
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),1000, pintent);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),5000, pintent);
 
 
 

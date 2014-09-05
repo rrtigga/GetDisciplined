@@ -29,9 +29,9 @@ public class LockScreenActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-        super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.lock_screen);
 
 
@@ -114,7 +114,7 @@ public class LockScreenActivity extends Activity {
         PendingIntent pintent = PendingIntent.getService(this, 0, ishintent, 0);
         AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         alarm.cancel(pintent);
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000, pintent);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 5000, pintent);
 
 
   /*      Intent iHeartBeatService = new Intent(this, HeartBeat.class);
@@ -201,7 +201,7 @@ public class LockScreenActivity extends Activity {
             PendingIntent pintent = PendingIntent.getService(this, 0, ishintent, 0);
             AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             alarm.cancel(pintent);
-            alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000, pintent);
+            alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 5000, pintent);
 
   /*      Intent iHeartBeatService = new Intent(this, HeartBeat.class);
         PendingIntent piHeartBeatService = PendingIntent.getService(this, 0, iHeartBeatService, PendingIntent.FLAG_UPDATE_CURRENT);

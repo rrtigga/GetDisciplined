@@ -44,8 +44,7 @@
                 android:value="com.example.MainActivity" />
         </activity>
 
-        <activity android:name="com.spicycurryman.getdisciplined10.app.SetupActivity" >
-        </activity>
+
         <activity android:name="com.ibc.android.demo.appslist.app.LockScreenActivity" >
         </activity>
 
