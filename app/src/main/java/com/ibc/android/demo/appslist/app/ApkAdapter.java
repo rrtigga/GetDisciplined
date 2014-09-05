@@ -35,7 +35,6 @@ public class ApkAdapter extends BaseAdapter implements Filterable {
     SharedPreferences sharedPrefsapp;
 
     List<PackageInfo> packageList;
-    TextView appnamestyle;
 
     Activity context;
     PackageManager packageManager;
@@ -45,7 +44,6 @@ public class ApkAdapter extends BaseAdapter implements Filterable {
 
     String PACKAGE_NAME;
 
-    TextView appname;
 
     public ApkAdapter(Activity context, List<PackageInfo> packageList,
                       PackageManager packageManager) {
