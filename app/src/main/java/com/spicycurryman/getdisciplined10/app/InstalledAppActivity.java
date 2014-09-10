@@ -4,7 +4,10 @@ import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.app.SearchManager;
 import android.app.SearchableInfo;
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageInfo;
@@ -42,6 +45,10 @@ public class InstalledAppActivity extends ActionBarActivity
     private SearchView mSearchView;
     private TextView mStatusView;
 
+    private static final int REQUEST_CODE = 0;
+    private DevicePolicyManager mDPM;
+    private ComponentName mAdminName;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +72,32 @@ public class InstalledAppActivity extends ActionBarActivity
 
         setContentView(R.layout.user_installed);
 
+        try
+        {
+            // Initiate DevicePolicyManager.
+            mDPM = (DevicePolicyManager)getSystemService(Context.DEVICE_POLICY_SERVICE);
+            // Set DeviceAdminDemo Receiver for active the component with different option
+            mAdminName = new ComponentName(this, DeviceAdmin.class);
+
+            if (!mDPM.isAdminActive(mAdminName)) {
+                // try to become active
+                Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+                intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mAdminName);
+                intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "Click the Activate button to keep your selected apps locked for your set amount of time when you start the timer.\n " +
+                        "\nIt's time to GetDisciplined! ;)");
+                startActivityForResult(intent, REQUEST_CODE);
+            }
+            else
+            {
+                // Already is a device administrator, can do security operations now.
+                //mDPM.lockNow();
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+
 // Update the action bar title with the TypefaceSpan instance
 
         packageManager = InstalledAppActivity.this.getPackageManager();
@@ -76,6 +109,38 @@ public class InstalledAppActivity extends ActionBarActivity
 
         new LoadApplications(InstalledAppActivity.this.getApplicationContext()).execute();
 
+    }
+
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+
+        try
+        {
+            // Initiate DevicePolicyManager.
+            mDPM = (DevicePolicyManager)getSystemService(Context.DEVICE_POLICY_SERVICE);
+            // Set DeviceAdminDemo Receiver for active the component with different option
+            mAdminName = new ComponentName(this, DeviceAdmin.class);
+
+            if (!mDPM.isAdminActive(mAdminName)) {
+                // try to become active
+                Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+                intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mAdminName);
+                intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "Click the Activate button to keep your selected apps locked for your set amount of time when you start the timer.\n " +
+                        "\nIt's time to GetDisciplined! ;)");
+                startActivityForResult(intent, REQUEST_CODE);
+            }
+            else
+            {
+                // Already is a device administrator, can do security operations now.
+                //mDPM.lockNow();
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
     }
 
 

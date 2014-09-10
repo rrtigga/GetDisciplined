@@ -5,6 +5,7 @@
 
 
 
+
     <ListView
         android:id="@+id/applist"
         android:layout_width="wrap_content"

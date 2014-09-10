@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,7 @@ public class HeartBeat extends Service {
 
         endTimerPreferences = getApplicationContext().getSharedPreferences("endservice", Context.MODE_PRIVATE);
         timerends= endTimerPreferences.getLong("endservice", 0);
+
         //Log.e("MONOLO  ", timerends + "");
 
 
@@ -45,23 +47,13 @@ public class HeartBeat extends Service {
         allEntries = sharedPrefsapp.getAll();
         packagezList= null;
 
-
         packagezList = new ArrayList<String>();
-
-
-
 
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
             //Log.e("right key: ", entry.getKey() + "right value: " + entry.getValue().toString()  );
             packagezList.add(entry.getKey());
 
-
-
-
-
         }
-
-
 
         /*for(Object object: packagezList){
             Log.e("YO!", (String) object);
@@ -77,14 +69,33 @@ public class HeartBeat extends Service {
             ActivityManager.RunningTaskInfo ar = RunningTask.get(0);
             String activityOnTop = ar.topActivity.getPackageName();
 
-            // Log.e("activity on Top", "" + activityOnTop);
-            //   Log.e(" My package name", "" + getApplicationContext().getPackageName());
+            //check the try
 
-
+              Log.e("activity on Top", "" + activityOnTop);
+            // Log.e(" My package name", "" + getApplicationContext().getPackageName());
 
             //for (Object data : newArrayList) {
 
             if(System.currentTimeMillis() < timerends ) {
+
+
+                long second = (timerends / 1000) % 60;
+                long minute = (timerends / (1000 * 60)) % 60;
+                long hour = (timerends / (1000 * 60 * 60)) % 24;
+
+                String time = String.format("%02d:%02d:%02d", hour, minute, second);
+
+
+/*               NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                Notification myNotification = new Notification(R.drawable.ic_launcher, "Apps now locked!", System.currentTimeMillis());
+                Context context = getApplicationContext();
+                String notificationTitle = "Apps blocked!";
+                String notificationText = "Time Remaining: " + time;
+                Intent myIntent = new Intent(HeartBeat.this, HeartBeat.class);
+                PendingIntent pendingIntent = PendingIntent.getActivity(HeartBeat.this, 0,   myIntent, Intent.FILL_IN_ACTION);
+                myNotification.flags = Notification.FLAG_ONGOING_EVENT;
+                myNotification.setLatestEventInfo(context, notificationTitle, notificationText, pendingIntent);
+                notificationManager.notify(1, myNotification);*/
 
                 for (Object object : packagezList) {
 
@@ -92,6 +103,8 @@ public class HeartBeat extends Service {
                     if ((activityOnTop.contains((CharSequence) object)) &&
                             (!activityOnTop.contains(getApplicationContext().getPackageName()
                             ))) {  // you have to make this check even better
+
+                        mActivityManager.killBackgroundProcesses((String) object);
 
 
                         Intent i = new Intent(getApplicationContext(), LockScreenActivity.class);
@@ -125,6 +138,11 @@ public class HeartBeat extends Service {
         // intent);
         // We want this service to continue running until it is explicitly
         // stopped, so return sticky.
+
+
+
+
+
 
     @Override
     public void onDestroy() {

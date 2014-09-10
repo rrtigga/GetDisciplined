@@ -6,6 +6,8 @@ import android.app.AlertDialog;
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.app.admin.DevicePolicyManager;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -104,13 +106,49 @@ public class MainActivity extends ActionBarActivity {
 
     int hourint, minuteint,secondint;
 
+
+    private static final int REQUEST_CODE = 0;
+    private DevicePolicyManager mDPM;
+    private ComponentName mAdminName;
+
     public boolean onCreateOptionsMenu(Menu menu){
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main, menu);
         return true;
     }
 
-    View previousView, previousView2;
+
+    @Override
+    protected void onResume()
+    {
+        super.onResume();
+
+        try
+        {
+            // Initiate DevicePolicyManager.
+            mDPM = (DevicePolicyManager)getSystemService(Context.DEVICE_POLICY_SERVICE);
+            // Set DeviceAdminDemo Receiver for active the component with different option
+            mAdminName = new ComponentName(this, DeviceAdmin.class);
+
+            if (!mDPM.isAdminActive(mAdminName)) {
+                // try to become active
+                Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+                intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mAdminName);
+                intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "Click the Activate button to keep your selected apps locked for your set amount of time when you start the timer.\n " +
+                        "\nIt's time to GetDisciplined! ;)");
+                startActivityForResult(intent, REQUEST_CODE);
+            }
+            else
+            {
+                // Already is a device administrator, can do security operations now.
+                //mDPM.lockNow();
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+    }
+
 
 
     @Override
@@ -120,6 +158,33 @@ public class MainActivity extends ActionBarActivity {
         setTheme(R.style.Theme_Light_appalled);
 
         setContentView(R.layout.merge);
+
+
+
+        try
+        {
+            // Initiate DevicePolicyManager.
+            mDPM = (DevicePolicyManager)getSystemService(Context.DEVICE_POLICY_SERVICE);
+            // Set DeviceAdminDemo Receiver for active the component with different option
+            mAdminName = new ComponentName(this, DeviceAdmin.class);
+
+            if (!mDPM.isAdminActive(mAdminName)) {
+                // try to become active
+                Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
+                intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mAdminName);
+                intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION, "Click the Activate button to keep your selected apps locked for your set amount of time when you start the timer.\n " +
+                        "\nIt's time to GetDisciplined! ;)");
+                startActivityForResult(intent, REQUEST_CODE);
+            }
+            else
+            {
+                // Already is a device administrator, can do security operations now.
+                //mDPM.lockNow();
+            }
+        } catch (Exception e)
+        {
+            e.printStackTrace();
+        }
 
 
         // here is where the service is started.
@@ -239,12 +304,6 @@ public class MainActivity extends ActionBarActivity {
 
         Date openagain = new Date(System.currentTimeMillis());
         reopened = openagain.getTime();
-
-
-
-
-
-
 
 
         //make textview selectable
@@ -703,13 +762,7 @@ public class MainActivity extends ActionBarActivity {
             }
         }
 
-
-
-
     }
-
-
-
 
     private static final long TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     private long mBackPressed;
@@ -726,11 +779,6 @@ public class MainActivity extends ActionBarActivity {
 
         mBackPressed = System.currentTimeMillis();
     }
-
-
-
-
-
 
     // for the on click activity responses for each of the 3 buttons on the menu
     public void addListenerOnButton() {
@@ -756,16 +804,9 @@ public class MainActivity extends ActionBarActivity {
 
     private void setActionListeners() {
 
-
-
-
-
         number_text = (TextView) findViewById(R.id.hour_progress_number);
         minute_text = (TextView) findViewById(R.id.minute_progress_number);
         second_text = (TextView) findViewById(R.id.second_progress_number);
-
-
-
 
         start_timer.setOnClickListener(new View.OnClickListener() {
 
