@@ -166,9 +166,17 @@ public class ApkAdapter extends BaseAdapter {
 
 
         if(System.currentTimeMillis() < timerends ) {
+
+
             if(holder.ck1.isChecked()){
                 holder.ck1.setClickable(false);
                 holder.ck1.setEnabled(false);
+            }
+
+            else{
+                holder.ck1.setClickable(true);
+                holder.ck1.setEnabled(true);
+
             }
 
 
