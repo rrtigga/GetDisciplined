@@ -104,6 +104,8 @@ public class MainActivity extends ActionBarActivity {
     Button block_button1;
     Button start_timer;
 
+    View View2;
+
     int hourint, minuteint,secondint;
 
 
@@ -275,6 +277,9 @@ public class MainActivity extends ActionBarActivity {
 
         little_second_text2 = (TextView)findViewById(R.id.little_second_text2);
         little_second_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso-light.otf"));
+
+
+        View2= (View)findViewById(R.id.view2);
 
 
 
@@ -681,7 +686,9 @@ public class MainActivity extends ActionBarActivity {
                         long seconds = leftTimeInMilliseconds / 1000;
                         mSeekArc.setVisibility(View.INVISIBLE);
                         start_timer.setVisibility(View.INVISIBLE);
-                        block_button1.setVisibility(View.INVISIBLE);
+                        //block_button1.setVisibility(View.INVISIBLE);
+                        block_button1.setText("Add to Blacklist");
+                        View2.setVisibility(View.INVISIBLE);
 
 
                         if (leftTimeInMilliseconds < timeBlinkInMilliseconds) {
@@ -721,7 +728,11 @@ public class MainActivity extends ActionBarActivity {
                         second_text.setVisibility(View.VISIBLE);
                         mSeekArc.setVisibility(View.VISIBLE);
                         start_timer.setVisibility(View.VISIBLE);
-                        block_button1.setVisibility(View.VISIBLE);
+                        //block_button1.setVisibility(View.VISIBLE);
+                        block_button1.setText("Edit Blacklist");
+
+                        View2.setVisibility(View.VISIBLE);
+
 
 
                         number_text.setTextColor(getResources().getColor(R.color.red_highlight));
@@ -963,7 +974,9 @@ public class MainActivity extends ActionBarActivity {
                                             long seconds = leftTimeInMilliseconds / 1000;
                                             mSeekArc.setVisibility(View.INVISIBLE);
                                             start_timer.setVisibility(View.INVISIBLE);
-                                            block_button1.setVisibility(View.INVISIBLE);
+                                            //block_button1.setVisibility(View.INVISIBLE);
+                                            block_button1.setText("Add to Blacklist");
+                                            View2.setVisibility(View.INVISIBLE);
 
 
                                             if (leftTimeInMilliseconds < timeBlinkInMilliseconds) {
@@ -1003,7 +1016,12 @@ public class MainActivity extends ActionBarActivity {
                                             second_text.setVisibility(View.VISIBLE);
                                             mSeekArc.setVisibility(View.VISIBLE);
                                             start_timer.setVisibility(View.VISIBLE);
-                                            block_button1.setVisibility(View.VISIBLE);
+                                            //block_button1.setVisibility(View.VISIBLE);
+                                            block_button1.setText("Edit Blacklist");
+
+                                            View2.setVisibility(View.VISIBLE);
+
+
 
 
 
@@ -1084,7 +1102,6 @@ public class MainActivity extends ActionBarActivity {
                 packagezList = new ArrayList<String>();
 
                 for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
-                    //Log.e("right key: ", entry.getKey() + "right value: " + entry.getValue().toString()  );
                     packagezList.add(entry.getKey());
 
                 }

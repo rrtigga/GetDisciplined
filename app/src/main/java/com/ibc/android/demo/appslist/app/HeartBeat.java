@@ -8,7 +8,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +70,7 @@ public class HeartBeat extends Service {
 
             //check the try
 
-              Log.e("activity on Top", "" + activityOnTop);
+            //Log.e("activity on Top", "" + activityOnTop);
             // Log.e(" My package name", "" + getApplicationContext().getPackageName());
 
             //for (Object data : newArrayList) {

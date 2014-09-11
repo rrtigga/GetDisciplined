@@ -34,6 +34,11 @@ public class ApkAdapter extends BaseAdapter implements Filterable {
     SharedPreferences sharedPrefs;
     SharedPreferences sharedPrefsapp;
 
+    SharedPreferences endTimerPreferences;
+    long timerends;
+
+
+
     List<PackageInfo> packageList;
 
     Activity context;
@@ -114,12 +119,6 @@ public class ApkAdapter extends BaseAdapter implements Filterable {
 
 
 
-
-
-
-
-
-
         // ViewHolder holder = (ViewHolder) convertView.getTag();
         final PackageInfo packageInfo = (PackageInfo) getItem(position);
 
@@ -152,14 +151,6 @@ public class ApkAdapter extends BaseAdapter implements Filterable {
             holder.ck1.setChecked(false);
 
 
-
-
-        // CHANGE UP EVERYTHING! MAKE THIS SHIT WORK, TIGGA!
-
-
-
-
-
         checked = new HashSet();
 
         PACKAGE_NAME = packageInfo.packageName;
@@ -176,11 +167,32 @@ public class ApkAdapter extends BaseAdapter implements Filterable {
 
 
 
+        endTimerPreferences = context.getSharedPreferences("endservice", Context.MODE_PRIVATE);
+        timerends= endTimerPreferences.getLong("endservice", 0);
+
+
+        if(System.currentTimeMillis() < timerends ) {
+            if(holder.ck1.isChecked()){
+                holder.ck1.setClickable(false);
+                holder.ck1.setEnabled(false);
+            }
+
+
+
+        }
 
 
 
 
-        holder.ck1.setOnClickListener(new OnClickListener() {
+
+
+
+
+
+
+
+
+            holder.ck1.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
