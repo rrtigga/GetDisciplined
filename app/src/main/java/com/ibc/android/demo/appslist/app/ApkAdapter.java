@@ -14,22 +14,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
 import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.spicycurryman.getdisciplined10.app.R;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
 //
 
-public class ApkAdapter extends BaseAdapter implements Filterable {
-
-    //Pastebin link:  http://pastebin.com/LGRicg4U , http://pastebin.com/c4WfmhMK , http://pastebin.com/gFuuM4dY, http://pastebin.com/4Q7EP9G4
-    // http://pastebin.com/Te2g072w,  http://pastebin.com/NLT5iUiA ,
+public class ApkAdapter extends BaseAdapter {
 
     SharedPreferences sharedPrefs;
     SharedPreferences sharedPrefsapp;
@@ -181,17 +175,6 @@ public class ApkAdapter extends BaseAdapter implements Filterable {
 
         }
 
-
-
-
-
-
-
-
-
-
-
-
             holder.ck1.setOnClickListener(new OnClickListener() {
 
             @Override
@@ -248,61 +231,6 @@ public class ApkAdapter extends BaseAdapter implements Filterable {
     }
 
 
-    @Override
-    public Filter getFilter() {
-        if (mFilter == null) {
-            mFilter = new ItemsFilter();
-        }
-        return mFilter;
-    }
 
-    private class ItemsFilter extends Filter {
 
-        @Override
-        protected FilterResults performFiltering(CharSequence prefix) {
-            // TODO Auto-generated method stub
-
-            List<PackageInfo> packageList_2 = packageList;
-            String prefixString = prefix.toString().toLowerCase();
-            FilterResults results = new FilterResults();
-            ArrayList<PackageInfo> FilteredList = new ArrayList<PackageInfo>();
-
-            if (prefix == null || prefix.length() == 0) {
-                results.values = packageList_2;
-                results.count = packageList_2.size();
-                return results;
-            }
-            for (int i = 0; i < packageList_2.size(); i++) {
-                String filterText = prefix.toString().toLowerCase();
-                try {
-                    PackageInfo data = packageList_2.get(i);
-                    if (data.applicationInfo
-                            .loadLabel(context.getApplicationContext().getPackageManager())
-                            .toString().toLowerCase().contains(filterText)) {
-                        FilteredList.add(data);
-                    } else if (data.packageName.contains(filterText)) {
-                        FilteredList.add(data);
-                    }
-                } catch (Exception e) {
-                    Toast.makeText(context.getApplicationContext(),
-                            "exception e" + e.toString(),
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-            results.values = FilteredList;
-            results.count = FilteredList.size();
-            return results;
-        }
-
-        @SuppressWarnings("unchecked")
-        @Override
-        protected void publishResults(CharSequence constraint,
-                                      FilterResults results) {
-            Toast.makeText(context.getApplicationContext(),"result-0 "+results.count,
-                    Toast.LENGTH_SHORT).show();
-            packageList = (List<PackageInfo>) results.values;
-            notifyDataSetChanged();
-
-        }
-    }
 }

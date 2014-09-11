@@ -2,8 +2,6 @@ package com.spicycurryman.getdisciplined10.app;
 
 import android.app.ActionBar;
 import android.app.ProgressDialog;
-import android.app.SearchManager;
-import android.app.SearchableInfo;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
 import android.content.Context;
@@ -16,7 +14,6 @@ import android.content.pm.PackageManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.widget.SearchView;
 import android.text.Spannable;
 import android.text.SpannableString;
 import android.view.Menu;
@@ -26,7 +23,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.ibc.android.demo.appslist.app.ApkAdapter;
 
@@ -38,12 +34,11 @@ import java.util.List;
 
 
 public class InstalledAppActivity extends ActionBarActivity
-        implements OnItemClickListener, SearchView.OnQueryTextListener {
+        implements OnItemClickListener {
 
     PackageManager packageManager;
     ListView apkList;
-    private SearchView mSearchView;
-    private TextView mStatusView;
+
 
     private static final int REQUEST_CODE = 0;
     private DevicePolicyManager mDPM;
@@ -151,11 +146,7 @@ public class InstalledAppActivity extends ActionBarActivity
 
         inflater.inflate(R.menu.block, menu);
 
-        MenuItem searchItem = menu.findItem(R.id.action_search);
 
-        mSearchView = (SearchView) searchItem.getActionView();
-
-        setupSearchView(searchItem);
 
         return true;
 
@@ -187,54 +178,6 @@ public class InstalledAppActivity extends ActionBarActivity
                 return super.onOptionsItemSelected(item);
         }
         return true;
-    }
-    private void setupSearchView(MenuItem searchItem) {
-
-        if (isAlwaysExpanded()) {
-            mSearchView.setIconifiedByDefault(false);
-        } else {
-            searchItem.setShowAsActionFlags(MenuItem.SHOW_AS_ACTION_IF_ROOM
-                    | MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW);
-        }
-
-        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-        if (searchManager != null) {
-            List<SearchableInfo> searchables = searchManager.getSearchablesInGlobalSearch();
-
-            // Try to use the "applications" global search provider
-            SearchableInfo info = searchManager.getSearchableInfo(getComponentName());
-            for (SearchableInfo inf : searchables) {
-                if (inf.getSuggestAuthority() != null
-                        && inf.getSuggestAuthority().startsWith("applications")) {
-                    info = inf;
-                }
-            }
-            mSearchView.setSearchableInfo(info);
-        }
-
-        mSearchView.setOnQueryTextListener(this);
-    }
-
-
-
-    @Override
-    public boolean onQueryTextSubmit(String s) {
-        return false;
-    }
-
-    @Override
-    public boolean onQueryTextChange(String s) {
-        return false;
-    }
-
-
-    public boolean onClose() {
-        mStatusView.setText("Closed!");
-        return false;
-    }
-
-    protected boolean isAlwaysExpanded() {
-        return false;
     }
 
     /**
