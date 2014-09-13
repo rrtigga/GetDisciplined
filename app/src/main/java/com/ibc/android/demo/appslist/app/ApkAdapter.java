@@ -13,7 +13,6 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.CheckBox;
-import android.widget.Filter;
 import android.widget.TextView;
 
 import com.spicycurryman.getdisciplined10.app.R;
@@ -39,7 +38,6 @@ public class ApkAdapter extends BaseAdapter {
     PackageManager packageManager;
     boolean[] itemChecked;
     HashSet checked;
-    Filter mFilter;
 
     String PACKAGE_NAME;
 
