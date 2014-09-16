@@ -46,11 +46,13 @@
         android:textColor="@color/red_highlight"
         android:text="00"
 
-        android:textSize="75sp"
-        android:layout_marginTop="130dp"
-        android:layout_below="@+id/seekArcContainer"
-        android:layout_alignLeft="@+id/hourtext"
-        android:layout_alignStart="@+id/hourtext" />
+
+
+        android:textSize="90sp"
+        android:layout_toStartOf="@+id/little_hour_text2"
+        android:layout_marginBottom="88dp"
+        android:layout_alignBottom="@+id/seekArc"
+        android:layout_toLeftOf="@+id/little_hour_text2" />
 
 
     <TextView
@@ -60,102 +62,44 @@
         android:layout_gravity="center"
         android:textColor="@color/red_highlight"
 
+
         android:text="00"
-        android:textSize="75sp"
+        android:textSize="90sp"
+        android:layout_toStartOf="@+id/little_minute_text2"
         android:layout_alignTop="@+id/hour_progress_number"
-        android:layout_centerHorizontal="true" />
-    <TextView
-        android:id="@+id/second_progress_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:textColor="@color/red_highlight"
-
-        android:text="00"
-        android:textSize="75sp"
-        android:layout_alignTop="@+id/minute_progress_number"
-        android:layout_alignRight="@+id/secondtext"
-        android:layout_alignEnd="@+id/secondtext" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:clickable="true"
-        android:text="@string/Hours"
-        android:textSize="70sp"
-        android:textColor="@color/red_highlight"
-        android:id="@+id/hourtext"
-        android:layout_marginLeft="45dp"
-        android:layout_alignTop="@+id/minutetext"
-        android:layout_alignLeft="@+id/seekArc"
-        android:layout_alignStart="@+id/seekArc" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Minutes"
-        android:clickable="true"
-
-        android:textSize="70sp"
-        android:textColor="@color/red_highlight"
-        android:id="@+id/minutetext"
-        android:layout_below="@+id/seekArc"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/Second"
-        android:clickable="true"
-        android:textSize="70sp"
-        android:textColor="@color/red_highlight"
-        android:id="@+id/secondtext"
-        android:layout_alignTop="@+id/minutetext"
-        android:layout_alignRight="@+id/seekArc"
-        android:layout_alignEnd="@+id/seekArc"
-        android:layout_marginRight="43dp" />
+        android:layout_toLeftOf="@+id/little_minute_text2" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="H"
-        android:textSize="30sp"
+        android:textSize="24sp"
+
+
+
+        android:id="@+id/little_hour_text2"
 
         android:textColor="@color/red_highlight"
-        android:id="@+id/little_hour_text2"
+
         android:layout_toStartOf="@+id/minute_progress_number"
+        android:layout_marginRight="45dp"
         android:layout_alignBottom="@+id/hour_progress_number"
-        android:layout_toRightOf="@+id/hour_progress_number"
-        android:layout_toEndOf="@+id/hour_progress_number" />
+        android:layout_toLeftOf="@+id/minute_progress_number" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="M"
-        android:textSize="30sp"
-
-        android:textColor="@color/red_highlight"
+        android:textSize="24sp"
         android:id="@+id/little_minute_text2"
-        android:layout_toEndOf="@+id/minute_progress_number"
-        android:layout_alignBottom="@+id/second_progress_number"
-        android:layout_toRightOf="@+id/minute_progress_number" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="S"
-        android:textSize="30sp"
-
         android:textColor="@color/red_highlight"
-        android:id="@+id/little_second_text2"
-        android:layout_toEndOf="@+id/second_progress_number"
-        android:layout_alignBottom="@+id/second_progress_number"
-        android:layout_toRightOf="@+id/second_progress_number" />
+
+        android:layout_marginRight="36dp"
+        android:layout_alignRight="@+id/seekArc"
+        android:layout_alignEnd="@+id/seekArc"
+        android:layout_alignBottom="@+id/minute_progress_number" />
 
 
 </RelativeLayout>
-

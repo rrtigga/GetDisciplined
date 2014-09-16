@@ -1,98 +1,32 @@
-<?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:id="@+id/layout"
-              android:orientation="vertical"
-              android:layout_width="fill_parent"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
 
 
-    android:layout_height="fill_parent">
-
-
-
-
-    <Button
-    android:id="@+id/block_button"
-    style="?android:attr/borderlessButtonStyle"
-    android:layout_width="180dp"
-    android:layout_height="55dp"
-    android:layout_weight="1"
-    android:drawableLeft="@drawable/ic_action"
-    android:gravity="center_horizontal|center_vertical"
-    android:text="@string/blacklist"
-    android:textColor="@color/dark_red"
-
-        android:textSize="25sp"
-        android:background="@drawable/button_highlight"
-
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="#ffff3a35"
-        android:id="@+id/view2"
-        android:layout_above="@+id/start_button"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
+    <com.spicycurryman.getdisciplined10.app.CircleButton
         android:id="@+id/start_button"
-        style="?android:attr/borderlessButtonStyle"
-        android:layout_width="180dp"
-        android:layout_height="55dp"
-        android:layout_gravity="right"
-        android:layout_weight="1"
-        android:drawableLeft="@drawable/ic_timer"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="@string/start_apps"
-        android:textColor="@color/dark_red"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dip"
+        android:src="@drawable/stopwatch6"
+        app:cb_color="#ffff4c4f"
 
-        android:background="@drawable/button_highlight"
-        android:textSize="25sp"
-        android:layout_above="@+id/block_button"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        app:cb_pressed_ring_width="16dip"
+        android:layout_gravity="right|bottom" />
 
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="#ffff3a35"
-        android:id="@+id/view"
-        android:layout_below="@+id/start_button"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-
-
-
-    <!--   <Button
-           android:id="@+id/security_settings_button"
-           android:layout_width="match_parent"
-           android:layout_height="0dp"
-           style="?android:attr/borderlessButtonStyle"
-           android:layout_weight="1.10"
-           android:drawableLeft="@drawable/ic_settings"
-           android:gravity="center_horizontal|center_vertical"
-           android:text="@string/security_settings"
-           android:textSize="22sp"/>-->
-
-  <!--  <Button
-        android:id="@+id/blacklist_whitelist_button"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        style="?android:attr/borderlessButtonStyle"
-        android:drawableLeft="@drawable/ic_blacklist_red"
-        android:gravity="center_horizontal|center_vertical"
-        android:text="@string/blacklist_whitelist"
-        android:textSize="22sp"
-        android:layout_weight="1.10"
-        />-->
-
-    </RelativeLayout>
+    <com.spicycurryman.getdisciplined10.app.CircleButton
+        android:id="@+id/block_button"
+        android:layout_width="170dp"
+        android:layout_height="170dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="8dip"
+        android:src="@drawable/lock27"
+        app:cb_color="#FF4444"
+        app:cb_pressed_ring_width="16dip"
+        android:layout_gravity="left|bottom" />
+</FrameLayout>

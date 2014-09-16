@@ -24,7 +24,6 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.SeekBar;
@@ -51,25 +50,18 @@ public class MainActivity extends ActionBarActivity {
     private CheckBox mClockwise;
     private TextView mSeekArcProgress;
     private TextView mSeekArcMinuteProgress;
-    private TextView mSeekArcSecondProgress;
 
-    private Button block_button_text;
-    private Button start_timer_text;
+
 
     //will show the time
     private TextView number_text;
 
     private TextView minute_text;
-    private TextView second_text;
-
-
-    private TextView little_hour_text;
-    private TextView little_minute_text;
-    private TextView little_second_text;
 
     private TextView little_hour_text2;
     private TextView little_minute_text2;
-    private TextView little_second_text2;
+
+
 
     CountDownTimer countDownTimer;          // built in android class CountDownTimer
     long totalTimeCountInMilliseconds;
@@ -101,12 +93,11 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-    Button block_button1;
-    Button start_timer;
+    CircleButton block_button1;
+    CircleButton start_timer;
 
-    View View2;
 
-    int hourint, minuteint,secondint;
+    int hourint, minuteint;
 
 
     private static final int REQUEST_CODE = 0;
@@ -214,10 +205,9 @@ public class MainActivity extends ActionBarActivity {
 
         //set views
 
-        start_timer = (Button) findViewById(R.id.start_button);
+        start_timer = (CircleButton) findViewById(R.id.start_button);
         number_text = (TextView) findViewById(R.id.hour_progress_number);
         minute_text = (TextView) findViewById(R.id.minute_progress_number);
-        second_text = (TextView) findViewById(R.id.second_progress_number);
 
 
         //getReferenceOfViews ();                         // get all views
@@ -245,11 +235,7 @@ public class MainActivity extends ActionBarActivity {
 
         //Editing Button Text
 
-        block_button_text = (Button)findViewById(R.id.block_button);
-        block_button_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso-bold.otf"));
 
-        start_timer_text = (Button)findViewById(R.id.start_button);
-        start_timer_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso-bold.otf"));
 
         number_text = (TextView)findViewById(R.id.hour_progress_number);
         number_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso.otf"));
@@ -257,29 +243,19 @@ public class MainActivity extends ActionBarActivity {
         minute_text = (TextView)findViewById(R.id.minute_progress_number);
         minute_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso.otf"));
 
-        second_text = (TextView)findViewById(R.id.second_progress_number);
-        second_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso.otf"));
-
-        little_hour_text = (TextView)findViewById(R.id.hourtext);
-        little_hour_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso.otf"));
-
-        little_minute_text = (TextView)findViewById(R.id.minutetext);
-        little_minute_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso.otf"));
-
-        little_second_text = (TextView)findViewById(R.id.secondtext);
-        little_second_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso.otf"));
 
         little_hour_text2 = (TextView)findViewById(R.id.little_hour_text2);
-        little_hour_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso-light.otf"));
+        little_hour_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso.otf"));
 
         little_minute_text2 = (TextView)findViewById(R.id.little_minute_text2);
-        little_minute_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso-light.otf"));
-
-        little_second_text2 = (TextView)findViewById(R.id.little_second_text2);
-        little_second_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso-light.otf"));
+        little_minute_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso.otf"));
 
 
-        View2= (View)findViewById(R.id.view2);
+
+
+
+
+
 
 
 
@@ -292,7 +268,6 @@ public class MainActivity extends ActionBarActivity {
 
         mSeekArcMinuteProgress = (TextView) findViewById(R.id.minute_progress_number);
 
-        mSeekArcSecondProgress = (TextView) findViewById(R.id.second_progress_number);
 
         startimerPreferences = getPreferences(MODE_APPEND);
 
@@ -317,20 +292,19 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View v) {
 
-                if((v.getId() == R.id.hourtext)  || (v.getId() == R.id.hour_progress_number)){
-                  number_text.setTextColor(getResources().getColor(R.color.black));
-                  little_hour_text2.setTextColor(getResources().getColor(R.color.black));
-                    little_hour_text.setTextColor(getResources().getColor(R.color.black));
+                if((v.getId() == R.id.hour_progress_number)){
+                    number_text.setTextColor(getResources().getColor(R.color.black));
+                    little_hour_text2.setTextColor(getResources().getColor(R.color.black));
+
+
+
 
 
                     minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
                     little_minute_text2.setTextColor(getResources().getColor(R.color.red_highlight));
-                    little_minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
 
 
-                    second_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                    little_second_text2.setTextColor(getResources().getColor(R.color.red_highlight));
-                    little_second_text.setTextColor(getResources().getColor(R.color.red_highlight));
+
 
 
 
@@ -343,8 +317,6 @@ public class MainActivity extends ActionBarActivity {
                         @Override
                         public void onStartTrackingTouch(SeekArc seekArc) {
                             number_text.setTextColor(getResources().getColor(R.color.black));
-                            little_hour_text2.setTextColor(getResources().getColor(R.color.black));
-                            little_hour_text.setTextColor(getResources().getColor(R.color.black));
                         }
 
 
@@ -372,22 +344,19 @@ public class MainActivity extends ActionBarActivity {
                             }
                         }
                     });
-                } else if((v.getId() == R.id.minutetext)  || (v.getId() == R.id.minute_progress_number)){
+                } else if((v.getId() == R.id.minute_progress_number)){
 
                     minute_text.setTextColor(getResources().getColor(R.color.black));
                     little_minute_text2.setTextColor(getResources().getColor(R.color.black));
-                    little_minute_text.setTextColor(getResources().getColor(R.color.black));
+
 
 
                     number_text.setTextColor(getResources().getColor(R.color.red_highlight));
                     little_hour_text2.setTextColor(getResources().getColor(R.color.red_highlight));
-                    little_hour_text.setTextColor(getResources().getColor(R.color.red_highlight));
 
 
 
-                    second_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                    little_second_text2.setTextColor(getResources().getColor(R.color.red_highlight));
-                    little_second_text.setTextColor(getResources().getColor(R.color.red_highlight));
+
 
                     //corresponding button logic should below here
 
@@ -400,8 +369,6 @@ public class MainActivity extends ActionBarActivity {
                         @Override
                         public void onStartTrackingTouch(SeekArc seekArc) {
                             minute_text.setTextColor(getResources().getColor(R.color.black));
-                            little_minute_text2.setTextColor(getResources().getColor(R.color.black));
-                            little_minute_text.setTextColor(getResources().getColor(R.color.black));
                         }
 
 
@@ -433,88 +400,16 @@ public class MainActivity extends ActionBarActivity {
 
                         }
                     });
-                } else if ((v.getId() == R.id.secondtext) ||( v.getId() == R.id.second_progress_number)) {
-
-                    second_text.setTextColor(getResources().getColor(R.color.black));
-                    little_second_text2.setTextColor(getResources().getColor(R.color.black));
-                    little_second_text.setTextColor(getResources().getColor(R.color.black));
-
-                    minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                    little_minute_text2.setTextColor(getResources().getColor(R.color.red_highlight));
-                    little_minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
-
-
-                    number_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                    little_hour_text2.setTextColor(getResources().getColor(R.color.red_highlight));
-                    little_hour_text.setTextColor(getResources().getColor(R.color.red_highlight));
-
-                    //corresponding button logic should below here
-                    mSeekArc.setOnSeekArcChangeListener(new SeekArc.OnSeekArcChangeListener() {
-
-                        @Override
-                        public void onStopTrackingTouch(SeekArc seekArc) {
-                        }
-                        @Override
-                        public void onStartTrackingTouch(SeekArc seekArc) {
-                            second_text.setTextColor(getResources().getColor(R.color.black));
-                            little_second_text2.setTextColor(getResources().getColor(R.color.black));
-                            little_second_text.setTextColor(getResources().getColor(R.color.black));
-                        }
-
-
-                        //This sets the actual string for the seconds
-                        @Override
-                        public void onProgressChanged(SeekArc seekArc, int progress,
-                                                      boolean fromUser) {
-
-
-                           /* hourint = Integer.valueOf(number_text.getText().toString());
-
-                            minuteint = Integer.valueOf(minute_text.getText().toString());
-
-                            secondint = Integer.valueOf(second_text.getText().toString());*/
-
-
-
-                            // so ur setting it to HALF of what "progress" is = to
-
-                            int progress_count = 0;
-
-                            for (int i=0;i<60;i++)
-                            {
-
-
-                                if (progress ==120) {
-                                    mSeekArcSecondProgress.setText("00");
-                                    //mSeekArcMinuteProgress.setText(String.valueOf(String.format("%02d",(minuteint+1)) ));
-
-
-                                }
-                                else if (progress == progress_count)
-                                {
-                                    mSeekArcSecondProgress.setText(String.valueOf(String.format("%02d",i)));
-                                }
-
-                                progress_count = progress_count + 2;
-
-
-                            }
-
-                        }
-                    });
                 }
 
             }
         };
-        findViewById(R.id.hourtext).setOnClickListener(clickListener);
-        findViewById(R.id.minutetext).setOnClickListener(clickListener);
-        findViewById(R.id.secondtext).setOnClickListener(clickListener);
+
         findViewById(R.id.hour_progress_number).setOnClickListener(clickListener);
         findViewById(R.id.minute_progress_number).setOnClickListener(clickListener);
-        findViewById(R.id.second_progress_number).setOnClickListener(clickListener);
 
 
-        findViewById(R.id.minutetext).performClick();
+        findViewById(R.id.minute_progress_number).performClick();
 
 
 
@@ -650,30 +545,22 @@ public class MainActivity extends ActionBarActivity {
                 number_text.setTextColor(getResources().getColor(R.color.red_highlight));
                 little_hour_text2.setTextColor(getResources().getColor(R.color.red_highlight));
 
+
                 minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
                 little_minute_text2.setTextColor(getResources().getColor(R.color.red_highlight));
 
-                second_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                little_second_text2.setTextColor(getResources().getColor(R.color.red_highlight));
 
-                little_hour_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                little_minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                little_second_text.setTextColor(getResources().getColor(R.color.red_highlight));
+
+
 
                 // yo
 
                 number_text.setClickable(false);
-                little_hour_text2.setClickable(false);
 
                 minute_text.setClickable(false);
-                little_minute_text2.setClickable(false);
 
-                second_text.setClickable(false);
-                little_second_text2.setClickable(false);
 
-                little_hour_text.setClickable(false);
-                little_minute_text.setClickable(false);
-                little_second_text.setClickable(false);
+
 
 
 
@@ -687,8 +574,6 @@ public class MainActivity extends ActionBarActivity {
                         mSeekArc.setVisibility(View.INVISIBLE);
                         start_timer.setVisibility(View.INVISIBLE);
                         //block_button1.setVisibility(View.INVISIBLE);
-                        block_button1.setText("Add to Blacklist");
-                        View2.setVisibility(View.INVISIBLE);
 
 
                         if (leftTimeInMilliseconds < timeBlinkInMilliseconds) {
@@ -698,14 +583,12 @@ public class MainActivity extends ActionBarActivity {
                             if (blink) {
                                 number_text.setVisibility(View.VISIBLE);
                                 minute_text.setVisibility(View.VISIBLE);
-                                second_text.setVisibility(View.VISIBLE);
 
 
                                 // if blink is true, textview will be visible
                             } else {
                                 number_text.setVisibility(View.INVISIBLE);
                                 minute_text.setVisibility(View.INVISIBLE);
-                                second_text.setVisibility(View.INVISIBLE);
 
 
                             }
@@ -713,7 +596,6 @@ public class MainActivity extends ActionBarActivity {
                             blink = !blink;         // toggle the value of blink
                         }
 
-                        second_text.setText(String.format("%02d", seconds % 60));
                         minute_text.setText(String.format("%02d", (seconds / 60) % 60));
                         number_text.setText(String.format("%02d", seconds / 3600));                     // format the textview to show the easily readable format
                     }
@@ -725,43 +607,34 @@ public class MainActivity extends ActionBarActivity {
                         //textViewShowTime.setText("Time up!");
                         number_text.setVisibility(View.VISIBLE);
                         minute_text.setVisibility(View.VISIBLE);
-                        second_text.setVisibility(View.VISIBLE);
                         mSeekArc.setVisibility(View.VISIBLE);
                         start_timer.setVisibility(View.VISIBLE);
                         //block_button1.setVisibility(View.VISIBLE);
-                        block_button1.setText("Edit Blacklist");
 
-                        View2.setVisibility(View.VISIBLE);
 
 
 
                         number_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                        little_hour_text2.setTextColor(getResources().getColor(R.color.red_highlight));
 
                         minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
+
+                        little_hour_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+
                         little_minute_text2.setTextColor(getResources().getColor(R.color.red_highlight));
 
-                        second_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                        little_second_text2.setTextColor(getResources().getColor(R.color.red_highlight));
 
-                        little_hour_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                        little_minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                        little_second_text.setTextColor(getResources().getColor(R.color.red_highlight));
+
+
+
 
 
 
                         number_text.setClickable(true);
-                        little_hour_text2.setClickable(true);
 
                         minute_text.setClickable(true);
-                        little_minute_text2.setClickable(true);
 
-                        second_text.setClickable(true);
-                        little_second_text2.setClickable(true);
 
-                        little_hour_text.setClickable(true);
-                        little_minute_text.setClickable(true);
-                        little_second_text.setClickable(true);
+
 
 
                     }
@@ -774,6 +647,10 @@ public class MainActivity extends ActionBarActivity {
         }
 
     }
+
+
+
+
 
     private static final long TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     private long mBackPressed;
@@ -796,7 +673,7 @@ public class MainActivity extends ActionBarActivity {
 
         final Context context = this;
 
-        block_button1 = (Button) findViewById(R.id.block_button);
+        block_button1 = (CircleButton) findViewById(R.id.block_button);
 
         block_button1.setOnClickListener(new OnClickListener() {
 
@@ -817,7 +694,6 @@ public class MainActivity extends ActionBarActivity {
 
         number_text = (TextView) findViewById(R.id.hour_progress_number);
         minute_text = (TextView) findViewById(R.id.minute_progress_number);
-        second_text = (TextView) findViewById(R.id.second_progress_number);
 
         start_timer.setOnClickListener(new View.OnClickListener() {
 
@@ -834,14 +710,14 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-                  AlertDialog.Builder zeroerror = new AlertDialog.Builder(MainActivity.this)
-                            .setMessage("Dude, you didn't set a time! :P")
-                            .setNegativeButton("Whoops! My bad!", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Log.d("AlertDialog", "Negative");
-                                    dialog.cancel();
-                                }
-                            });
+                AlertDialog.Builder zeroerror = new AlertDialog.Builder(MainActivity.this)
+                        .setMessage("Dude, you didn't set a time! :P")
+                        .setNegativeButton("Whoops! My bad!", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                Log.d("AlertDialog", "Negative");
+                                dialog.cancel();
+                            }
+                        });
 
 
                 AlertDialog alertzero = zeroerror.create();
@@ -867,221 +743,198 @@ public class MainActivity extends ActionBarActivity {
                 AlertDialog.Builder timeset = new AlertDialog.Builder(MainActivity.this)
 
 
-                .setMessage("Are you sure you want to block the selected apps for the set amount of time?")
-                .setPositiveButton("Yeah man!", new DialogInterface.OnClickListener() {
+                        .setMessage("Are you sure you want to block the selected apps for the set amount of time?")
+                        .setPositiveButton("Yeah man!", new DialogInterface.OnClickListener() {
 
 
 
-                                public void onClick(DialogInterface dialog, int which) {
+                            public void onClick(DialogInterface dialog, int which) {
 
-                                    number_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                                    little_hour_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+                                number_text.setTextColor(getResources().getColor(R.color.red_highlight));
 
-                                    minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                                    little_minute_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+                                minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
 
-                                    second_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                                    little_second_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+                                little_hour_text2.setTextColor(getResources().getColor(R.color.red_highlight));
 
-                                    little_hour_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                                    little_minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                                    little_second_text.setTextColor(getResources().getColor(R.color.red_highlight));
-
-                                    // yo
-
-                                    number_text.setClickable(false);
-                                    little_hour_text2.setClickable(false);
-
-                                    minute_text.setClickable(false);
-                                    little_minute_text2.setClickable(false);
-
-                                    second_text.setClickable(false);
-                                    little_second_text2.setClickable(false);
-
-                                    little_hour_text.setClickable(false);
-                                    little_minute_text.setClickable(false);
-                                    little_second_text.setClickable(false);
+                                little_minute_text2.setTextColor(getResources().getColor(R.color.red_highlight));
 
 
 
-                                    Log.d("AlertDialog", "Positive");
-
-                                    hourint = Integer.valueOf(number_text.getText().toString());
-
-                                    minuteint = Integer.valueOf(minute_text.getText().toString());
-
-                                    secondint = Integer.valueOf(second_text.getText().toString());
-
-                                    Log.i("YourActivity", "Hours: " + hourint);
-
-                                    Log.i("YourActivity", "Minutes: " + minuteint);
-
-                                    Log.i("YourActivity", "Seconds: " + secondint);
 
 
-                                    //Make sure it stays alive no matter what until stopservice is called when the timer runs out
+
+                                // yo
+
+                                number_text.setClickable(false);
+
+                                minute_text.setClickable(false);
 
 
-                                    //Intent intent = new Intent(getApplicationContext(), HeartBeat.class);
-                                    //startService(intent);
-
-                                    Date currenttime = new Date(System.currentTimeMillis());
-
-                                    timerstarted = currenttime.getTime();
-                                    Log.e("This is the current time:  ", timerstarted + "");
-                                    startimerPreferences = getPreferences(MODE_APPEND);
-                                    SharedPreferences.Editor starteditor = startimerPreferences.edit();
-                                    starteditor.putLong("time", timerstarted);
-                                    starteditor.apply();
 
 
-                                    Date endtime = new Date(System.currentTimeMillis());
-
-                                    //timerends = endtime.getTime() + (((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000);
-
-                                    if ((((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000) > 0) {
-                                        timerends = endtime.getTime() + (((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000);
 
 
-                                    } else {
-                                        timerends = 0;
+                                Log.d("AlertDialog", "Positive");
+
+                                hourint = Integer.valueOf(number_text.getText().toString());
+
+                                minuteint = Integer.valueOf(minute_text.getText().toString());
+
+
+                                Log.i("YourActivity", "Hours: " + hourint);
+
+                                Log.i("YourActivity", "Minutes: " + minuteint);
+
+
+                                //Make sure it stays alive no matter what until stopservice is called when the timer runs out
+
+
+                                //Intent intent = new Intent(getApplicationContext(), HeartBeat.class);
+                                //startService(intent);
+
+                                Date currenttime = new Date(System.currentTimeMillis());
+
+                                timerstarted = currenttime.getTime();
+                                Log.e("This is the current time:  ", timerstarted + "");
+                                startimerPreferences = getPreferences(MODE_APPEND);
+                                SharedPreferences.Editor starteditor = startimerPreferences.edit();
+                                starteditor.putLong("time", timerstarted);
+                                starteditor.apply();
+
+
+                                Date endtime = new Date(System.currentTimeMillis());
+
+                                //timerends = endtime.getTime() + (((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000);
+
+                                if ((((hourint * 60 * 60) + (minuteint * 60)  ) * 1000) > 0) {
+                                    timerends = endtime.getTime() + (((hourint * 60 * 60) + (minuteint * 60) ) * 1000);
+
+
+                                } else {
+                                    timerends = 0;
+                                }
+
+
+                                Log.e("This is the end time:  ", timerends + "");
+                                endTimerPreferences = getPreferences(MODE_APPEND);
+                                SharedPreferences.Editor endeditor = endTimerPreferences.edit();
+                                endeditor.putLong("endtime", timerends);
+                                endeditor.apply();
+
+                                endservice = getApplicationContext().getSharedPreferences("endservice", Context.MODE_PRIVATE);
+                                SharedPreferences.Editor serviceeditor = endservice.edit();
+                                serviceeditor.putLong("endservice", timerstarted + (((hourint * 60 * 60) + (minuteint * 60) ) * 1000));
+                                Log.e("Check out this time:  ", timerends + "");
+
+                                serviceeditor.apply();
+
+
+                                totalTimeCountInMilliseconds = (((hourint * 60 * 60) + (minuteint * 60) ) * 1000);      // time count
+                                timeBlinkInMilliseconds = 30 * 1000;
+
+                                countDownTimer = new CountDownTimer(totalTimeCountInMilliseconds, 500) {
+                                    // 500 means, onTick function will be called at every 500 milliseconds
+
+                                    @Override
+                                    public void onTick(long leftTimeInMilliseconds) {
+
+                                        long seconds = leftTimeInMilliseconds / 1000;
+                                        mSeekArc.setVisibility(View.INVISIBLE);
+                                        start_timer.setVisibility(View.INVISIBLE);
+                                        //block_button1.setVisibility(View.INVISIBLE);
+
+
+                                        if (leftTimeInMilliseconds < timeBlinkInMilliseconds) {
+                                            // textViewShowTime.setTextAppearance(getApplicationContext(), R.style.blinkText);
+                                            // change the style of the textview .. giving a red alert style
+
+                                            if (blink) {
+                                                number_text.setVisibility(View.VISIBLE);
+                                                minute_text.setVisibility(View.VISIBLE);
+
+
+                                                // if blink is true, textview will be visible
+                                            } else {
+                                                number_text.setVisibility(View.INVISIBLE);
+                                                minute_text.setVisibility(View.INVISIBLE);
+
+
+                                            }
+
+                                            blink = !blink;         // toggle the value of blink
+                                        }
+
+                                        minute_text.setText(String.format("%02d", (seconds / 60) % 60));
+                                        number_text.setText(String.format("%02d", seconds / 3600));                     // format the textview to show the easily readable format
                                     }
 
 
-                                    Log.e("This is the end time:  ", timerends + "");
-                                    endTimerPreferences = getPreferences(MODE_APPEND);
-                                    SharedPreferences.Editor endeditor = endTimerPreferences.edit();
-                                    endeditor.putLong("endtime", timerends);
-                                    endeditor.apply();
-
-                                    endservice = getApplicationContext().getSharedPreferences("endservice", Context.MODE_PRIVATE);
-                                    SharedPreferences.Editor serviceeditor = endservice.edit();
-                                    serviceeditor.putLong("endservice", timerstarted + (((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000));
-                                    Log.e("Check out this time:  ", timerends + "");
-
-                                    serviceeditor.apply();
-
-
-                                    totalTimeCountInMilliseconds = (((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000);      // time count
-                                    timeBlinkInMilliseconds = 30 * 1000;
-
-                                    countDownTimer = new CountDownTimer(totalTimeCountInMilliseconds, 500) {
-                                        // 500 means, onTick function will be called at every 500 milliseconds
-
-                                        @Override
-                                        public void onTick(long leftTimeInMilliseconds) {
-
-                                            long seconds = leftTimeInMilliseconds / 1000;
-                                            mSeekArc.setVisibility(View.INVISIBLE);
-                                            start_timer.setVisibility(View.INVISIBLE);
-                                            //block_button1.setVisibility(View.INVISIBLE);
-                                            block_button1.setText("Add to Blacklist");
-                                            View2.setVisibility(View.INVISIBLE);
-
-
-                                            if (leftTimeInMilliseconds < timeBlinkInMilliseconds) {
-                                                // textViewShowTime.setTextAppearance(getApplicationContext(), R.style.blinkText);
-                                                // change the style of the textview .. giving a red alert style
-
-                                                if (blink) {
-                                                    number_text.setVisibility(View.VISIBLE);
-                                                    minute_text.setVisibility(View.VISIBLE);
-                                                    second_text.setVisibility(View.VISIBLE);
-
-
-                                                    // if blink is true, textview will be visible
-                                                } else {
-                                                    number_text.setVisibility(View.INVISIBLE);
-                                                    minute_text.setVisibility(View.INVISIBLE);
-                                                    second_text.setVisibility(View.INVISIBLE);
-
-
-                                                }
-
-                                                blink = !blink;         // toggle the value of blink
-                                            }
-
-                                            second_text.setText(String.format("%02d", seconds % 60));
-                                            minute_text.setText(String.format("%02d", (seconds / 60) % 60));
-                                            number_text.setText(String.format("%02d", seconds / 3600));                     // format the textview to show the easily readable format
-                                        }
-
-
-                                        @Override
-                                        public void onFinish() {
-                                            // this function will be called when the timecount is finished
-                                            //textViewShowTime.setText("Time up!");
-                                            number_text.setVisibility(View.VISIBLE);
-                                            minute_text.setVisibility(View.VISIBLE);
-                                            second_text.setVisibility(View.VISIBLE);
-                                            mSeekArc.setVisibility(View.VISIBLE);
-                                            start_timer.setVisibility(View.VISIBLE);
-                                            //block_button1.setVisibility(View.VISIBLE);
-                                            block_button1.setText("Edit Blacklist");
-
-                                            View2.setVisibility(View.VISIBLE);
+                                    @Override
+                                    public void onFinish() {
+                                        // this function will be called when the timecount is finished
+                                        //textViewShowTime.setText("Time up!");
+                                        number_text.setVisibility(View.VISIBLE);
+                                        minute_text.setVisibility(View.VISIBLE);
+                                        mSeekArc.setVisibility(View.VISIBLE);
+                                        start_timer.setVisibility(View.VISIBLE);
+                                        //block_button1.setVisibility(View.VISIBLE);
 
 
 
 
 
-                                            number_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                                            little_hour_text2.setTextColor(getResources().getColor(R.color.red_highlight));
 
-                                            minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                                            little_minute_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+                                        number_text.setTextColor(getResources().getColor(R.color.red_highlight));
 
-                                            second_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                                            little_second_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+                                        minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
 
-                                            little_hour_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                                            little_minute_text.setTextColor(getResources().getColor(R.color.red_highlight));
-                                            little_second_text.setTextColor(getResources().getColor(R.color.red_highlight));
+                                        little_hour_text2.setTextColor(getResources().getColor(R.color.red_highlight));
+
+                                        little_minute_text2.setTextColor(getResources().getColor(R.color.red_highlight));
 
 
-                                            number_text.setClickable(true);
-                                            little_hour_text2.setClickable(true);
-
-                                            minute_text.setClickable(true);
-                                            little_minute_text2.setClickable(true);
-
-                                            second_text.setClickable(true);
-                                            little_second_text2.setClickable(true);
-
-                                            little_hour_text.setClickable(true);
-                                            little_minute_text.setClickable(true);
-                                            little_second_text.setClickable(true);
 
 
-                                            //Make sure it stops for good.
-
-                                            //Intent intent = new Intent(getApplicationContext(), HeartBeat.class);
-                                            //stopService(intent);
 
 
-                                            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                                            Notification myNotification = new Notification(R.drawable.ic_launcher, "Time's up!", System.currentTimeMillis());
-                                            Context context = getApplicationContext();
-                                            String notificationTitle = "Apps are now unlocked!";
-                                            String notificationText = "Great job being productive! ;)";
-                                            Intent myIntent = new Intent(MainActivity.this, MainActivity.class);
-                                            PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, 0,   myIntent, Intent.FILL_IN_ACTION);
-                                            myNotification.flags |= Notification.FLAG_AUTO_CANCEL;
-                                            myNotification.setLatestEventInfo(context, notificationTitle, notificationText, pendingIntent);
-                                            notificationManager.notify(1, myNotification);
+
+                                        number_text.setClickable(true);
+
+                                        minute_text.setClickable(true);
 
 
-                                        }
 
-                                    }.start();
-                                }
-                            });
+
+
+                                        //Make sure it stops for good.
+
+                                        //Intent intent = new Intent(getApplicationContext(), HeartBeat.class);
+                                        //stopService(intent);
+
+
+                                        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                                        Notification myNotification = new Notification(R.drawable.ic_launcher, "Time's up!", System.currentTimeMillis());
+                                        Context context = getApplicationContext();
+                                        String notificationTitle = "Apps are now unlocked!";
+                                        String notificationText = "Great job being productive! ;)";
+                                        Intent myIntent = new Intent(MainActivity.this, MainActivity.class);
+                                        PendingIntent pendingIntent = PendingIntent.getActivity(MainActivity.this, 0,   myIntent, Intent.FILL_IN_ACTION);
+                                        myNotification.flags |= Notification.FLAG_AUTO_CANCEL;
+                                        myNotification.setLatestEventInfo(context, notificationTitle, notificationText, pendingIntent);
+                                        notificationManager.notify(1, myNotification);
+
+
+                                    }
+
+                                }.start();
+                            }
+                        });
                 timeset.setNegativeButton("Nope!", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int which) {
-                                    Log.d("AlertDialog", "Negative");
-                                    dialog.cancel();
-                                }
-                            });
+                    public void onClick(DialogInterface dialog, int which) {
+                        Log.d("AlertDialog", "Negative");
+                        dialog.cancel();
+                    }
+                });
 
 
                 AlertDialog timerright = timeset.create();
@@ -1090,7 +943,6 @@ public class MainActivity extends ActionBarActivity {
 
                 minuteint = Integer.valueOf(minute_text.getText().toString());
 
-                secondint = Integer.valueOf(second_text.getText().toString());
 
 
 
@@ -1108,7 +960,7 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-                if((((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000) == 0)
+                if((((hourint * 60 * 60) + (minuteint * 60)  ) * 1000) == 0)
                 {
                     alertzero.show();
                 }
@@ -1124,8 +976,8 @@ public class MainActivity extends ActionBarActivity {
                     timerright.show();
                 }
 
-                    // textViewShowTime.setTextAppearance(getApplicationContext(), R.style.normalText);
-                }
+                // textViewShowTime.setTextAppearance(getApplicationContext(), R.style.normalText);
+            }
 
 
         });
