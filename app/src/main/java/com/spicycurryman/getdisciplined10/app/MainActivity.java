@@ -238,17 +238,17 @@ public class MainActivity extends ActionBarActivity {
 
 
         number_text = (TextView)findViewById(R.id.hour_progress_number);
-        number_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso.otf"));
+        number_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-thin.ttf"));
 
         minute_text = (TextView)findViewById(R.id.minute_progress_number);
-        minute_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso.otf"));
+        minute_text.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-thin.ttf"));
 
 
         little_hour_text2 = (TextView)findViewById(R.id.little_hour_text2);
-        little_hour_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso.otf"));
+        little_hour_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-thin.ttf"));
 
         little_minute_text2 = (TextView)findViewById(R.id.little_minute_text2);
-        little_minute_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/miso.otf"));
+        little_minute_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-thin.ttf"));
 
 
 
@@ -737,13 +737,16 @@ public class MainActivity extends ActionBarActivity {
 
 
 
+                hourint = Integer.valueOf(number_text.getText().toString());
+
+                minuteint = Integer.valueOf(minute_text.getText().toString());
 
 
 
                 AlertDialog.Builder timeset = new AlertDialog.Builder(MainActivity.this)
 
 
-                        .setMessage("Are you sure you want to block the selected apps for the set amount of time?")
+                        .setMessage("Are you sure you want to block the selected apps for "+ hourint +" hour(s) and "+ minuteint + " minutes?!")
                         .setPositiveButton("Yeah man!", new DialogInterface.OnClickListener() {
 
 
