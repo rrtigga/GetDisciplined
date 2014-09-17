@@ -93,7 +93,7 @@ public class ApkAdapter extends BaseAdapter {
 
             holder.apkName = (TextView) convertView
                     .findViewById(R.id.appname);
-            holder.apkName.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/miso.otf"));
+            holder.apkName.setTypeface(Typeface.createFromAsset(context.getAssets(), "fonts/miso-bold.otf"));
 
             holder.ck1= (CheckBox)convertView
                     .findViewById(R.id.checkBox1);
