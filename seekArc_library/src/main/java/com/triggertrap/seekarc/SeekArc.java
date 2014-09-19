@@ -85,12 +85,12 @@ public class SeekArc extends View {
 	/**
 	 * The width of the progress line for this SeekArc
 	 */
-	private int mProgressWidth = 12;
+	private int mProgressWidth = 10;
 	
 	/**
 	 * The Width of the background arc for the SeekArc 
 	 */
-	private int mArcWidth = 36;
+	private int mArcWidth = 24;
 	
 	/**
 	 * The Angle to start drawing this Arc from

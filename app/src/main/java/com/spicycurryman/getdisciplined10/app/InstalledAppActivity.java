@@ -276,11 +276,6 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
             }
 
-
-
-
-
-
             //sort by application name
 
             final PackageItemInfo.DisplayNameComparator comparator = new PackageItemInfo.DisplayNameComparator(packageManager);
@@ -314,6 +309,8 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
 
             apkList.setAdapter(new ApkAdapter(InstalledAppActivity.this, packageList1, packageManager));
 
+
+
             try {
                 if ((this.pDialog != null) && this.pDialog.isShowing()) {
                     this.pDialog.dismiss();
@@ -325,6 +322,8 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
             } finally {
                 this.pDialog = null;
             }
+
+
 
 
             super.onPostExecute(result);
