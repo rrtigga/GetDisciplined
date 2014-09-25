@@ -20,9 +20,15 @@
 
 
     <string name="Likeus">Like us</string>
-    <string name="Feedback">Feedback</string>
+    <string name="Feedback">Contact us</string>
     <string name="FAQ">FAQ</string>
     <string name="About">About</string>
+    <string name="Follow">Follow us</string>
+
+
+
+    <string name="Share">Share us</string>
+
 
 
 

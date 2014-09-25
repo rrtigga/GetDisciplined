@@ -54,6 +54,8 @@
         android:layout_alignBottom="@+id/seekArc"
         android:layout_toLeftOf="@+id/minute_progress_number"
         android:layout_marginRight="34dp"
+        android:layout_marginEnd="34dp"
+
 
         />
 
@@ -72,6 +74,8 @@
         android:layout_alignRight="@+id/seekArc"
         android:layout_alignEnd="@+id/seekArc"
         android:layout_marginRight="36dp"
+        android:layout_marginEnd="36dp"
+
 
         />
 
