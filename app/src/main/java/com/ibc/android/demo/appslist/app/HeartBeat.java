@@ -68,6 +68,8 @@ public class HeartBeat extends Service {
             ActivityManager.RunningTaskInfo ar = RunningTask.get(0);
             String activityOnTop = ar.topActivity.getPackageName();
 
+
+
             //check the try
 
             //Log.e("activity on Top", "" + activityOnTop);

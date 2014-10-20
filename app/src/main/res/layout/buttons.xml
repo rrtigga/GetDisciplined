@@ -12,7 +12,7 @@
         android:layout_centerHorizontal="true"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="8dip"
-        android:src="@drawable/stopwatch6"
+        android:src="@drawable/play103"
         app:cb_color="#ffff4c4f"
         app:cb_pressed_ring_width="16dip"
         android:layout_gravity="right|bottom" />
