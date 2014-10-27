@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.spicycurryman.getdisciplined10.app.ApplicationCheck;
 import com.spicycurryman.getdisciplined10.app.R;
 
 import java.util.ArrayList;
@@ -86,6 +87,7 @@ public class LockScreenActivity extends Activity {
 
         for (Object object : packagezList) {
             am.killBackgroundProcesses((String) object);
+
             Log.d("Killed Background Process!: ", (String) object);
 
 
@@ -212,6 +214,18 @@ public class LockScreenActivity extends Activity {
             finish();
             super.onStop();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ApplicationCheck.activityPaused();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ApplicationCheck.activityResumed();
     }
 
 }

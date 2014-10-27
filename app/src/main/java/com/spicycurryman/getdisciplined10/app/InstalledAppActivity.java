@@ -111,6 +111,8 @@ public class InstalledAppActivity extends ActionBarActivity
     protected void onResume()
     {
         super.onResume();
+        ApplicationCheck.activityResumed();
+
 
         try
         {
@@ -333,5 +335,14 @@ public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         protected void onProgressUpdate(Void... values) {
             super.onProgressUpdate(values);
         }
+    }
+
+
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ApplicationCheck.activityPaused();
     }
 }

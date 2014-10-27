@@ -146,6 +146,8 @@ public class MainActivity extends ActionBarActivity {
     protected void onResume()
     {
         super.onResume();
+        ApplicationCheck.activityResumed();
+
 
         try
         {
@@ -1015,6 +1017,13 @@ public class MainActivity extends ActionBarActivity {
 
 
         });
+    }
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ApplicationCheck.activityPaused();
     }
 
 

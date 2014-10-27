@@ -14,11 +14,15 @@
 
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
+
     <application
+        android:name="com.spicycurryman.getdisciplined10.app.ApplicationCheck"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/Theme.NoAction" >
+
+
 
         <activity
             android:name="com.spicycurryman.getdisciplined10.app.MainActivity"
@@ -88,5 +92,6 @@
 
 
     </application>
+
 
 </manifest>

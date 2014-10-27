@@ -36,20 +36,6 @@
 
             android:title="@string/Feedback"/>
 
-        <item
-            android:id="@+id/FAQ_drop"
-            android:orderInCategory="4"
-            app:showAsAction="never"
-            android:icon="@drawable/ic_question"
-
-            android:title="@string/FAQ"/>
-
-        <item
-            android:id="@+id/About_drop"
-            android:orderInCategory="5"
-            app:showAsAction="never"
-            android:icon="@drawable/ic_about"
-            android:title="@string/About"/>
 
 
     </menu>
