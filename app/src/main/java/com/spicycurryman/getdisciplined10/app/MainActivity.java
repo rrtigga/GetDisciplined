@@ -120,7 +120,7 @@ public class MainActivity extends ActionBarActivity {
             case R.id.setting_drop:
                 Intent sharingIntent = new Intent(android.content.Intent.ACTION_SEND);
                 sharingIntent.setType("text/plain");
-                String shareBody = "Hey you gotta check out this app I found, GetDisciplined! It really helps me stay focused! ";
+                String shareBody = "Hey you gotta check out this app I found, GetDisciplined! It really helps me stay focused! http://play.google.com/store/apps/details?id=com.spicycurryman.getdisciplined10.app ";
                 sharingIntent.putExtra(android.content.Intent.EXTRA_SUBJECT, "Check out GetDisciplined");
                 sharingIntent.putExtra(android.content.Intent.EXTRA_TEXT, shareBody);
                 startActivity(Intent.createChooser(sharingIntent, "Share via"));
