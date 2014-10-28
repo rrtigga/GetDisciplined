@@ -63,12 +63,13 @@ public class HeartBeat extends Service {
 
 
             if(timerends ==0){
-                android.os.Process.killProcess(android.os.Process.myPid());
+                //android.os.Process.killProcess(android.os.Process.myPid());
 
             }
 
             if (System.currentTimeMillis() < timerends) {
 
+                //activityManager.killBackgroundProcesses(getApplicationContext().getPackageName());
 
 
                 for (ActivityManager.RunningAppProcessInfo appProcess : appProcesses) {
@@ -78,16 +79,16 @@ public class HeartBeat extends Service {
 
 // Provide the packagename(s) of apps here, you want to show password activity
                         if (((appProcess.processName.contains((CharSequence) object) && !appProcess.processName.contains("com.spicycurryman.getdisciplined10.app"))
-                                )) {
+                        )) {
 
                             if(appProcess.processName.contains( "com.spicycurryman.getdisciplined10.app" ) && !appProcess.processName.contains((CharSequence) object) ){
-                                    android.os.Process.killProcess(android.os.Process.myPid());
+                               // android.os.Process.killProcess(android.os.Process.myPid());
 
 
                             }
 
 
-                            //Log.e("IS IT", appProcess.processName);
+                           // Log.e("IS IT", appProcess.processName);
 
                             //Log.e("OH SHOOT ", String.valueOf(appProcess.pid));
                             if(ApplicationCheck.isActivityVisible()) {
@@ -97,13 +98,24 @@ public class HeartBeat extends Service {
                             }
 
 
+                            activityManager.killBackgroundProcesses(appProcess.processName);
 
-                                Intent i = new Intent(getApplicationContext(), LockScreenActivity.class);
-                                i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                                i.putExtra("", "");
-                                startActivity(i);
+                            Intent i = new Intent(Intent.ACTION_MAIN);
+                            i.addCategory(Intent.CATEGORY_HOME);
+                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                            i.putExtra("", "");
 
-                                android.os.Process.killProcess(android.os.Process.myPid());
+                            startActivity(i);
+
+                            activityManager.killBackgroundProcesses(appProcess.processName);
+
+
+                            // activityManager.killBackgroundProcesses(appProcess.processName);
+
+
+
+
+                            //android.os.Process.killProcess(android.os.Process.myPid());
 
 
 
@@ -114,17 +126,17 @@ public class HeartBeat extends Service {
                 }
             }
 
-            }catch(Exception e){
-            }
+        }catch(Exception e){
+        }
 
-            Intent ishintent = new Intent(this, HeartBeat.class);
-            PendingIntent pintent = PendingIntent.getService(this, 0, ishintent, 0);
-            AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-            alarm.cancel(pintent);
-            alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 5000, pintent);
+        Intent ishintent = new Intent(this, HeartBeat.class);
+        PendingIntent pintent = PendingIntent.getService(this, 0, ishintent, 0);
+        AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        alarm.cancel(pintent);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 5000, pintent);
 
 
-            return START_STICKY;
+        return START_STICKY;
 
 
 

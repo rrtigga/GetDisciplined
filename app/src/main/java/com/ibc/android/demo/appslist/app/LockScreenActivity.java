@@ -36,10 +36,14 @@ public class LockScreenActivity extends Activity {
         setContentView(R.layout.lock_screen);
 
 
+
+
     }
 
     @Override
     public void onBackPressed() {
+
+
 
         /*
          * So here's what's going on: When the user presses the back button, 
@@ -111,6 +115,7 @@ public class LockScreenActivity extends Activity {
 
         //startService(new Intent(this, HeartBeat.class));
 
+        android.os.Process.killProcess(android.os.Process.myPid());
 
         Intent ishintent = new Intent(this, HeartBeat.class);
         PendingIntent pintent = PendingIntent.getService(this, 0, ishintent, 0);
@@ -126,6 +131,8 @@ public class LockScreenActivity extends Activity {
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 300000, piHeartBeatService);*/
 
         finish();
+       // android.os.Process.killProcess(android.os.Process.myPid());
+
         super.onBackPressed();
     }
 
@@ -149,6 +156,9 @@ public class LockScreenActivity extends Activity {
          * keeps track of which apps are running. First, we're gonna need to find the
          * PID of the blocked app (Instagram in this case).
          */
+
+
+
 
         // Grab a list of all running processes and their PIDs.
         ActivityManager am = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
@@ -190,6 +200,7 @@ public class LockScreenActivity extends Activity {
             // Now that we've got the PID, kill the Instagram process.
 
             ActivityManager am1 = (ActivityManager) getApplicationContext().getSystemService(ACTIVITY_SERVICE);
+            android.os.Process.killProcess(android.os.Process.myPid());
 
 
             // Display confirmation here, finish() activity.
@@ -212,6 +223,8 @@ public class LockScreenActivity extends Activity {
         alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 300000, piHeartBeatService);*/
 
             finish();
+           // android.os.Process.killProcess(android.os.Process.myPid());
+
             super.onStop();
         }
     }
