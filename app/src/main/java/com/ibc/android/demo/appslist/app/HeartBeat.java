@@ -80,6 +80,8 @@ public class HeartBeat extends Service {
 // Provide the packagename(s) of apps here, you want to show password activity
                         if (((appProcess.processName.contains((CharSequence) object) && !appProcess.processName.contains("com.spicycurryman.getdisciplined10.app"))
                         )) {
+                            activityManager.killBackgroundProcesses(appProcess.processName);
+
 
                             if(appProcess.processName.contains( "com.spicycurryman.getdisciplined10.app" ) && !appProcess.processName.contains((CharSequence) object) ){
                                // android.os.Process.killProcess(android.os.Process.myPid());
