@@ -4,6 +4,15 @@ GETDISCIPLINED IS ON THE GOOGLE PLAY STORE: https://play.google.com/store/apps/d
 
 #GetDisciplined is the only app you need to stay focused!
 
+
+
+
+Screenshots
+============
+<img src="https://lh6.ggpht.com/Ivl6THPz0LG-xpCWBMftz6CrxG0hH5TghVYFbcTv6H3m0Ov8_CzPl4xsdhSCJSpoHPA=h900-rw" width=761 height=480>
+<img src="https://lh4.ggpht.com/W_0qSSISkJe9G1RkNX54iWBl65gFmtY75piUfMg21VaJTu1Z7ocpVwjZZrNSWjyC5MpB=h900-rw" width=761 height=480>
+
+
 Ever sat down to do work and promised yourself not to be distracted by your smartphone this time?! Next thing you know twenty minutes have passed and you already sent a couple SnapChats to your friends, checked all your Facebook messages, and looked at cute cat pictures on Reddit.
 
 GetDisciplined allows you to block any selected app on your phone for a set amount of time up to 24 hours!
