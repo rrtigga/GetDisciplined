@@ -1,10 +1,14 @@
-# GetDisciplined
-
 GETDISCIPLINED IS ON THE GOOGLE PLAY STORE: https://play.google.com/store/apps/details?id=com.spicycurryman.getdisciplined10.app
 
 #GetDisciplined is the only app you need to stay focused!
 
+GetDisciplined allows you to block any selected app on your phone for a set amount of time up to 24 hours! Due to Google constantly changing their API's and the methods for getting running tasks and running apps (for Android-L and the coming M) on devices and other projects and pressing work in my life I have chosen to open-source the application rather than letting it die out completely. 
 
+I encourage other developers to potentially improve it, use it in their own personal projects, and help me re-release it to users. I will still occasionally update this app based on my free time, but it will probably be beta quality code.
+
+If you are a developer who's interested in using GetDisciplined's current codebase, I encourage you to fork this repository and/or directly contribute to it. If you decide to launch your own fork of GetDisciplined on the Play Store, feel free to drop me a line so I can feature it on this GitHub page.
+
+Contact Info is here: http://rohittigga.com/
 
 
 Screenshots
@@ -12,6 +16,8 @@ Screenshots
 <img src="https://lh6.ggpht.com/Ivl6THPz0LG-xpCWBMftz6CrxG0hH5TghVYFbcTv6H3m0Ov8_CzPl4xsdhSCJSpoHPA=h900-rw"  >
 <img src="https://lh4.ggpht.com/W_0qSSISkJe9G1RkNX54iWBl65gFmtY75piUfMg21VaJTu1Z7ocpVwjZZrNSWjyC5MpB=h900-rw" >
 
+Description
+============
 
 Ever sat down to do work and promised yourself not to be distracted by your smartphone this time?! Next thing you know twenty minutes have passed and you already sent a couple SnapChats to your friends, checked all your Facebook messages, and looked at cute cat pictures on Reddit.
 
