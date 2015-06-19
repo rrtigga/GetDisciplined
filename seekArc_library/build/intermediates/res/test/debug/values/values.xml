@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- From: file:/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/seekArc_library/build/intermediates/bundles/debug/res/values/values.xml -->
+    <eat-comment/>
+    <color name="progress_gray">#FFD8D8D8</color>
+    <color name="progress_gray_dark">#FF383838</color>
+    <declare-styleable name="SeekArc"><attr format="reference" name="thumb"/><attr format="dimension" name="thumbOffset"/><attr format="integer" name="max"/><attr format="dimension" name="progressWidth"/><attr format="dimension" name="arcWidth"/><attr format="integer" name="progress"/><attr format="integer" name="rotation"/><attr format="integer" name="startAngle"/><attr format="integer" name="sweepAngle"/><attr format="color" name="arcColor"/><attr format="color" name="progressColor"/><attr format="boolean" name="roundEdges"/><attr format="boolean" name="touchInside"/><attr format="boolean" name="clockwise"/></declare-styleable>
+    <declare-styleable name="SeekArcTheme"><attr format="reference" name="seekArcStyle"/></declare-styleable>
+    <string name="app_name">Seekarc_library</string>
+    <style name="SeekArc">
+        <item name="arcColor">@color/progress_gray_dark</item>
+    </style>
+    <style name="SeekArcLight">
+        <item name="arcColor">@color/progress_gray</item>
+    </style>
+</resources>

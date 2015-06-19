@@ -4,14 +4,12 @@ android {
     compileSdkVersion 17
     buildToolsVersion '19.1.0'
     defaultConfig {
-        applicationId 'com.triggertrap.seekarc'
         minSdkVersion 8
         targetSdkVersion 17
-        applicationId 'com.triggertrap.seekarc'
     }
     buildTypes {
         release {
-            runProguard false
+            minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
         }
     }

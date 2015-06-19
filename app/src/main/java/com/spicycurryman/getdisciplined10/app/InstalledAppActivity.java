@@ -1,6 +1,5 @@
 package com.spicycurryman.getdisciplined10.app;
 
-import android.app.ActionBar;
 import android.app.ProgressDialog;
 import android.app.admin.DevicePolicyManager;
 import android.content.ComponentName;
@@ -59,9 +58,9 @@ public class InstalledAppActivity extends ActionBarActivity
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 // Update the action bar title with the TypefaceSpan instance
-        ActionBar actionBar = getActionBar();
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(s);
-        getActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         actionBar.setHomeButtonEnabled(true);
 

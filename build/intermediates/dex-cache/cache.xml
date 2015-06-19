@@ -1,35 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<pre-dex-items>
+<items version="2" >
 
     <item
-        dex="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/pre-dexed/debug/classes-c1da0edb219d7c1f6e8f79de924c124807eff308.jar"
-        jar="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/classes.jar"
+        jar="/Users/Spicycurryman/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/22.2.0/support-annotations-22.2.0.jar"
         jumboMode="false"
-        revision="19.1.0"
-        sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
+        revision="22.0.1"
+        sha1="66b42a1f3eb7676070b7ef7f14b603483aecbee1">
+        <dex dex="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/pre-dexed/debug/support-annotations-22.2.0-5cb1632d0c91a765a0f52b8c99eaa2bfea5322a2.jar" />
+    </item>
     <item
-        dex="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-82a437eb578075d061fe0917f28675f6381ebc6a.jar"
-        jar="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/libs/internal_impl-20.0.0.jar"
+        jar="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/classes.jar"
         jumboMode="false"
-        revision="19.1.0"
-        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
+        revision="22.0.1"
+        sha1="1ee588ff2c4daf7b97c1cbf922a6c7f027285c2f">
+        <dex dex="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/pre-dexed/debug/classes-8c5d886b2dc0aee2753854060954cf02ac8c815a.jar" />
+    </item>
     <item
-        dex="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/pre-dexed/debug/support-annotations-20.0.0-da2e40b22cd821ba41d5e33aba0879267b8c9734.jar"
-        jar="/Applications/Android Studio.app/android-sdk-macosx/extras/android/m2repository/com/android/support/support-annotations/20.0.0/support-annotations-20.0.0.jar"
+        jar="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.0/libs/internal_impl-22.2.0.jar"
         jumboMode="false"
-        revision="19.1.0"
-        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
+        revision="22.0.1"
+        sha1="57f2ab85c164ff1676ec64dee787981c046fab79">
+        <dex dex="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/pre-dexed/debug/internal_impl-22.2.0-bb5b87a0f2fff6a2db8dc3d79a74ecf6edf74f24.jar" />
+    </item>
     <item
-        dex="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/pre-dexed/debug/classes-ef65db97495cf88ae6ecef9a11d3af7ccc1bb3d5.jar"
+        jar="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/exploded-aar/GetDisciplined1_0/seekArc_library/unspecified/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c5edf8448fdc38358242e79cdf4944ca66bbfdd2">
+        <dex dex="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/pre-dexed/debug/classes-ef65db97495cf88ae6ecef9a11d3af7ccc1bb3d5.jar" />
+    </item>
+    <item
+        jar="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/exploded-aar/GetDisciplined1_0/seekArc_library/unspecified/classes.jar"
+        jumboMode="false"
+        revision="22.0.0"
+        sha1="c5edf8448fdc38358242e79cdf4944ca66bbfdd2">
+        <dex dex="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/pre-dexed/debug/classes-ef65db97495cf88ae6ecef9a11d3af7ccc1bb3d5.jar" />
+    </item>
+    <item
         jar="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/exploded-aar/GetDisciplined1_0/seekArc_library/unspecified/classes.jar"
         jumboMode="false"
         revision="19.1.0"
-        sha1="f3ac73e26278f118f1e1501089ed308152aba636"/>
+        sha1="c5edf8448fdc38358242e79cdf4944ca66bbfdd2">
+        <dex dex="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/pre-dexed/debug/classes-ef65db97495cf88ae6ecef9a11d3af7ccc1bb3d5.jar" />
+    </item>
     <item
-        dex="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/pre-dexed/debug/classes-725a42402cdcec28a77996426c3d9d5b4c99fbf9.jar"
-        jar="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/20.0.0/classes.jar"
+        jar="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.0/classes.jar"
         jumboMode="false"
-        revision="19.1.0"
-        sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef"/>
+        revision="22.0.1"
+        sha1="73753982da6bde518f3a4c6b372749981d14d1a0">
+        <dex dex="/Users/Spicycurryman/AndroidStudioProjects/GetDisciplined1_0/app/build/intermediates/pre-dexed/debug/classes-42cbf1ae72ee7b5023c5c8455ed7a0ec8de244f9.jar" />
+    </item>
 
-</pre-dex-items>
+</items>

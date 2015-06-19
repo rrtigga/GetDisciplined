@@ -1,6 +1,5 @@
 package com.spicycurryman.getdisciplined10.app;
 
-import android.app.ActionBar;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.Notification;
@@ -266,7 +265,7 @@ public class MainActivity extends ActionBarActivity {
                 Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
 
 // Update the action bar title with the TypefaceSpan instance
-        ActionBar actionBar = getActionBar();
+        android.support.v7.app.ActionBar actionBar = getSupportActionBar();
         actionBar.setTitle(s);
         // set the action bar in this activity as the home
         actionBar.setHomeButtonEnabled(true);
@@ -294,15 +293,6 @@ public class MainActivity extends ActionBarActivity {
         little_minute_text2.setTypeface(Typeface.createFromAsset(getAssets(), "fonts/roboto-thin.ttf"));
 
 
-
-
-
-
-
-
-
-
-
         mSeekArc = (SeekArc) findViewById(R.id.seekArc);
 
 
@@ -316,13 +306,11 @@ public class MainActivity extends ActionBarActivity {
 
         Date startDate = new Date(startimerPreferences.getLong("time", 0));
         timerstarted = startDate.getTime();
-        Log.e("This is the start time!!!!!:  ", timerstarted + "");
 
 
         endTimerPreferences = getPreferences(MODE_APPEND);
         Date endDate = new Date(endTimerPreferences.getLong("endtime", 0));
         timerends = endDate.getTime();
-        Log.e("This is the end time!!!!!:  ", timerends + "");
 
 
         Date openagain = new Date(System.currentTimeMillis());
@@ -652,10 +640,6 @@ public class MainActivity extends ActionBarActivity {
                         minute_text.setVisibility(View.VISIBLE);
                         mSeekArc.setVisibility(View.VISIBLE);
                         start_timer.setVisibility(View.VISIBLE);
-                        //block_button1.setVisibility(View.VISIBLE);
-
-
-
 
                         number_text.setTextColor(getResources().getColor(R.color.red_highlight));
 
@@ -664,13 +648,6 @@ public class MainActivity extends ActionBarActivity {
                         little_hour_text2.setTextColor(getResources().getColor(R.color.red_highlight));
 
                         little_minute_text2.setTextColor(getResources().getColor(R.color.red_highlight));
-
-
-
-
-
-
-
 
                         number_text.setClickable(true);
 
@@ -691,10 +668,6 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-
-
-
-
     private static final long TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     private long mBackPressed;
 
@@ -711,7 +684,6 @@ public class MainActivity extends ActionBarActivity {
         mBackPressed = System.currentTimeMillis();
     }
 
-    // for the on click activity responses for each of the 3 buttons on the menu
     public void addListenerOnButton() {
 
         final Context context = this;
@@ -732,7 +704,6 @@ public class MainActivity extends ActionBarActivity {
 
     }
 
-
     private void setActionListeners() {
 
         number_text = (TextView) findViewById(R.id.hour_progress_number);
@@ -740,18 +711,8 @@ public class MainActivity extends ActionBarActivity {
 
         start_timer.setOnClickListener(new View.OnClickListener() {
 
-
-
-
-
-
-
             @Override
             public void onClick(View view) {
-
-
-
-
 
                 AlertDialog.Builder zeroerror = new AlertDialog.Builder(MainActivity.this)
                         .setMessage("Dude, you didn't set a time! :P")
@@ -804,44 +765,22 @@ public class MainActivity extends ActionBarActivity {
 
                                 little_minute_text2.setTextColor(getResources().getColor(R.color.red_highlight));
 
-
-
-
-
-
-                                // yo
-
                                 number_text.setClickable(false);
 
                                 minute_text.setClickable(false);
 
-
-
-
-
-
-                                Log.d("AlertDialog", "Positive");
 
                                 hourint = Integer.valueOf(number_text.getText().toString());
 
                                 minuteint = Integer.valueOf(minute_text.getText().toString());
 
 
-                                Log.i("YourActivity", "Hours: " + hourint);
-
-                                Log.i("YourActivity", "Minutes: " + minuteint);
-
-
                                 //Make sure it stays alive no matter what until stopservice is called when the timer runs out
 
-
-                                //Intent intent = new Intent(getApplicationContext(), HeartBeat.class);
-                                //startService(intent);
 
                                 Date currenttime = new Date(System.currentTimeMillis());
 
                                 timerstarted = currenttime.getTime();
-                                Log.e("This is the current time:  ", timerstarted + "");
                                 startimerPreferences = getPreferences(MODE_APPEND);
                                 SharedPreferences.Editor starteditor = startimerPreferences.edit();
                                 starteditor.putLong("time", timerstarted);
@@ -850,7 +789,6 @@ public class MainActivity extends ActionBarActivity {
 
                                 Date endtime = new Date(System.currentTimeMillis());
 
-                                //timerends = endtime.getTime() + (((hourint * 60 * 60) + (minuteint * 60) + (secondint)) * 1000);
 
                                 if ((((hourint * 60 * 60) + (minuteint * 60)  ) * 1000) > 0) {
                                     timerends = endtime.getTime() + (((hourint * 60 * 60) + (minuteint * 60) ) * 1000);
@@ -917,17 +855,10 @@ public class MainActivity extends ActionBarActivity {
 
                                     @Override
                                     public void onFinish() {
-                                        // this function will be called when the timecount is finished
-                                        //textViewShowTime.setText("Time up!");
                                         number_text.setVisibility(View.VISIBLE);
                                         minute_text.setVisibility(View.VISIBLE);
                                         mSeekArc.setVisibility(View.VISIBLE);
                                         start_timer.setVisibility(View.VISIBLE);
-                                        //block_button1.setVisibility(View.VISIBLE);
-
-
-
-
 
 
                                         number_text.setTextColor(getResources().getColor(R.color.red_highlight));
@@ -938,24 +869,9 @@ public class MainActivity extends ActionBarActivity {
 
                                         little_minute_text2.setTextColor(getResources().getColor(R.color.red_highlight));
 
-
-
-
-
-
-
                                         number_text.setClickable(true);
 
                                         minute_text.setClickable(true);
-
-
-
-
-
-                                        //Make sure it stops for good.
-
-                                        //Intent intent = new Intent(getApplicationContext(), HeartBeat.class);
-                                        //stopService(intent);
 
 
                                         NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -1022,7 +938,6 @@ public class MainActivity extends ActionBarActivity {
                     timerright.show();
                 }
 
-                // textViewShowTime.setTextAppearance(getApplicationContext(), R.style.normalText);
             }
 
 

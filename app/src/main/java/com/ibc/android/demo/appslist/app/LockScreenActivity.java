@@ -92,7 +92,6 @@ public class LockScreenActivity extends Activity {
         for (Object object : packagezList) {
             am.killBackgroundProcesses((String) object);
 
-            Log.d("Killed Background Process!: ", (String) object);
 
 
         }
@@ -188,7 +187,7 @@ public class LockScreenActivity extends Activity {
 
             for (Object object : packagezList) {
                 am.killBackgroundProcesses((String) object);
-                Log.d("Killed Background Process!: ", (String) object);
+                Log.d("Killed Background!: ", (String) object);
 
 
             }

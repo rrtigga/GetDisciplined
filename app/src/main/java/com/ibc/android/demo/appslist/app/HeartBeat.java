@@ -8,13 +8,13 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.IBinder;
+import android.util.Log;
 
 import com.spicycurryman.getdisciplined10.app.ApplicationCheck;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 
 public class HeartBeat extends Service {
 
@@ -33,46 +33,34 @@ public class HeartBeat extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
-
         endTimerPreferences = getApplicationContext().getSharedPreferences("endservice", Context.MODE_PRIVATE);
         timerends = endTimerPreferences.getLong("endservice", 0);
-
-
-
         sharedPrefs = getApplicationContext().getSharedPreferences(getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
         sharedPrefsapp = getApplicationContext().getSharedPreferences("appdb", Context.MODE_PRIVATE);
         allEntries = null;
         allEntries = sharedPrefsapp.getAll();
         packagezList = null;
-
         packagezList = new ArrayList<String>();
 
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
             packagezList.add(entry.getKey());
-
         }
 
 
         try {
+
             ActivityManager activityManager = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
             List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager.getRunningAppProcesses();
 
-
-
-
-
             if(timerends ==0){
-                //android.os.Process.killProcess(android.os.Process.myPid());
 
             }
 
             if (System.currentTimeMillis() < timerends) {
 
-                //activityManager.killBackgroundProcesses(getApplicationContext().getPackageName());
-
 
                 for (ActivityManager.RunningAppProcessInfo appProcess : appProcesses) {
+                     Log.e("CHECK it ", appProcess.processName);
 
 
                     for (Object object : packagezList) {
@@ -84,21 +72,12 @@ public class HeartBeat extends Service {
 
 
                             if(appProcess.processName.contains( "com.spicycurryman.getdisciplined10.app" ) && !appProcess.processName.contains((CharSequence) object) ){
-                               // android.os.Process.killProcess(android.os.Process.myPid());
-
 
                             }
 
-
-                           // Log.e("IS IT", appProcess.processName);
-
-                            //Log.e("OH SHOOT ", String.valueOf(appProcess.pid));
                             if(ApplicationCheck.isActivityVisible()) {
-                                //android.os.Process.killProcess(android.os.Process.myPid());
-
 
                             }
-
 
                             activityManager.killBackgroundProcesses(appProcess.processName);
 
@@ -110,18 +89,6 @@ public class HeartBeat extends Service {
                             startActivity(i);
 
                             activityManager.killBackgroundProcesses(appProcess.processName);
-
-
-                            // activityManager.killBackgroundProcesses(appProcess.processName);
-
-
-
-
-                            //android.os.Process.killProcess(android.os.Process.myPid());
-
-
-
-
 
                         }
                     }

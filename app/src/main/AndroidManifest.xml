@@ -45,7 +45,7 @@
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.example.MainActivity" />
+                android:value="com.spicycurryman.getdisciplined10.app.MainActivity" />
         </activity>
 
 

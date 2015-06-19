@@ -30,10 +30,7 @@ public class ApkAdapter extends BaseAdapter {
     SharedPreferences endTimerPreferences;
     long timerends;
 
-
-
     List<PackageInfo> packageList;
-
     Activity context;
     PackageManager packageManager;
     boolean[] itemChecked;
@@ -51,23 +48,13 @@ public class ApkAdapter extends BaseAdapter {
         this.packageManager = packageManager;
         itemChecked = new boolean[packageList.size()];
 
-
-
-
-
-
     }
     private class ViewHolder {
         TextView apkName;
         CheckBox ck1;
         TextView packageName;
 
-
-
     }
-
-
-
 
     public int getCount() {
         return packageList.size();
@@ -99,29 +86,18 @@ public class ApkAdapter extends BaseAdapter {
                     .findViewById(R.id.checkBox1);
             holder.packageName = (TextView) convertView.findViewById(R.id.app_package);
 
-
-
             convertView.setTag(holder);
-            //holder.ck1.setTag(packageList.get(position));
 
         } else {
 
             holder = (ViewHolder) convertView.getTag();
         }
-
-
-
-        // ViewHolder holder = (ViewHolder) convertView.getTag();
         final PackageInfo packageInfo = (PackageInfo) getItem(position);
-
-
 
         Drawable appIcon = packageManager
                 .getApplicationIcon(packageInfo.applicationInfo);
 
 
-
-        // Make sure to define it again!
         PACKAGE_NAME = packageInfo.packageName;
 
 
@@ -131,62 +107,39 @@ public class ApkAdapter extends BaseAdapter {
         holder.apkName.setCompoundDrawables(appIcon, null, null, null);
         holder.apkName.setCompoundDrawablePadding(15);
         holder.apkName.setText(appName);
-        //holder.packageName.setText(PACKAGE_NAME);
-
-
         holder.ck1.setChecked(false);
-
 
         if (itemChecked[position])
             holder.ck1.setChecked(true);
         else
             holder.ck1.setChecked(false);
 
-
         checked = new HashSet();
 
         PACKAGE_NAME = packageInfo.packageName;
-        //Log.d("just here: ", PACKAGE_NAME);
-
         sharedPrefs = context.getSharedPreferences(context.getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
         sharedPrefsapp = context.getSharedPreferences("appdb", Context.MODE_PRIVATE);
-
-
-
-
-
         holder.ck1.setChecked(sharedPrefs.getBoolean(PACKAGE_NAME,false));
-
-
-
         endTimerPreferences = context.getSharedPreferences("endservice", Context.MODE_PRIVATE);
         timerends= endTimerPreferences.getLong("endservice", 0);
 
 
         if(System.currentTimeMillis() < timerends ) {
 
-
             if(holder.ck1.isChecked()){
                 holder.ck1.setClickable(false);
                 holder.ck1.setEnabled(false);
             }
-
             else{
                 holder.ck1.setClickable(true);
                 holder.ck1.setEnabled(true);
 
             }
-
-
-
         }
-
             holder.ck1.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
-
-
 
                 SharedPreferences.Editor editor = context.getSharedPreferences(context.getApplicationContext().getPackageName(), Context.MODE_PRIVATE).edit();
                 SharedPreferences.Editor editorapp = context.getSharedPreferences("appdb", Context.MODE_PRIVATE).edit();
@@ -197,40 +150,19 @@ public class ApkAdapter extends BaseAdapter {
                     holder.ck1.setChecked(true);
                     editor.putBoolean(packageInfo.packageName, true);
                     editorapp.putString(packageInfo.packageName, packageInfo.packageName);
-
-
-
                     editor.apply();
                     editorapp.apply();
-
-                    // sharedPrefs = context.getSharedPreferences(context.getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
-
 
                 } else {
                     itemChecked[position] = false;
                     holder.ck1.setChecked(false);
                     editor.putBoolean(packageInfo.packageName, false);
                     editorapp.remove(packageInfo.packageName);
-
-
                     editor.apply();
                     editorapp.apply();
-                    //sharedPrefs = context.getSharedPreferences(context.getApplicationContext().getPackageName(), Context.MODE_PRIVATE);
-
-
-
-
                 }
-
             }
-
-
-
         });
-
-
-
-
 
         return convertView;
 
