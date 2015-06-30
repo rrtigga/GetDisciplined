@@ -97,10 +97,6 @@ public class LockScreenActivity extends Activity {
         }
 
 
-        // Now that we've got the PID, kill the Instagram process.
-
-
-        // Now that we've got the PID, kill the Instagram process.
 
         ActivityManager am1 = (ActivityManager) getApplicationContext().getSystemService(ACTIVITY_SERVICE);
 
@@ -112,7 +108,6 @@ public class LockScreenActivity extends Activity {
         startActivity(startMain);
 
 
-        //startService(new Intent(this, HeartBeat.class));
 
         android.os.Process.killProcess(android.os.Process.myPid());
 
@@ -123,11 +118,7 @@ public class LockScreenActivity extends Activity {
         alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 5000, pintent);
 
 
-  /*      Intent iHeartBeatService = new Intent(this, HeartBeat.class);
-        PendingIntent piHeartBeatService = PendingIntent.getService(this, 0, iHeartBeatService, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarmManager.cancel(piHeartBeatService);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 300000, piHeartBeatService);*/
+
 
         finish();
        // android.os.Process.killProcess(android.os.Process.myPid());
@@ -168,11 +159,10 @@ public class LockScreenActivity extends Activity {
         allEntries = null;
         allEntries = sharedPrefsapp.getAll();
 
-        //prefix = "m";
         packagezList = null;
 
 
-        packagezList = new ArrayList<String>();
+
 
 
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
@@ -215,14 +205,8 @@ public class LockScreenActivity extends Activity {
             alarm.cancel(pintent);
             alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 5000, pintent);
 
-  /*      Intent iHeartBeatService = new Intent(this, HeartBeat.class);
-        PendingIntent piHeartBeatService = PendingIntent.getService(this, 0, iHeartBeatService, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        alarmManager.cancel(piHeartBeatService);
-        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 300000, piHeartBeatService);*/
 
             finish();
-           // android.os.Process.killProcess(android.os.Process.myPid());
 
             super.onStop();
         }

@@ -161,11 +161,11 @@ public class MainActivity extends ActionBarActivity {
                 intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mAdminName);
                 intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,
                         "\nIt's time to GetDisciplined! ;)"+
-                        "\n It’s this simple: \n" +
-                        "1) Drag the red circle scrubber on the top to set the amount of time for how long you want the apps to be blocked for\n" +
-                        "(Press the hour time and drag the scrubber to set the time for hours and press the minute time and drag the scrubber to set the time for minutes)\n" +
-                        "2) Press the list button and check the distracting apps you want to block\n" +
-                        "3) Press the timer button to start the time");
+                                "\n It’s this simple: \n" +
+                                "1) Drag the red circle scrubber on the top to set the amount of time for how long you want the apps to be blocked for\n" +
+                                "(Press the hour time and drag the scrubber to set the time for hours and press the minute time and drag the scrubber to set the time for minutes)\n" +
+                                "2) Press the list button and check the distracting apps you want to block\n" +
+                                "3) Press the timer button to start the time");
                 startActivityForResult(intent, REQUEST_CODE);
             }
             else
