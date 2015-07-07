@@ -75,7 +75,7 @@ public class MainActivity extends ActionBarActivity {
     SharedPreferences endservice;
 
 
-    ArrayList<String> packagezList;
+    ArrayList<String> packagezList= new ArrayList<String>();
     SharedPreferences sharedPrefsapp;
     Map<String, ?> allEntries;
 
@@ -148,35 +148,7 @@ public class MainActivity extends ActionBarActivity {
         ApplicationCheck.activityResumed();
 
 
-        try
-        {
-            // Initiate DevicePolicyManager.
-            mDPM = (DevicePolicyManager)getSystemService(Context.DEVICE_POLICY_SERVICE);
-            // Set DeviceAdminDemo Receiver for active the component with different option
-            mAdminName = new ComponentName(this, DeviceAdmin.class);
 
-            if (!mDPM.isAdminActive(mAdminName)) {
-                // try to become active
-                Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
-                intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mAdminName);
-                intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,
-                        "\nIt's time to GetDisciplined! ;)"+
-                                "\n It’s this simple: \n" +
-                                "1) Drag the red circle scrubber on the top to set the amount of time for how long you want the apps to be blocked for\n" +
-                                "(Press the hour time and drag the scrubber to set the time for hours and press the minute time and drag the scrubber to set the time for minutes)\n" +
-                                "2) Press the list button and check the distracting apps you want to block\n" +
-                                "3) Press the timer button to start the time");
-                startActivityForResult(intent, REQUEST_CODE);
-            }
-            else
-            {
-                // Already is a device administrator, can do security operations now.
-                //mDPM.lockNow();
-            }
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
     }
 
 
@@ -191,35 +163,7 @@ public class MainActivity extends ActionBarActivity {
 
 
 
-        try
-        {
-            // Initiate DevicePolicyManager.
-            mDPM = (DevicePolicyManager)getSystemService(Context.DEVICE_POLICY_SERVICE);
-            // Set DeviceAdminDemo Receiver for active the component with different option
-            mAdminName = new ComponentName(this, DeviceAdmin.class);
 
-            if (!mDPM.isAdminActive(mAdminName)) {
-                // try to become active
-                Intent intent = new Intent(DevicePolicyManager.ACTION_ADD_DEVICE_ADMIN);
-                intent.putExtra(DevicePolicyManager.EXTRA_DEVICE_ADMIN, mAdminName);
-                intent.putExtra(DevicePolicyManager.EXTRA_ADD_EXPLANATION,
-                        "\nIt's time to GetDisciplined! ;)"+
-                                "\n It’s this simple: \n" +
-                                "1) Drag the red circle scrubber on the top to set the amount of time for how long you want the apps to be blocked for\n" +
-                                "(Press the hour time and drag the scrubber to set the time for hours and press the minute time and drag the scrubber to set the time for minutes)\n" +
-                                "2) Press the list button and check the distracting apps you want to block\n" +
-                                "3) Press the timer button to start the time");
-                startActivityForResult(intent, REQUEST_CODE);
-            }
-            else
-            {
-                // Already is a device administrator, can do security operations now.
-                //mDPM.lockNow();
-            }
-        } catch (Exception e)
-        {
-            e.printStackTrace();
-        }
 
 
         // here is where the service is started.
@@ -911,9 +855,7 @@ public class MainActivity extends ActionBarActivity {
                 sharedPrefsapp = getApplicationContext().getSharedPreferences("appdb", Context.MODE_PRIVATE);
                 allEntries= null;
                 allEntries = sharedPrefsapp.getAll();
-                packagezList= null;
 
-                packagezList = new ArrayList<String>();
 
                 for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
                     packagezList.add(entry.getKey());
@@ -924,7 +866,7 @@ public class MainActivity extends ActionBarActivity {
 
                 if((((hourint * 60 * 60) + (minuteint * 60)  ) * 1000) == 0)
                 {
-                    alertzero.show();
+                    //alertzero.show();
                 }
 
                 else if (packagezList.size() ==0){

@@ -17,13 +17,14 @@ import java.util.Map;
 
 public class HeartBeat extends Service {
 
-    ArrayList<String> packagezList;
+    ArrayList<String> packagezList = new ArrayList<String>();
     SharedPreferences sharedPrefs;
     Map<String, ?> allEntries;
     SharedPreferences sharedPrefsapp;
     SharedPreferences endTimerPreferences;
     long timerends;
     private ActivityManager mActivityManager;
+    List<ActivityManager.RunningAppProcessInfo> pis= null;
 
 
     @Override
@@ -37,12 +38,37 @@ public class HeartBeat extends Service {
         } else {
             // Hack, see
             // http://stackoverflow.com/questions/24625936/getrunningtasks-doesnt-work-in-android-l/27140347#27140347
-            final List<ActivityManager.RunningAppProcessInfo> pis = mActivityManager.getRunningAppProcesses();
-            for (ActivityManager.RunningAppProcessInfo pi : pis) {
-                if (pi.pkgList.length == 1) return pi.pkgList[0];
+            pis = mActivityManager.getRunningAppProcesses();
+            if(pis!=null){
+            }
+            else {
+
+
+                for (ActivityManager.RunningAppProcessInfo pi : pis) {
+                    if (pi.pkgList.length == 1) return pi.pkgList[0];
+                }
             }
         }
         return "";
+    }
+
+    private String getTopPackageTry(){
+
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            return mActivityManager.getRunningTasks(1).get(0).topActivity.getPackageName();
+        }
+        else{
+            ActivityManager manager = (ActivityManager) getApplicationContext().getSystemService(Context.ACTIVITY_SERVICE);
+
+            List<ActivityManager.RunningAppProcessInfo> tasks = manager.getRunningAppProcesses();
+
+            return tasks.get(0).processName;
+        }
+
+
+
+
     }
 
 
@@ -59,7 +85,7 @@ public class HeartBeat extends Service {
         sharedPrefsapp = getApplicationContext().getSharedPreferences("appdb", Context.MODE_PRIVATE);
         allEntries= null;
         allEntries = sharedPrefsapp.getAll();
-        packagezList= null;
+
 
 
         for (Map.Entry<String, ?> entry : allEntries.entrySet()) {
@@ -81,18 +107,17 @@ public class HeartBeat extends Service {
 
                 for (Object object : packagezList) {
 
-                    if ((getTopPackageName().contains((CharSequence) object)) &&
-                            (!activityOnTop.contains(getApplicationContext().getPackageName()
-                            ))) {  // you have to make this check even better
+                        if ((getTopPackageTry().contains((CharSequence) object))
+                                ){  // you have to make this check even better
 
-                        mActivityManager.killBackgroundProcesses((String) object);
+                            mActivityManager.killBackgroundProcesses((String) object);
 
 
-                        Intent i = new Intent(getApplicationContext(), LockScreenActivity.class);
-                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                        i.putExtra("", "");
-                        startActivity(i);
-                    }
+                            Intent i = new Intent(getApplicationContext(), LockScreenActivity.class);
+                            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                            i.putExtra("", "");
+                            startActivity(i);
+                        }
 
                 }
             }
@@ -105,7 +130,7 @@ public class HeartBeat extends Service {
         PendingIntent pintent = PendingIntent.getService(this, 0, ishintent, 0);
         AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         alarm.cancel(pintent);
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),5000, pintent);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),15000, pintent);
 
 
         return START_STICKY;
@@ -123,7 +148,7 @@ public class HeartBeat extends Service {
         PendingIntent pintent = PendingIntent.getService(this, 0, ishintent, 0);
         AlarmManager alarm = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
         alarm.cancel(pintent);
-        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),5000, pintent);
+        alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(),15000, pintent);
 
 
 

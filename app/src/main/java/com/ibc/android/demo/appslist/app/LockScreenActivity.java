@@ -24,7 +24,7 @@ public class LockScreenActivity extends Activity {
     private static final String TAG = LockScreenActivity.class.getSimpleName();
     Map<String, ?> allEntries;
     SharedPreferences sharedPrefsapp;
-    ArrayList<String> packagezList;
+    ArrayList<String> packagezList= new ArrayList<String>() ;
 
 
     @Override
@@ -159,7 +159,6 @@ public class LockScreenActivity extends Activity {
         allEntries = null;
         allEntries = sharedPrefsapp.getAll();
 
-        packagezList = null;
 
 
 
@@ -203,7 +202,7 @@ public class LockScreenActivity extends Activity {
             PendingIntent pintent = PendingIntent.getService(this, 0, ishintent, 0);
             AlarmManager alarm = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
             alarm.cancel(pintent);
-            alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 5000, pintent);
+            alarm.setRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 15000, pintent);
 
 
             finish();
